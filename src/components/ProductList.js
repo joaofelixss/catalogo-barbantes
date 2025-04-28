@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './ProductList.css';
 
 const ProductList = ({ products, onAddToCart }) => {
   const [quantities, setQuantities] = useState({});
@@ -11,25 +12,26 @@ const ProductList = ({ products, onAddToCart }) => {
     const quantity = quantities[product.id] || 0;
     if (quantity > 0) {
       onAddToCart(product.id, quantity);
-      setQuantities({ ...quantities, [product.id]: 0 }); // Reset quantity after adding
+      setQuantities({ ...quantities, [product.id]: 0 });
     }
   };
 
   return (
-    <div>
-      <h2>Nossos Barbantes</h2>
-      <ul>
+    <div className="product-list-container">
+      <h2 className="product-list-title">Nossos Barbantes</h2>
+      <ul className="product-list">
         {products.map(product => (
-          <li key={product.id}>
-            {product.name} - {product.color} - R$ {product.price.toFixed(2)}
+          <li key={product.id} className="product-item">
+            <span className="product-name-color">{product.name} - {product.color}</span>
+            <span className="product-price">R$ {product.price.toFixed(2)}</span>
             <input
               type="number"
               min="0"
               value={quantities[product.id] || ''}
               onChange={(event) => handleQuantityChange(product.id, event)}
-              style={{ width: '50px', marginLeft: '10px' }}
+              className="quantity-input"
             />
-            <button onClick={() => handleAddToCartClick(product)}>Adicionar</button>
+            <button onClick={() => handleAddToCartClick(product)} className="add-to-cart-button">Adicionar</button>
           </li>
         ))}
       </ul>
