@@ -1,0 +1,69 @@
+.product-list-container {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px; /* Mais arredondado */
+  background-color: #f8f8f8;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+}
+
+.product-list-title {
+  font-size: 1.8em; /* Um pouco maior */
+  margin-bottom: 20px;
+  color: #6c5b7b; /* Tom mais suave */
+  text-align: center; /* Centralizar o título */
+}
+
+.product-list {
+  list-style: none;
+  padding: 0;
+}
+
+.product-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.product-item:last-child {
+  border-bottom: none;
+}
+
+.product-name-color {
+  flex-grow: 1;
+  margin-right: 15px;
+  color: #4a4a4a; /* Tom mais suave */
+  font-size: 1.1em;
+}
+
+.product-price {
+  font-weight: bold;
+  color: #d16ba5; /* Tom rosado */
+  margin-right: 20px;
+}
+
+.quantity-input {
+  width: 70px; /* Um pouco maior */
+  padding: 10px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px; /* Mais arredondado */
+  margin-right: 15px;
+  font-size: 1em;
+}
+
+.add-to-cart-button {
+  background-color: #a8dadc; /* Tom azul suave */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px; /* Mais arredondado */
+  cursor: pointer;
+  font-size: 1em;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.08); /* Sombra sutil */
+}
+
+.add-to-cart-button:hover {
+  background-color: #457b9d; /* Tom azul um pouco mais escuro */
+}
