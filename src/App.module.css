@@ -1,0 +1,93 @@
+/* App.module.css */
+.navbar {
+  background-color: #fff9ea;
+  color: #333;
+  position: fixed;
+  padding: 15px 20px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.navbarContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.logo {
+  color: #333;
+  text-decoration: none;
+  font-size: 1.5em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.logoImage {
+  height: 1.2em;
+  margin-right: 5px;
+}
+
+.centerNav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.navItem {
+  margin: 0;
+}
+
+.navLink {
+  color: #333;
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.navLink:hover {
+  color: #e44d26;
+}
+
+.whatsappLink {
+  color: white;
+  text-decoration: none;
+  background-color: #cc9900;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.whatsappLink:hover {
+  background-color: #b8860b;
+}
+
+/* Responsividade da Navbar */
+@media (max-width: 768px) {
+  .navbarContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .centerNav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .whatsappLink {
+    margin-top: 10px;
+  }
+}
