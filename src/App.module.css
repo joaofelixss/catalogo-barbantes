@@ -58,6 +58,25 @@
   color: #e44d26;
 }
 
+.cartIconContainer {
+  position: relative; /* Para posicionar o contador */
+}
+
+.cartIcon {
+  font-size: 1.2em;
+}
+
+.cartCount {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  font-size: 0.7em;
+  border-radius: 50%;
+  padding: 3px 5px;
+}
+
 .whatsappLink {
   color: white;
   text-decoration: none;

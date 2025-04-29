@@ -1,91 +1,62 @@
-import React from "react";
-import "./ShoppingCart.css";
+// src/components/ShoppingCart.jsx
+import React from 'react';
+import styles from './ShoppingCart.module.css';
 
-const ShoppingCart = ({ cartItems, onQuantityChange, products }) => {
-  console.log("ShoppingCart Render - Cart Items:", cartItems); // ADICIONE ESTE LOG
-
-  const generateWhatsAppLink = () => {
-    if (!Array.isArray(cartItems) || cartItems.length === 0) {
-      alert(
-        "Seu carrinho está vazio! Que tal adicionar uns novelinhos lindos?"
-      );
-      return "";
-    }
-
-    let totalPrice = 0;
-    const messageLines = cartItems.map((item) => {
+const ShoppingCart = ({ cartItems, onQuantityChange, products, onEmptyCart, onCheckout }) => { // Receba onEmptyCart e onCheckout
+  const calculateTotal = () => {
+    return cartItems.reduce((total, item) => {
       const product = products.find((p) => p.id === item.id);
-      let productText = "";
-      let itemPrice = 0;
-
-      if (product) {
-        productText = `\uD83E\uDDF5 ${product.name} (${product.color})`;
-        itemPrice = product.price * item.quantity;
-        totalPrice += itemPrice;
-        return `${productText}: ${
-          item.quantity
-        } novelo(s) (R$ ${product.price.toFixed(
-          2
-        )} cada) = R$ ${itemPrice.toFixed(2)}`;
-      } else {
-        return `\uD83E\uDDF5  Produto não encontrado (ID: ${item.id}): ${item.quantity} novelo(s)`;
-      }
-    });
-
-    const formattedTotalPrice = totalPrice.toFixed(2).replace(".", ",");
-    const message = `Olá! Vim conferir meus novelinhos fofos:\n${messageLines.join(
-      "\n"
-    )}\n\nValor total do carrinho: R$ ${formattedTotalPrice}\n\nQual o valor total e como podemos combinar o pagamento e a entrega? \uD83E\uDDF5 `;
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappNumber = "5569992784621"; // Substitua pelo seu número!
-    return `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+      return total + (product ? product.price * item.quantity : 0);
+    }, 0).toFixed(2);
   };
 
   return (
-    <div className="shopping-cart-container">
-      <h2 className="shopping-cart-title">Seu Carrinho</h2>
-      {!Array.isArray(cartItems) || cartItems.length === 0 ? (
-        <p className="cart-empty">
-          O carrinho está vazio. Que tal dar uma olhada nos nossos produtos?
-        </p>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Seu Carrinho de Compras</h2>
+
+      {cartItems.length === 0 ? (
+        <p className={styles.emptyCart}>Seu carrinho está vazio.</p>
       ) : (
-        <ul className="cart-items-list">
-          {cartItems.map((item) => {
-            const product = products.find((p) => p.id === item.id);
-            return (
-              <li key={item.id} className="cart-item">
-                {product && (
-                  <span className="cart-item-name">
-                    {product.name} ({product.color}) - Quantidade:
-                  </span>
-                )}
-                {!product && (
-                  <span className="cart-item-name">
-                    Produto não encontrado - Quantidade:
-                  </span>
-                )}
-                <input
-                  type="number"
-                  min="1"
-                  value={item.quantity}
-                  onChange={(event) =>
-                    onQuantityChange(item.id, event.target.value)
-                  }
-                  className="cart-quantity-input"
-                />
-              </li>
-            );
-          })}
-        </ul>
+        <>
+          <ul className={styles.cartItems}>
+            {cartItems.map((item) => {
+              const product = products.find((p) => p.id === item.id);
+              if (!product) return null;
+
+              return (
+                <li key={item.id} className={styles.cartItem}>
+                  <div className={styles.itemDetails}>
+                    <div className={styles.itemName}>{product.name}</div>
+                    <div className={styles.itemColor}>{product.color}</div>
+                  </div>
+                  <div className={styles.itemQuantity}>
+                    <label className={styles.quantityLabel}>Qtd:</label>
+                    <input
+                      type="number"
+                      className={styles.quantityInput}
+                      value={item.quantity}
+                      min="1"
+                      onChange={(e) => onQuantityChange(item.id, e.target.value)}
+                    />
+                  </div>
+                  <span className={styles.itemPrice}>R$ {(product.price * item.quantity).toFixed(2)}</span>
+                </li>
+              );
+            })}
+          </ul>
+
+          <div className={styles.total}>
+            Total: <span className={styles.totalValue}>R$ {calculateTotal()}</span>
+          </div>
+
+          <button className={styles.emptyButton} onClick={onEmptyCart}>
+            Esvaziar Carrinho
+          </button>
+          <button className={styles.checkoutButton} onClick={onCheckout}>
+            Enviar Pedido por WhatsApp
+          </button>
+        </>
       )}
-      <a
-        href={generateWhatsAppLink()}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="whatsapp-button"
-      >
-        Enviar Pedido pelo WhatsApp
-      </a>
     </div>
   );
 };
