@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/catalogo-barbantes/static/css/main.8122a4c0.css",
-    "main.js": "/catalogo-barbantes/static/js/main.6a081511.js",
+    "main.css": "/catalogo-barbantes/static/css/main.7bd899d1.css",
+    "main.js": "/catalogo-barbantes/static/js/main.851e5609.js",
     "static/js/453.7e8267fe.chunk.js": "/catalogo-barbantes/static/js/453.7e8267fe.chunk.js",
     "static/media/produto3.png": "/catalogo-barbantes/static/media/produto3.e9228f0c009d1a080125.png",
     "static/media/barbantes-bonitos.jpg": "/catalogo-barbantes/static/media/barbantes-bonitos.b80809d5008720cd4728.jpg",
@@ -9,12 +9,12 @@
     "static/media/produto2.png": "/catalogo-barbantes/static/media/produto2.fbc77d41305f517a8523.png",
     "static/media/logo.png": "/catalogo-barbantes/static/media/logo.4b52bacd436d88496953.png",
     "index.html": "/catalogo-barbantes/index.html",
-    "main.8122a4c0.css.map": "/catalogo-barbantes/static/css/main.8122a4c0.css.map",
-    "main.6a081511.js.map": "/catalogo-barbantes/static/js/main.6a081511.js.map",
+    "main.7bd899d1.css.map": "/catalogo-barbantes/static/css/main.7bd899d1.css.map",
+    "main.851e5609.js.map": "/catalogo-barbantes/static/js/main.851e5609.js.map",
     "453.7e8267fe.chunk.js.map": "/catalogo-barbantes/static/js/453.7e8267fe.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8122a4c0.css",
-    "static/js/main.6a081511.js"
+    "static/css/main.7bd899d1.css",
+    "static/js/main.851e5609.js"
   ]
 }
