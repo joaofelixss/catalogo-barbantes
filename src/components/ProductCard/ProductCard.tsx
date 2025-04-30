@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./ProductCard.module.css";
 import { Product } from "../../types/product";
 import { FaShoppingCart } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 interface ProductCardProps {
   produto: Product;
@@ -17,9 +18,16 @@ const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const handleAddToCartClick = () => {
     onAddToCart(produto.id);
-    alert(`${produto.name} adicionado ao carrinho!`);
+    toast.success(`${produto.name} adicionado ao carrinho!`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
-
   return (
     <div className={styles.produtoCard}>
       <img
