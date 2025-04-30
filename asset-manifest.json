@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.47bcfd0a.css",
-    "main.js": "./static/js/main.c3e377bf.js",
+    "main.css": "./static/css/main.d612dcd6.css",
+    "main.js": "./static/js/main.8cb64897.js",
     "static/js/453.7e8267fe.chunk.js": "./static/js/453.7e8267fe.chunk.js",
     "static/media/produto3.png": "./static/media/produto3.e9228f0c009d1a080125.png",
     "static/media/barbantes-bonitos.jpg": "./static/media/barbantes-bonitos.b80809d5008720cd4728.jpg",
@@ -9,12 +9,12 @@
     "static/media/produto2.png": "./static/media/produto2.fbc77d41305f517a8523.png",
     "static/media/logo.png": "./static/media/logo.4b52bacd436d88496953.png",
     "index.html": "./index.html",
-    "main.47bcfd0a.css.map": "./static/css/main.47bcfd0a.css.map",
-    "main.c3e377bf.js.map": "./static/js/main.c3e377bf.js.map",
+    "main.d612dcd6.css.map": "./static/css/main.d612dcd6.css.map",
+    "main.8cb64897.js.map": "./static/js/main.8cb64897.js.map",
     "453.7e8267fe.chunk.js.map": "./static/js/453.7e8267fe.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.47bcfd0a.css",
-    "static/js/main.c3e377bf.js"
+    "static/css/main.d612dcd6.css",
+    "static/js/main.8cb64897.js"
   ]
 }
