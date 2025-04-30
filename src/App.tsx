@@ -107,17 +107,44 @@ const App: React.FC = () => {
     const orderDetails = cartItems
       .map((item) => {
         const product = products.find((p) => p.id === item.id);
-        return `${item.quantity} x ${
-          product ? product.name : "Produto Desconhecido"
-        }`;
+        if (!product) {
+          console.error(
+            `Produto com ID ${item.id} não encontrado no array de produtos.`
+          );
+          return null;
+        }
+        return `${item.quantity} x ${product.name}`;
       })
+      .filter(Boolean) // Remove os valores null do array
       .join("\n");
+
+    if (orderDetails.length === 0 && cartItems.length > 0) {
+      console.error(
+        "Erro crítico: Nenhum produto válido encontrado no carrinho durante o checkout."
+      );
+      toast.error(
+        "Houve um erro ao preparar seu pedido. Por favor, revise seu carrinho.",
+        {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
+      return;
+    }
 
     const total = calculateTotal();
     const message = `Olá! Gostaria de fazer o seguinte pedido:\n\n${orderDetails}\n\nTotal: R$ ${total}`;
     const encodedMessage = encodeURIComponent(message);
 
-    window.open(`${whatsappLink}?text=${encodedMessage}`, "_blank");
+    window.open(
+      `<span class="math-inline">\{whatsappLink\}?text\=</span>{encodedMessage}`,
+      "_blank"
+    );
   };
 
   const calculateTotal = () => {
