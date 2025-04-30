@@ -2,6 +2,7 @@
 import React from "react";
 import styles from "./ContactSection.module.css";
 import { FaWhatsapp, FaInstagram, FaFacebook, FaPhone } from "react-icons/fa";
+import { contactLinks } from "../../config/contact"; // Importe a configuração dos links
 
 const ContactSection: React.FC = () => {
   return (
@@ -10,31 +11,35 @@ const ContactSection: React.FC = () => {
       <p>Estamos prontos para atender você!</p>
       <div className={styles.contactMethods}>
         <a
-          href={`https://wa.me/SEU_NUMERO_WHATSAPP`} // Substitua pelo seu número real
+          href={contactLinks.whatsapp}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.contactButton}
         >
-          <FaWhatsapp className={styles.contactIcon} /> WhatsApp
+          <FaWhatsapp className={styles.contactIcon} aria-hidden="true" />
+          <span className={styles.visuallyHidden}>WhatsApp</span>
         </a>
         <a
-          href={`https://instagram.com/SEU_INSTAGRAM`} // Substitua pelo seu perfil real
+          href={contactLinks.instagram}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.contactButton}
         >
-          <FaInstagram className={styles.contactIcon} /> Instagram
+          <FaInstagram className={styles.contactIcon} aria-hidden="true" />
+          <span className={styles.visuallyHidden}>Instagram</span>
         </a>
         <a
-          href={`https://facebook.com/SUA_PAGINA_FACEBOOK`} // Substitua pela sua página real
+          href={contactLinks.facebook}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.contactButton}
         >
-          <FaFacebook className={styles.contactIcon} /> Facebook
+          <FaFacebook className={styles.contactIcon} aria-hidden="true" />
+          <span className={styles.visuallyHidden}>Facebook</span>
         </a>
-        <a href={`tel:SEU_TELEFONE`} className={styles.contactButton}>
-          <FaPhone className={styles.contactIcon} /> Telefone
+        <a href={contactLinks.phone} className={styles.contactButton}>
+          <FaPhone className={styles.contactIcon} aria-hidden="true" />
+          <span className={styles.visuallyHidden}>Telefone</span>
         </a>
       </div>
     </section>
