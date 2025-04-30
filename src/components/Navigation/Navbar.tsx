@@ -31,7 +31,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
             aria-label={`Carrinho de compras. ${cartItemCount} itens`}
           >
             Carrinho ({cartItemCount})
-            <FaShoppingCart className={styles.cartIcon} />
+            {(FaShoppingCart as React.FC)({ className: styles.cartIcon })}
           </Link>
         </li>
         <li className={styles.navItem}>

@@ -46,7 +46,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           onClick={handleAddToCartClick}
           aria-label={`Adicionar ${produto.name} ao carrinho`} // Adição do aria-label
         >
-          <FaShoppingCart /> Adicionar
+          {(FaShoppingCart as React.FC)({})} Adicionar Adicionar
         </button>
       </div>
     </div>
