@@ -1,26 +1,27 @@
 /* src/pages/HomePage.module.css */
 .container {
   font-family: "Poppins", sans-serif;
-  color: #333;
-  background-color: #fff9ea;
+  color: var(--cor-texto-principal); /* Azul Marinho suave */
+  background-color: var(--cor-base); /* Azul Celeste pálido */
+  padding: 20px;
 }
 
 .header {
-  background-color: #fff9ea;
+  background-color: var(--cor-base); /* Azul Celeste pálido */
   padding: 20px;
   text-align: center;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #eee; /* Mantenha a borda se desejar */
 }
 
 .title {
   font-size: 2.5em;
   margin-bottom: 5px;
-  color: #e44d26;
+  color: var(--cor-acento-1); /* Rosa Névoa suave para destaque */
 }
 
 .subtitle {
   font-size: 1.1em;
-  color: #777;
+  color: #777; /* Mantive este tom de cinza, mas podemos usar um tom mais claro de --cor-texto-principal se preferir */
 }
 
 .phoneIcon {
@@ -34,7 +35,7 @@
 }
 
 .socialLink {
-  color: #555;
+  color: var(--cor-texto-principal); /* Azul Marinho suave */
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -43,7 +44,7 @@
 }
 
 .socialLink:hover {
-  color: #e44d26;
+  color: var(--cor-acento-1); /* Rosa Névoa suave para o hover */
 }
 
 .socialIcon {

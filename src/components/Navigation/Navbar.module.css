@@ -1,0 +1,167 @@
+/* src/components/Navigation/Navbar.module.css */
+.navbar {
+  background-color: var(--cor-base); /* Azul Celeste pálido */
+  color: var(--cor-texto-principal); /* Azul Marinho suave */
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-around; /* Espaço igual entre logo e links no desktop */
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logoContainer {
+  /* Estilos para o container da logo, se necessário */
+}
+
+.logo {
+  height: 45px; /* Aumentei um pouco o tamanho da logo */
+}
+
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navItem {
+  margin-left: 35px; /* Aumentei o espaçamento entre os links */
+}
+
+.navLink {
+  color: var(--cor-texto-principal);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px; /* Adicionei um pouco de padding para aumentar a área clicável e visual */
+}
+
+.navLink:hover {
+  color: var(--cor-acento-2); /* Hover mais visível com Lilás claro */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.05
+  ); /* Feedback visual sutil ao passar o mouse */
+  border-radius: 5px; /* Opcional: arredondar um pouco o fundo no hover */
+}
+
+.cartLink {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.cartIcon {
+  font-size: 1.2em;
+}
+
+/* Estilos para o botão de menu hambúrguer (visível em telas menores) */
+.menuButton {
+  display: none; /* Oculta o botão no desktop */
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 10px;
+}
+
+.menuIcon {
+  width: 30px;
+  height: 3px;
+  background-color: var(--cor-texto-principal);
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+/* Estilos para telas menores */
+@media (max-width: 768px) {
+  .navbar {
+    justify-content: space-between; /* Logo na esquerda, botão de menu na direita */
+  }
+
+  .menuButton {
+    display: block; /* Mostra o botão no mobile */
+  }
+
+  .navList {
+    display: none; /* Esconde a lista padrão no mobile */
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Ajuste conforme a altura da navbar */
+    left: 0;
+    background-color: var(--cor-base);
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+
+  .navList.open {
+    display: flex; /* Mostra o menu quando a classe 'open' é adicionada */
+  }
+
+  .navItem {
+    margin: 15px 0;
+  }
+
+  .navLink {
+    padding: 10px 20px;
+    display: block;
+  }
+
+  /* Estilos para o carrinho flutuante */
+  .floatingCart {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--cor-acento-2); /* Cor alterada para Lilás claro */
+    color: var(
+      --cor-texto-principal
+    ); /* Cor do ícone alterada para Azul Marinho suave */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 20; /* Garante que fique acima de outros elementos */
+    text-decoration: none;
+  }
+
+  .floatingCart:hover {
+    background-color: var(--cor-acento-3); /* Um tom diferente no hover */
+  }
+
+  /* Estilo para o contador de itens no carrinho flutuante */
+  .cartCounter {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #ff4d4d; /* Cor vermelha vibrante para o contador */
+    color: white;
+    border-radius: 50%;
+    padding: 4px 6px;
+    font-size: 0.7em;
+    font-weight: bold;
+    z-index: 21; /* Acima do ícone do carrinho */
+  }
+}
+
+/* Remove o ajuste de espaçamento para telas maiores (já centralizamos com space-around) */
+@media (min-width: 769px) {
+  .navItem {
+    margin-left: 0; /* Remove a margem individual dos itens */
+  }
+
+  /* Esconde o carrinho flutuante na versão desktop */
+  .floatingCart {
+    display: none;
+  }
+}

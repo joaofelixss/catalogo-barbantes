@@ -1,5 +1,5 @@
 // src/components/Navigation/Navbar.tsx
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Navbar.module.css";
 import logoImage from "../../assets/logo.png";
 import { FaShoppingCart } from "react-icons/fa";
@@ -11,6 +11,12 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.logoContainer}>
@@ -18,7 +24,15 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
           <img src={logoImage} alt="Logo da Loja" className={styles.logo} />
         </Link>
       </div>
-      <ul className={styles.navList}>
+
+      {/* Botão de menu hambúrguer (visível em telas menores) */}
+      <button className={styles.menuButton} onClick={toggleMenu}>
+        <div className={styles.menuIcon}></div>
+        <div className={styles.menuIcon}></div>
+        <div className={styles.menuIcon}></div>
+      </button>
+
+      <ul className={`${styles.navList} ${isMenuOpen ? styles.open : ""}`}>
         <li className={styles.navItem}>
           <Link to="/" className={styles.navLink} aria-label="Página inicial">
             Home
@@ -27,7 +41,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
         <li className={styles.navItem}>
           <Link
             to="/carrinho"
-            className={styles.navLink}
+            className={`${styles.navLink} ${styles.cartLink}`}
             aria-label={`Carrinho de compras. ${cartItemCount} itens`}
           >
             Carrinho ({cartItemCount})
@@ -46,6 +60,18 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
           </a>
         </li>
       </ul>
+
+      {/* Carrinho flutuante (visível em telas menores) */}
+      <Link
+        to="/carrinho"
+        className={styles.floatingCart}
+        aria-label={`Carrinho de compras. ${cartItemCount} itens`}
+      >
+        {(FaShoppingCart as React.FC)({})}
+        {cartItemCount > 0 && (
+          <span className={styles.cartCounter}>{cartItemCount}</span>
+        )}
+      </Link>
     </nav>
   );
 };
