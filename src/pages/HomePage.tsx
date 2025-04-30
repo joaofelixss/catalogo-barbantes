@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "./HomePage.module.css";
-import { FaWhatsapp, FaInstagram, FaFacebook, FaPhone, FaShoppingCart } from "react-icons/fa";
 import { Product } from "../types/product";
 import HeroSection from "../components/Hero/HeroSection";
-import ProductList from "../components/ProductList/ProductList"; // Importe o ProductList
+import ProductList from "../components/ProductList/ProductList";
+import ContactSection from "../components/Contact/ContactSection"; // Importe o ContactSection
+import Footer from "../components/Footer/Footer"; // Importe o Footer
 
 // Importe as imagens dos produtos
 import produto1Image from "../assets/produto1.png";
@@ -32,11 +33,9 @@ const HomePage: React.FC<HomePageProps> = ({ onAddToCart, products }) => {
   return (
     <div className={styles.container}>
       <HeroSection />
-      <ProductList products={products} onAddToCart={onAddToCart} productImages={productImages} /> {/* Use o componente ProductList */}
-
-      <footer className={styles.footer}>
-        <p>&copy; {new Date().getFullYear()} Sua Loja de Barbantes. Todos os direitos reservados.</p>
-      </footer>
+      <ProductList products={products} onAddToCart={onAddToCart} productImages={productImages} />
+      <ContactSection /> {/* Use o componente ContactSection */}
+      <Footer /> {/* Use o componente Footer */}
     </div>
   );
 };
