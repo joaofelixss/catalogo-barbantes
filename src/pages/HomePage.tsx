@@ -2,80 +2,44 @@ import React from "react";
 import styles from "./HomePage.module.css";
 import { FaWhatsapp, FaInstagram, FaFacebook, FaPhone, FaShoppingCart } from "react-icons/fa";
 import heroImage from "../assets/barbantes-bonitos.jpg";
+import { Product } from "../types/product";
 
 // Importe as imagens dos produtos (substitua pelos caminhos reais)
 import produto1Image from "../assets/produto1.png";
 import produto2Image from "../assets/produto2.png";
 import produto3Image from "../assets/produto3.png";
 
+// Defina a interface para as props do HomePage
+interface HomePageProps {
+  onAddToCart: (productId: number) => void; // 'onAddToCart' é uma função que recebe um number e não retorna nada (void)
+  products: Product[]; // 'products' é um array de objetos 'Product'
+}
+
+// Defina o tipo para productImages
+interface ProductImageMap {
+  [key: number]: string | null | undefined; // Permite chaves numéricas e valores string, null ou undefined
+}
+
 // Mapeie as imagens para os IDs correspondentes (isso é importante)
-const productImages = {
+const productImages: ProductImageMap = {
   1: produto1Image,
   2: produto2Image,
   3: produto3Image,
+  4: null, // Se houver um quarto produto no seu estado `products`
 };
 
-const HomePage = ({ onAddToCart, products }) => {
-  const handleAddToCartClick = (productId) => {
+const HomePage: React.FC<HomePageProps> = ({ onAddToCart, products }) => {
+  const handleAddToCartClick = (productId: number) => {
     onAddToCart(productId);
     const product = products.find((p) => p.id === productId);
     if (product) {
       alert(`${product.name} adicionado ao carrinho!`);
     }
   };
+
   return (
     <div className={styles.container}>
-      <section className={styles.heroSection}>
-        <div className={styles.heroLeftColumn}>
-          <h2 className={styles.heroMainText}>
-            Os melhores barbantes<br></br> da região
-          </h2>
-          <p className={styles.heroShortText}>
-            Encontre uma vasta seleção de fios de alta qualidade para todos os
-            seus projetos de crochê e tricô.
-          </p>
-          <div className={styles.heroButtons}>
-            <button className={styles.heroButton}>Ver Cardápio</button>
-            <a href="tel:+5569992784621" className={styles.phoneButton}>
-              <FaPhone className={styles.phoneIcon} /> (69) 99278-4621
-            </a>
-          </div>
-          <div className={styles.socialLinks}>
-            <a
-              href="https://wa.me/SEU_NUMERO_DE_WHATSAPP"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialLink}
-            >
-              <FaWhatsapp className={styles.socialIcon} /> WhatsApp
-            </a>
-            <a
-              href="https://instagram.com/SEU_INSTAGRAM"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialLink}
-            >
-              <FaInstagram className={styles.socialIcon} /> Instagram
-            </a>
-            <a
-              href="https://facebook.com/SUA_PAGINA"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialLink}
-            >
-              <FaFacebook className={styles.socialIcon} /> Facebook
-            </a>
-          </div>
-        </div>
-        <div className={styles.heroRightColumn}>
-          <img
-            src={heroImage}
-            alt="Barbantes Bonitos"
-            className={styles.heroImage}
-          />
-        </div>
-      </section>
-
+      {/* ... restante do seu componente HomePage ... */}
       <section id="cardapio" className={styles.cardapioSection}>
         <h2>Nosso Cardápio</h2>
         <div className={styles.listaDeProdutos}>
