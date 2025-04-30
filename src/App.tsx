@@ -58,29 +58,8 @@ const App: React.FC = () => {
               : item
           )
         );
-        toast.success(
-          `${productToAdd.name} adicionado novamente ao carrinho!`,
-          {
-            position: "top-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          }
-        );
       } else {
         setCartItems([...cartItems, { id: productId, quantity: 1 }]);
-        toast.success(`${productToAdd.name} adicionado ao carrinho!`, {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
       }
     }
   };
