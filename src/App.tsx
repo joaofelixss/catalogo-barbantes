@@ -41,8 +41,13 @@ const App: React.FC = () => {
     },
   ]);
 
-  const { cartItems, handleAddToCart, handleQuantityChange, handleEmptyCart } =
-    useCart();
+  const {
+    cartItems,
+    handleAddToCart,
+    handleQuantityChange,
+    handleEmptyCart,
+    calculateTotal,
+  } = useCart(products); // Passa products aqui
 
   const whatsappNumber = "5569992784621";
   const whatsappLink = `https://wa.me/${whatsappNumber}`;
@@ -102,15 +107,6 @@ const App: React.FC = () => {
     const encodedMessage = encodeURIComponent(message);
 
     window.open(`${whatsappLink}?text=${encodedMessage}`, "_blank");
-  };
-
-  const calculateTotal = () => {
-    return cartItems
-      .reduce((total, item) => {
-        const product = products.find((p) => p.id === item.id);
-        return total + (product ? product.price * item.quantity : 0);
-      }, 0)
-      .toFixed(2);
   };
 
   const cartItemCount = cartItems.reduce(

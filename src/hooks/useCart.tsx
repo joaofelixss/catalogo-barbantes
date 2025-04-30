@@ -1,19 +1,20 @@
 // src/hooks/useCart.tsx
 import { useState } from "react";
-import { CartItem } from "../types/product"; // Importe a tipagem CartItem
+import { CartItem, Product } from "../types/product";
 
 interface UseCartResult {
   cartItems: CartItem[];
   handleAddToCart: (productId: number) => void;
   handleQuantityChange: (productId: number, quantity: number) => void;
   handleEmptyCart: () => void;
+  calculateTotal: () => string;
 }
 
-const useCart = (): UseCartResult => {
+const useCart = (products: Product[]): UseCartResult => {
+  // <----- Verifique esta linha
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   const handleAddToCart = (productId: number) => {
-    // Implementação da lógica de adicionar ao carrinho (copiada de App.tsx)
     const existingItem = cartItems.find((item) => item.id === productId);
     if (existingItem) {
       setCartItems(
@@ -29,7 +30,6 @@ const useCart = (): UseCartResult => {
   };
 
   const handleQuantityChange = (productId: number, quantity: number) => {
-    // Implementação da lógica de alterar a quantidade (copiada de App.tsx)
     setCartItems(
       cartItems.map((item) =>
         item.id === productId
@@ -40,8 +40,16 @@ const useCart = (): UseCartResult => {
   };
 
   const handleEmptyCart = () => {
-    // Implementação da lógica de esvaziar o carrinho (copiada de App.tsx)
     setCartItems([]);
+  };
+
+  const calculateTotal = () => {
+    return cartItems
+      .reduce((total, item) => {
+        const product = products.find((p) => p.id === item.id);
+        return total + (product ? product.price * item.quantity : 0);
+      }, 0)
+      .toFixed(2);
   };
 
   return {
@@ -49,6 +57,7 @@ const useCart = (): UseCartResult => {
     handleAddToCart,
     handleQuantityChange,
     handleEmptyCart,
+    calculateTotal,
   };
 };
 
