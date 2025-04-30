@@ -1,27 +1,29 @@
 /* src/components/ShoppingCart.module.css */
 .container {
-  padding: 20px;
-  font-family: sans-serif;
-  max-width: 960px;
-  margin: 20px auto;
+  background-color: #fff; /* Fundo branco para o carrinho */
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px;
 }
 
 .title {
   font-size: 2em;
+  color: var(--cor-texto-principal); /* Azul Marinho suave para o título */
   margin-bottom: 20px;
-  color: #333;
   text-align: center;
 }
 
 .emptyCart {
-  text-align: center;
   color: #777;
   font-size: 1.1em;
+  text-align: center;
 }
 
 .cartItems {
   list-style: none;
   padding: 0;
+  margin-bottom: 20px;
 }
 
 .cartItem {
@@ -36,35 +38,44 @@
   border-bottom: none;
 }
 
+.itemImage {
+  width: 80px; /* Ajuste o tamanho conforme necessário */
+  height: 80px;
+  object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+  border-radius: 4px;
+  margin-right: 15px;
+}
+
 .itemDetails {
   flex-grow: 1;
-  margin-right: 15px;
 }
 
 .itemName {
   font-weight: bold;
-  color: #333;
+  color: var(--cor-texto-principal);
+  margin-bottom: 5px;
 }
 
 .itemColor {
-  color: #777;
+  color: #555;
   font-size: 0.9em;
 }
 
 .itemQuantity {
   display: flex;
   align-items: center;
+  margin-left: 20px;
 }
 
 .quantityLabel {
-  margin-right: 5px;
+  margin-right: 8px;
   font-size: 0.9em;
-  color: #555;
+  color: #333;
 }
 
 .quantityInput {
   width: 50px;
-  padding: 5px;
+  padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 0.9em;
@@ -73,67 +84,108 @@
 
 .itemPrice {
   font-weight: bold;
-  color: #e44d26;
-  margin-left: 15px;
+  color: var(--cor-acento-1); /* Rosa Névoa suave para o preço do item */
+  font-size: 1.1em;
+  margin-left: 20px;
 }
 
 .total {
-  margin-top: 20px;
-  text-align: right;
   font-size: 1.2em;
   font-weight: bold;
   color: #333;
+  text-align: right;
+  margin-bottom: 20px;
 }
 
 .totalValue {
-  color: #e44d26;
+  color: var(--cor-acento-1); /* Rosa Névoa suave para o valor total */
 }
 
-.emptyButton {
-  background-color: #f44336;
-  color: white;
+.emptyButton,
+.checkoutButton {
+  background-color: var(
+    --cor-acento-3
+  ); /* Amarelo Limão pálido para os botões */
+  color: var(
+    --cor-texto-principal
+  ); /* Azul Marinho suave no texto dos botões */
   border: none;
+  padding: 12px 20px;
   border-radius: 5px;
-  padding: 10px 15px;
-  font-size: 1em;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 1em;
   transition: background-color 0.3s ease;
-  margin-top: 20px;
+  margin-right: 10px;
 }
 
-.emptyButton:hover {
-  background-color: #d32f2f;
+.emptyButton:hover,
+.checkoutButton:hover {
+  background-color: var(--cor-acento-2); /* Lilás claro no hover */
 }
 
 .checkoutButton {
-  background-color: #25d366; /* Cor do WhatsApp */
+  background-color: var(
+    --cor-acento-2
+  ); /* Lilás claro para o botão de checkout */
   color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 15px;
-  font-size: 1em;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
+  margin-right: 0;
 }
 
 .checkoutButton:hover {
-  background-color: #128c7e;
+  background-color: var(
+    --cor-acento-1
+  ); /* Rosa Névoa suave no hover do checkout */
 }
 
-/* Responsividade */
+/* Responsividade para telas menores */
 @media (max-width: 600px) {
-  .cartItem {
-    flex-direction: column;
-    align-items: flex-start;
+  .container {
+    margin: 10px;
+    padding: 20px;
   }
 
-  .itemPrice {
-    margin-left: 0;
-    margin-top: 10px;
+  .title {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+  }
+
+  .cartItem {
+    flex-direction: row; /* Mantém a direção da linha para a imagem */
+    align-items: center; /* Alinha os itens verticalmente */
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+  }
+
+  .itemImage {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+  }
+
+  .itemDetails {
+    margin-bottom: 0;
   }
 
   .itemQuantity {
-    margin-top: 10px;
+    margin-left: 10px; /* Ajuste a margem para melhor espaçamento */
+    margin-top: 0; /* Remove a margem superior */
+  }
+
+  .itemPrice {
+    margin-left: 10px; /* Ajuste a margem para melhor espaçamento */
+    margin-top: 0; /* Remove a margem superior */
+  }
+
+  .total {
+    text-align: left;
+    margin-bottom: 15px;
+  }
+
+  .emptyButton,
+  .checkoutButton {
+    width: 100%;
+    margin-bottom: 10px;
+    margin-right: 0;
   }
 }

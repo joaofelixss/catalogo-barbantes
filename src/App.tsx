@@ -9,6 +9,12 @@ import Navbar from "./components/Navigation/Navbar";
 import { Product } from "./types/product";
 import useCart from "./hooks/useCart";
 
+// Importe as imagens (certifique-se de que esses caminhos estão corretos)
+import barrocoAzul from "../src/assets/barbantes-bonitos.jpg";
+import amigurumiAmarelo from "../src/assets/barbantes-bonitos2.jpg";
+import dunaVerde from "../src/assets/produto2.png";
+import charmeVermelho from "../src/assets/produto3.png";
+
 const App: React.FC = () => {
   const [products] = useState<Product[]>([
     {
@@ -17,6 +23,7 @@ const App: React.FC = () => {
       color: "Azul Royal",
       price: 25.9,
       descricao: "Fio de algodão mercerizado para peças de decoração.",
+      image: barrocoAzul, // Adicionando a imagem
     },
     {
       id: 2,
@@ -24,6 +31,7 @@ const App: React.FC = () => {
       color: "Amarelo Canário",
       price: 12.5,
       descricao: "Fio de algodão ideal para a técnica japonesa de amigurumi.",
+      image: amigurumiAmarelo, // Adicionando a imagem
     },
     {
       id: 3,
@@ -31,6 +39,7 @@ const App: React.FC = () => {
       color: "Verde Musgo",
       price: 18.75,
       descricao: "Fio leve e macio para peças de vestuário.",
+      image: dunaVerde, // Adicionando a imagem
     },
     {
       id: 4,
@@ -38,6 +47,7 @@ const App: React.FC = () => {
       color: "Vermelho Paixão",
       price: 15.3,
       descricao: "Fio de algodão penteado com toque macio e brilho.",
+      image: charmeVermelho, // Adicionando a imagem
     },
   ]);
 

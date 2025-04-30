@@ -1,7 +1,8 @@
 // src/components/ShoppingCart.tsx
 import React from "react";
 import styles from "./ShoppingCart.module.css";
-import { Product } from "../../types/product"; // Assumindo que você tem essa tipagem
+import { Product } from "../../types/product";
+import { toast } from "react-toastify";
 
 interface CartItem {
   id: number;
@@ -10,7 +11,7 @@ interface CartItem {
 
 interface ShoppingCartProps {
   cartItems: CartItem[];
-  onQuantityChange: (itemId: number, quantity: number) => void; // Mudança aqui
+  onQuantityChange: (itemId: number, quantity: number) => void;
   products: Product[];
   onEmptyCart: () => void;
   onCheckout: () => void;
@@ -32,6 +33,19 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
       .toFixed(2);
   };
 
+  const handleEmptyCart = () => {
+    onEmptyCart();
+    toast.info("Seu carrinho foi esvaziado!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Seu Carrinho de Compras</h2>
@@ -47,6 +61,11 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
 
               return (
                 <li key={item.id} className={styles.cartItem}>
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className={styles.itemImage}
+                  />
                   <div className={styles.itemDetails}>
                     <div className={styles.itemName}>{product.name}</div>
                     <div className={styles.itemColor}>{product.color}</div>
@@ -67,7 +86,7 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
                       onChange={(e) =>
                         onQuantityChange(item.id, parseInt(e.target.value, 10))
                       }
-                      aria-label={`Quantidade de ${product.name}`} // Adição do aria-label
+                      aria-label={`Quantidade de ${product.name}`}
                     />
                   </div>
                   <span className={styles.itemPrice}>
@@ -85,15 +104,15 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
 
           <button
             className={styles.emptyButton}
-            onClick={onEmptyCart}
-            aria-label="Esvaziar todos os itens do carrinho" // Adição do aria-label
+            onClick={handleEmptyCart}
+            aria-label="Esvaziar todos os itens do carrinho"
           >
             Esvaziar Carrinho
           </button>
           <button
             className={styles.checkoutButton}
             onClick={onCheckout}
-            aria-label="Finalizar pedido e enviar mensagem via WhatsApp" // Adição do aria-label
+            aria-label="Finalizar pedido e enviar mensagem via WhatsApp"
           >
             Enviar Pedido por WhatsApp
           </button>
