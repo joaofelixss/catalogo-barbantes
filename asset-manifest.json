@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/catalogo-barbantes/static/css/main.7bd899d1.css",
-    "main.js": "/catalogo-barbantes/static/js/main.851e5609.js",
-    "static/js/453.7e8267fe.chunk.js": "/catalogo-barbantes/static/js/453.7e8267fe.chunk.js",
-    "static/media/produto3.png": "/catalogo-barbantes/static/media/produto3.e9228f0c009d1a080125.png",
-    "static/media/barbantes-bonitos.jpg": "/catalogo-barbantes/static/media/barbantes-bonitos.b80809d5008720cd4728.jpg",
-    "static/media/produto1.png": "/catalogo-barbantes/static/media/produto1.be689876c1f46ad3b578.png",
-    "static/media/produto2.png": "/catalogo-barbantes/static/media/produto2.fbc77d41305f517a8523.png",
-    "static/media/logo.png": "/catalogo-barbantes/static/media/logo.4b52bacd436d88496953.png",
-    "index.html": "/catalogo-barbantes/index.html",
-    "main.7bd899d1.css.map": "/catalogo-barbantes/static/css/main.7bd899d1.css.map",
-    "main.851e5609.js.map": "/catalogo-barbantes/static/js/main.851e5609.js.map",
-    "453.7e8267fe.chunk.js.map": "/catalogo-barbantes/static/js/453.7e8267fe.chunk.js.map"
+    "main.css": "./static/css/main.47bcfd0a.css",
+    "main.js": "./static/js/main.c3e377bf.js",
+    "static/js/453.7e8267fe.chunk.js": "./static/js/453.7e8267fe.chunk.js",
+    "static/media/produto3.png": "./static/media/produto3.e9228f0c009d1a080125.png",
+    "static/media/barbantes-bonitos.jpg": "./static/media/barbantes-bonitos.b80809d5008720cd4728.jpg",
+    "static/media/produto1.png": "./static/media/produto1.be689876c1f46ad3b578.png",
+    "static/media/produto2.png": "./static/media/produto2.fbc77d41305f517a8523.png",
+    "static/media/logo.png": "./static/media/logo.4b52bacd436d88496953.png",
+    "index.html": "./index.html",
+    "main.47bcfd0a.css.map": "./static/css/main.47bcfd0a.css.map",
+    "main.c3e377bf.js.map": "./static/js/main.c3e377bf.js.map",
+    "453.7e8267fe.chunk.js.map": "./static/js/453.7e8267fe.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7bd899d1.css",
-    "static/js/main.851e5609.js"
+    "static/css/main.47bcfd0a.css",
+    "static/js/main.c3e377bf.js"
   ]
 }
