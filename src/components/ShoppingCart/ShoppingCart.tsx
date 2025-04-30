@@ -52,15 +52,22 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
                     <div className={styles.itemColor}>{product.color}</div>
                   </div>
                   <div className={styles.itemQuantity}>
-                    <label className={styles.quantityLabel}>Qtd:</label>
+                    <label
+                      htmlFor={`quantity-${item.id}`}
+                      className={styles.quantityLabel}
+                    >
+                      Qtd:
+                    </label>
                     <input
                       type="number"
+                      id={`quantity-${item.id}`}
                       className={styles.quantityInput}
                       value={item.quantity}
                       min="1"
                       onChange={(e) =>
                         onQuantityChange(item.id, parseInt(e.target.value, 10))
                       }
+                      aria-label={`Quantidade de ${product.name}`} // Adição do aria-label
                     />
                   </div>
                   <span className={styles.itemPrice}>
@@ -76,10 +83,18 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
             <span className={styles.totalValue}>R$ {calculateTotal()}</span>
           </div>
 
-          <button className={styles.emptyButton} onClick={onEmptyCart}>
+          <button
+            className={styles.emptyButton}
+            onClick={onEmptyCart}
+            aria-label="Esvaziar todos os itens do carrinho" // Adição do aria-label
+          >
             Esvaziar Carrinho
           </button>
-          <button className={styles.checkoutButton} onClick={onCheckout}>
+          <button
+            className={styles.checkoutButton}
+            onClick={onCheckout}
+            aria-label="Finalizar pedido e enviar mensagem via WhatsApp" // Adição do aria-label
+          >
             Enviar Pedido por WhatsApp
           </button>
         </>

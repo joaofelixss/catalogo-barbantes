@@ -14,19 +14,23 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logoContainer}>
-        <Link to="/">
+        <Link to="/" aria-label="Página inicial">
           <img src={logoImage} alt="Logo da Loja" className={styles.logo} />
         </Link>
       </div>
       <ul className={styles.navList}>
         <li className={styles.navItem}>
-          <Link to="/" className={styles.navLink}>
+          <Link to="/" className={styles.navLink} aria-label="Página inicial">
             Home
           </Link>
         </li>
         <li className={styles.navItem}>
-          <Link to="/carrinho" className={styles.navLink}>
-            Carrinho ({cartItemCount}){" "}
+          <Link
+            to="/carrinho"
+            className={styles.navLink}
+            aria-label={`Carrinho de compras. ${cartItemCount} itens`}
+          >
+            Carrinho ({cartItemCount})
             <FaShoppingCart className={styles.cartIcon} />
           </Link>
         </li>
@@ -36,6 +40,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
             target="_blank"
             rel="noopener noreferrer"
             className={styles.navLink}
+            aria-label="Contato via WhatsApp"
           >
             Contato via WhatsApp
           </a>
