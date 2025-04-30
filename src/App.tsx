@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import styles from "./App.module.css";
-import logoImage from "./assets/logo.png";
-import { FaShoppingCart } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./components/Navigation/Navbar";
-import { Product, CartItem } from "./types/product";
+import { Product } from "./types/product";
+import useCart from "./hooks/useCart";
 
 const App: React.FC = () => {
   const [products] = useState<Product[]>([
@@ -41,51 +40,12 @@ const App: React.FC = () => {
       descricao: "Fio de algodão penteado com toque macio e brilho.",
     },
   ]);
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  const { cartItems, handleAddToCart, handleQuantityChange, handleEmptyCart } =
+    useCart();
 
   const whatsappNumber = "5569992784621";
   const whatsappLink = `https://wa.me/${whatsappNumber}`;
-
-  const handleAddToCart = (productId: number) => {
-    const productToAdd = products.find((p) => p.id === productId);
-    if (productToAdd) {
-      const existingItem = cartItems.find((item) => item.id === productId);
-      if (existingItem) {
-        setCartItems(
-          cartItems.map((item) =>
-            item.id === productId
-              ? { ...item, quantity: item.quantity + 1 }
-              : item
-          )
-        );
-      } else {
-        setCartItems([...cartItems, { id: productId, quantity: 1 }]);
-      }
-    }
-  };
-
-  const handleQuantityChange = (productId: number, quantity: number) => {
-    setCartItems(
-      cartItems.map((item) =>
-        item.id === productId
-          ? { ...item, quantity: parseInt(String(quantity), 10) }
-          : item
-      )
-    );
-  };
-
-  const handleEmptyCart = () => {
-    setCartItems([]);
-    toast.info("Carrinho esvaziado!", {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
 
   const handleCheckout = () => {
     if (cartItems.length === 0) {
@@ -141,10 +101,7 @@ const App: React.FC = () => {
     const message = `Olá! Gostaria de fazer o seguinte pedido:\n\n${orderDetails}\n\nTotal: R$ ${total}`;
     const encodedMessage = encodeURIComponent(message);
 
-    window.open(
-      `<span class="math-inline">\{whatsappLink\}?text\=</span>{encodedMessage}`,
-      "_blank"
-    );
+    window.open(`${whatsappLink}?text=${encodedMessage}`, "_blank");
   };
 
   const calculateTotal = () => {
