@@ -106,7 +106,7 @@
 }
 
 .checkoutButton {
-  background-color: #25D366; /* Cor do WhatsApp */
+  background-color: #25d366; /* Cor do WhatsApp */
   color: white;
   border: none;
   border-radius: 5px;
@@ -118,7 +118,7 @@
 }
 
 .checkoutButton:hover {
-  background-color: #128C7E;
+  background-color: #128c7e;
 }
 
 /* Responsividade */

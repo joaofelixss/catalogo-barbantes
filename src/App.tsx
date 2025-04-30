@@ -8,18 +8,42 @@ import { FaShoppingCart } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./components/Navigation/Navbar";
-import { Product , CartItem } from "./types/product";
+import { Product, CartItem } from "./types/product";
 
 const App: React.FC = () => {
   const [products] = useState<Product[]>([
-    { id: 1, name: "Barroco Maxcolor", color: "Azul Royal", price: 25.9, descricao: "Fio de algodão mercerizado para peças de decoração." },
-    { id: 2, name: "Amigurumi", color: "Amarelo Canário", price: 12.5, descricao: "Fio de algodão ideal para a técnica japonesa de amigurumi." },
-    { id: 3, name: "Duna", color: "Verde Musgo", price: 18.75, descricao: "Fio leve e macio para peças de vestuário." },
-    { id: 4, name: "Charme", color: "Vermelho Paixão", price: 15.3, descricao: "Fio de algodão penteado com toque macio e brilho." },
+    {
+      id: 1,
+      name: "Barroco Maxcolor",
+      color: "Azul Royal",
+      price: 25.9,
+      descricao: "Fio de algodão mercerizado para peças de decoração.",
+    },
+    {
+      id: 2,
+      name: "Amigurumi",
+      color: "Amarelo Canário",
+      price: 12.5,
+      descricao: "Fio de algodão ideal para a técnica japonesa de amigurumi.",
+    },
+    {
+      id: 3,
+      name: "Duna",
+      color: "Verde Musgo",
+      price: 18.75,
+      descricao: "Fio leve e macio para peças de vestuário.",
+    },
+    {
+      id: 4,
+      name: "Charme",
+      color: "Vermelho Paixão",
+      price: 15.3,
+      descricao: "Fio de algodão penteado com toque macio e brilho.",
+    },
   ]);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const whatsappNumber = '5569992784621';
+  const whatsappNumber = "5569992784621";
   const whatsappLink = `https://wa.me/${whatsappNumber}`;
 
   const handleAddToCart = (productId: number) => {
@@ -29,7 +53,9 @@ const App: React.FC = () => {
       if (existingItem) {
         setCartItems(
           cartItems.map((item) =>
-            item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+            item.id === productId
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
           )
         );
         toast.success(
@@ -62,7 +88,9 @@ const App: React.FC = () => {
   const handleQuantityChange = (productId: number, quantity: number) => {
     setCartItems(
       cartItems.map((item) =>
-        item.id === productId ? { ...item, quantity: parseInt(String(quantity), 10) } : item
+        item.id === productId
+          ? { ...item, quantity: parseInt(String(quantity), 10) }
+          : item
       )
     );
   };
@@ -100,7 +128,9 @@ const App: React.FC = () => {
     const orderDetails = cartItems
       .map((item) => {
         const product = products.find((p) => p.id === item.id);
-        return `${item.quantity} x ${product ? product.name : "Produto Desconhecido"}`;
+        return `${item.quantity} x ${
+          product ? product.name : "Produto Desconhecido"
+        }`;
       })
       .join("\n");
 
@@ -108,7 +138,7 @@ const App: React.FC = () => {
     const message = `Olá! Gostaria de fazer o seguinte pedido:\n\n${orderDetails}\n\nTotal: R$ ${total}`;
     const encodedMessage = encodeURIComponent(message);
 
-    window.open(`${whatsappLink}?text=${encodedMessage}`, '_blank');
+    window.open(`${whatsappLink}?text=${encodedMessage}`, "_blank");
   };
 
   const calculateTotal = () => {
@@ -127,10 +157,15 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <Navbar cartItemCount={cartItemCount} whatsappLink={whatsappLink} /> {/* Use o componente Navbar */}
-
+      <Navbar cartItemCount={cartItemCount} whatsappLink={whatsappLink} />{" "}
+      {/* Use o componente Navbar */}
       <Routes>
-        <Route path="/" element={<HomePage onAddToCart={handleAddToCart} products={products} />} />
+        <Route
+          path="/"
+          element={
+            <HomePage onAddToCart={handleAddToCart} products={products} />
+          }
+        />
         <Route
           path="/carrinho"
           element={

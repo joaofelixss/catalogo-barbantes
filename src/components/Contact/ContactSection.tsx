@@ -1,6 +1,7 @@
-import React from 'react';
-import styles from './ContactSection.module.css'; // Crie este arquivo CSS
-import { FaWhatsapp, FaInstagram, FaFacebook, FaPhone } from 'react-icons/fa';
+// src/components/Contact/ContactSection.tsx
+import React from "react";
+import styles from "./ContactSection.module.css";
+import { FaWhatsapp, FaInstagram, FaFacebook, FaPhone } from "react-icons/fa";
 
 const ContactSection: React.FC = () => {
   return (

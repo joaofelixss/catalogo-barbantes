@@ -1,6 +1,7 @@
+// src/components/Hero/HeroSection.tsx
 import React from "react";
-import styles from "./HeroSection.module.css"; // Crie este arquivo CSS
-import heroImage from "../../assets/barbantes-bonitos.jpg"; // Ajuste o caminho se necessário
+import styles from "./HeroSection.module.css";
+import heroImage from "../../assets/barbantes-bonitos.jpg";
 
 const HeroSection: React.FC = () => {
   return (

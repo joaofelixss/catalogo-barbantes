@@ -1,0 +1,97 @@
+/* src/components/Contact/ContactSection.module.css */
+.contactSection {
+  padding: 40px 20px;
+  background-color: #f8f8f8;
+  text-align: center;
+}
+
+.contactSection h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.contactSection p {
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 1.1em;
+}
+
+.contactMethods {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.contactButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  width: 250px;
+}
+
+.contactButton:hover {
+  background-color: #0056b3;
+}
+
+.contactIcon {
+  margin-right: 10px;
+  font-size: 1.2em;
+}
+
+/* Estilos específicos para cada ícone podem ser adicionados se necessário */
+.contactButton:nth-child(1) {
+  /* WhatsApp */
+  background-color: #25d366;
+}
+
+.contactButton:nth-child(1):hover {
+  background-color: #128c7e;
+}
+
+.contactButton:nth-child(2) {
+  /* Instagram */
+  background: linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+}
+
+.contactButton:nth-child(2):hover {
+  opacity: 0.9;
+}
+
+.contactButton:nth-child(3) {
+  /* Facebook */
+  background-color: #1877f2;
+}
+
+.contactButton:nth-child(3):hover {
+  background-color: #0d6edf;
+}
+
+.contactButton:nth-child(4) {
+  /* Telefone */
+  background-color: #1c1c1c;
+}
+
+.contactButton:nth-child(4):hover {
+  background-color: #000;
+}
+
+@media (max-width: 480px) {
+  .contactButton {
+    width: 100%;
+  }
+}

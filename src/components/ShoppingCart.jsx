@@ -1,13 +1,22 @@
 // src/components/ShoppingCart.jsx
-import React from 'react';
-import styles from './ShoppingCart.module.css';
+import React from "react";
+import styles from "./ShoppingCart.module.css";
 
-const ShoppingCart = ({ cartItems, onQuantityChange, products, onEmptyCart, onCheckout }) => { // Receba onEmptyCart e onCheckout
+const ShoppingCart = ({
+  cartItems,
+  onQuantityChange,
+  products,
+  onEmptyCart,
+  onCheckout,
+}) => {
+  // Receba onEmptyCart e onCheckout
   const calculateTotal = () => {
-    return cartItems.reduce((total, item) => {
-      const product = products.find((p) => p.id === item.id);
-      return total + (product ? product.price * item.quantity : 0);
-    }, 0).toFixed(2);
+    return cartItems
+      .reduce((total, item) => {
+        const product = products.find((p) => p.id === item.id);
+        return total + (product ? product.price * item.quantity : 0);
+      }, 0)
+      .toFixed(2);
   };
 
   return (
@@ -36,17 +45,22 @@ const ShoppingCart = ({ cartItems, onQuantityChange, products, onEmptyCart, onCh
                       className={styles.quantityInput}
                       value={item.quantity}
                       min="1"
-                      onChange={(e) => onQuantityChange(item.id, e.target.value)}
+                      onChange={(e) =>
+                        onQuantityChange(item.id, e.target.value)
+                      }
                     />
                   </div>
-                  <span className={styles.itemPrice}>R$ {(product.price * item.quantity).toFixed(2)}</span>
+                  <span className={styles.itemPrice}>
+                    R$ {(product.price * item.quantity).toFixed(2)}
+                  </span>
                 </li>
               );
             })}
           </ul>
 
           <div className={styles.total}>
-            Total: <span className={styles.totalValue}>R$ {calculateTotal()}</span>
+            Total:{" "}
+            <span className={styles.totalValue}>R$ {calculateTotal()}</span>
           </div>
 
           <button className={styles.emptyButton} onClick={onEmptyCart}>
