@@ -1,11 +1,23 @@
 /* src/components/Footer/Footer.module.css */
 .footer {
-  background-color: #333;
-  color: white;
-  text-align: center;
+  background-color: var(--cor-base); /* Azul Celeste pálido para o fundo */
+  color: var(
+    --cor-texto-principal-mais-claro
+  ); /* Um tom mais claro do Azul Marinho para o texto */
   padding: 20px;
+  text-align: center;
   font-size: 0.9em;
-  position: sticky; /* Para fixar no fundo, ajuste conforme necessário */
-  bottom: 0;
-  width: 100%;
+  border-top: 1px solid #eee; /* Uma linha sutil para separar do conteúdo principal */
+}
+
+.footer p {
+  margin: 0; /* Remove a margem padrão do parágrafo */
+}
+
+/* Responsividade (ajustes para telas menores, se necessário) */
+@media (max-width: 480px) {
+  .footer {
+    padding: 15px;
+    font-size: 0.8em;
+  }
 }

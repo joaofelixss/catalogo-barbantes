@@ -1,34 +1,32 @@
 /* src/components/ProductCard/ProductCard.module.css */
 .produtoCard {
-  border: 1px solid #ddd;
+  background-color: #fff; /* Fundo branco para o card */
   border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Garante que a imagem com borda arredondada não vaze */
   display: flex;
   flex-direction: column;
-  background-color: #fff;
 }
 
 .produtoImagem {
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9; /* Proporção para evitar distorção */
-  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  display: block; /* Evita espaço extra abaixo da imagem */
 }
 
 .produtoTitulo {
-  padding: 10px;
-  font-size: 1.2em;
-  color: #333;
-  margin-bottom: 5px;
-  text-align: center;
+  font-size: 1.5em;
+  color: var(--cor-texto-principal); /* Azul Marinho suave para o título */
+  margin: 15px 10px 10px 10px;
 }
 
 .produtoDescricao {
-  padding: 0 10px 10px;
-  color: #666;
+  color: #777;
   font-size: 0.9em;
-  text-align: center;
+  margin: 0 10px 15px 10px;
+  line-height: 1.4;
 }
 
 .produtoPrecoArea {
@@ -40,16 +38,16 @@
 }
 
 .produtoPreco {
-  font-size: 1.1em;
-  color: #5cb85c;
+  font-size: 1.3em;
+  color: var(--cor-acento-1); /* Rosa Névoa suave para o preço */
   font-weight: bold;
 }
 
 .adicionarAoCarrinho {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--cor-acento-3); /* Amarelo Limão pálido para o botão */
+  color: var(--cor-texto-principal); /* Azul Marinho suave no texto do botão */
   border: none;
-  padding: 8px 12px;
+  padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
@@ -61,5 +59,31 @@
 }
 
 .adicionarAoCarrinho:hover {
-  background-color: #0056b3;
+  background-color: var(--cor-acento-2); /* Lilás claro no hover */
+}
+
+.adicionarAoCarrinho svg {
+  /* Estilizando o ícone do carrinho dentro do botão */
+  font-size: 1em;
+}
+
+/* Responsividade (pequenos ajustes para telas menores) */
+@media (max-width: 480px) {
+  .produtoTitulo {
+    font-size: 1.3em;
+    margin-top: 10px;
+  }
+
+  .produtoDescricao {
+    font-size: 0.85em;
+  }
+
+  .produtoPreco {
+    font-size: 1.2em;
+  }
+
+  .adicionarAoCarrinho {
+    font-size: 0.8em;
+    padding: 8px 12px;
+  }
 }
