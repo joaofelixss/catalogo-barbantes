@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import ShoppingCart from "./components/ShoppingCart";
+import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import styles from "./App.module.css";
 import logoImage from "./assets/logo.png";
 import { FaShoppingCart } from "react-icons/fa";

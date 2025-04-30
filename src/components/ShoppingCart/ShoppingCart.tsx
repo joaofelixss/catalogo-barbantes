@@ -1,15 +1,28 @@
-// src/components/ShoppingCart.jsx
+// src/components/ShoppingCart.tsx
 import React from "react";
 import styles from "./ShoppingCart.module.css";
+import { Product } from "../../types/product"; // Assumindo que você tem essa tipagem
 
-const ShoppingCart = ({
+interface CartItem {
+  id: number;
+  quantity: number;
+}
+
+interface ShoppingCartProps {
+  cartItems: CartItem[];
+  onQuantityChange: (itemId: number, quantity: number) => void; // Mudança aqui
+  products: Product[];
+  onEmptyCart: () => void;
+  onCheckout: () => void;
+}
+
+const ShoppingCart: React.FC<ShoppingCartProps> = ({
   cartItems,
   onQuantityChange,
   products,
   onEmptyCart,
   onCheckout,
 }) => {
-  // Receba onEmptyCart e onCheckout
   const calculateTotal = () => {
     return cartItems
       .reduce((total, item) => {
@@ -46,7 +59,7 @@ const ShoppingCart = ({
                       value={item.quantity}
                       min="1"
                       onChange={(e) =>
-                        onQuantityChange(item.id, e.target.value)
+                        onQuantityChange(item.id, parseInt(e.target.value, 10))
                       }
                     />
                   </div>
