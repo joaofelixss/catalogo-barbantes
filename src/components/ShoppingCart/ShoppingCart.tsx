@@ -1,121 +1,73 @@
-// src/components/ShoppingCart.tsx
+// src/components/ShoppingCart/ShoppingCart.tsx
 import React from "react";
 import styles from "./ShoppingCart.module.css";
-import { Product } from "../../types/product";
-import { toast } from "react-toastify";
-
-interface CartItem {
-  id: number;
-  quantity: number;
-}
+import { CartItem as CartItemType, Product } from "../../types/product";
+import CartItem from "../CartItem/CartItem"; // Importe o CartItem
+import { Link } from "react-router-dom";
 
 interface ShoppingCartProps {
-  cartItems: CartItem[];
-  onQuantityChange: (itemId: number, quantity: number) => void;
+  cartItems: CartItemType[];
   products: Product[];
+  onQuantityChange: (productId: number, quantity: number) => void;
   onEmptyCart: () => void;
   onCheckout: () => void;
+  onRemoveFromCart: (productId: number) => void; // Certifique-se de ter esta linha
 }
 
 const ShoppingCart: React.FC<ShoppingCartProps> = ({
   cartItems,
-  onQuantityChange,
   products,
+  onQuantityChange,
   onEmptyCart,
   onCheckout,
+  onRemoveFromCart,
 }) => {
+  const handleRemoveFromCartInternal = (productId: number) => {
+    onRemoveFromCart(productId); // Chama a função passada como prop
+  };
+
   const calculateTotal = () => {
     return cartItems
       .reduce((total, item) => {
         const product = products.find((p) => p.id === item.id);
-        return total + (product ? product.price * item.quantity : 0);
+        return total + (product ? product.price * (item.quantity || 1) : 0);
       }, 0)
-      .toFixed(2);
-  };
-
-  const handleEmptyCart = () => {
-    onEmptyCart();
-    toast.info("Seu carrinho foi esvaziado!", {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+      .toFixed(2)
+      .replace(".", ",");
   };
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>Seu Carrinho de Compras</h2>
-
+    <div className={styles.shoppingCartContainer}>
+      <h1>Seu Carrinho de Compras</h1>
       {cartItems.length === 0 ? (
-        <p className={styles.emptyCart}>Seu carrinho está vazio.</p>
+        <div className={styles.emptyCart}>
+          <p>Seu carrinho está vazio.</p>
+          <Link to="/">Voltar para a loja</Link>
+        </div>
       ) : (
         <>
-          <ul className={styles.cartItems}>
+          <ul className={styles.cartItemsList}>
             {cartItems.map((item) => {
               const product = products.find((p) => p.id === item.id);
-              if (!product) return null;
-
               return (
                 <li key={item.id} className={styles.cartItem}>
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className={styles.itemImage}
+                  <CartItem
+                    item={item}
+                    product={product}
+                    onQuantityChange={onQuantityChange}
+                    onRemoveFromCart={handleRemoveFromCartInternal} // Passa a função de remover
                   />
-                  <div className={styles.itemDetails}>
-                    <div className={styles.itemName}>{product.name}</div>
-                    <div className={styles.itemColor}>{product.color}</div>
-                  </div>
-                  <div className={styles.itemQuantity}>
-                    <label
-                      htmlFor={`quantity-${item.id}`}
-                      className={styles.quantityLabel}
-                    >
-                      Qtd:
-                    </label>
-                    <input
-                      type="number"
-                      id={`quantity-${item.id}`}
-                      className={styles.quantityInput}
-                      value={item.quantity}
-                      min="1"
-                      onChange={(e) =>
-                        onQuantityChange(item.id, parseInt(e.target.value, 10))
-                      }
-                      aria-label={`Quantidade de ${product.name}`}
-                    />
-                  </div>
-                  <span className={styles.itemPrice}>
-                    R$ {(product.price * item.quantity).toFixed(2)}
-                  </span>
                 </li>
               );
             })}
           </ul>
-
-          <div className={styles.total}>
-            Total:{" "}
-            <span className={styles.totalValue}>R$ {calculateTotal()}</span>
+          <div className={styles.cartSummary}>
+            <p className={styles.total}>Total: R$ {calculateTotal()}</p>
+            <div className={styles.actions}>
+              <button onClick={onEmptyCart}>Esvaziar Carrinho</button>
+              <button onClick={onCheckout}>Finalizar Pedido</button>
+            </div>
           </div>
-
-          <button
-            className={styles.emptyButton}
-            onClick={handleEmptyCart}
-            aria-label="Esvaziar todos os itens do carrinho"
-          >
-            Esvaziar Carrinho
-          </button>
-          <button
-            className={styles.checkoutButton}
-            onClick={onCheckout}
-            aria-label="Finalizar pedido e enviar mensagem via WhatsApp"
-          >
-            Enviar Pedido por WhatsApp
-          </button>
         </>
       )}
     </div>

@@ -1,0 +1,78 @@
+/* src/components/CartItem/CartItem.module.css */
+.cartItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.itemImage {
+  width: 50px; /* Ajuste o tamanho conforme necessário */
+  height: 50px;
+  object-fit: cover; /* Para manter a proporção da imagem */
+  margin-right: 10px;
+}
+
+.itemDetails {
+  flex-grow: 1;
+}
+
+.itemDetails h3 {
+  font-size: 1em;
+  margin-bottom: 5px;
+}
+
+.itemPrice {
+  color: green;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.quantityControl {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc; /* Adiciona uma borda ao redor dos controles */
+  border-radius: 5px;
+  overflow: hidden; /* Esconde as bordas dos botões que ultrapassam a borda do container */
+}
+
+.quantityControl button {
+  background: none;
+  border: none;
+  padding: 8px 10px;
+  font-size: 1em;
+  cursor: pointer;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.quantityControl button:hover {
+  background-color: #f0f0f0;
+}
+
+.quantityControl span {
+  padding: 8px;
+  font-weight: bold;
+  font-size: 0.9em;
+  border-left: 1px solid #ccc; /* Separadores */
+  border-right: 1px solid #ccc;
+  min-width: 30px; /* Garante um tamanho mínimo para o número */
+  text-align: center;
+}
+
+/* Melhora o botão de remover */
+.removeItem {
+  background-color: #dc3545; /* Vermelho mais moderno */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease;
+}
+
+.removeItem:hover {
+  background-color: #c82333;
+}

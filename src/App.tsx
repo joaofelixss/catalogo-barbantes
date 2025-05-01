@@ -52,6 +52,7 @@ const App: React.FC = () => {
     handleQuantityChange,
     handleEmptyCart,
     calculateTotal,
+    handleRemoveFromCart,
   } = useCart(() => products); // Passa uma função que retorna o estado products
 
   const whatsappNumber = "5569992784621";
@@ -140,6 +141,7 @@ const App: React.FC = () => {
               products={products}
               onEmptyCart={handleEmptyCart}
               onCheckout={handleCheckout}
+              onRemoveFromCart={handleRemoveFromCart}
             />
           }
         />

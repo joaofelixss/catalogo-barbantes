@@ -1,6 +1,7 @@
 // src/hooks/useCart.tsx
 import { useState, useEffect, useCallback } from "react";
 import { CartItem, Product } from "../types/product";
+import { toast } from "react-toastify"; // Importe o toast aqui
 
 const CART_STORAGE_KEY = "catalogoBarbantesCart";
 
@@ -10,6 +11,7 @@ interface UseCartResult {
   handleQuantityChange: (productId: number, quantity: number) => void;
   handleEmptyCart: () => void;
   calculateTotal: () => string;
+  handleRemoveFromCart: (productId: number) => void; // Adicionei esta linha
 }
 
 const useCart = (getProducts: () => Product[]): UseCartResult => {
@@ -61,6 +63,22 @@ const useCart = (getProducts: () => Product[]): UseCartResult => {
     setCartItems([]);
   }, [setCartItems]);
 
+  const handleRemoveFromCart = useCallback(
+    (productId: number) => {
+      setCartItems(cartItems.filter((item) => item.id !== productId));
+      toast.error("Item removido do carrinho!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    },
+    [cartItems, setCartItems, toast] // Adicionei toast como dependência
+  );
+
   const calculateTotal = useCallback(() => {
     const products = getProducts();
     return cartItems
@@ -77,6 +95,7 @@ const useCart = (getProducts: () => Product[]): UseCartResult => {
     handleQuantityChange,
     handleEmptyCart,
     calculateTotal,
+    handleRemoveFromCart,
   };
 };
 
