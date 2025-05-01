@@ -5,7 +5,8 @@ import { Product } from "../../types/product";
 import HeroSection from "../../components/Hero/HeroSection";
 import ContactSection from "../../components/Contact/ContactSection";
 import Footer from "../../components/Footer/Footer";
-import { Link } from "react-router-dom"; // Importe o Link do React Router
+import { Link } from "react-router-dom";
+import CategoryHighlightSection from "../../components/CategoryHighlightSection/CategoryHighlightSection"; // Importe o novo componente
 
 interface HomePageProps {
   onAddToCart: (product: Product) => void;
@@ -35,110 +36,26 @@ const HomePage: React.FC<HomePageProps> = ({ onAddToCart, products }) => {
     <div className={styles.container}>
       <HeroSection />
 
-      <section className={styles.categorySection}>
-        <h2>Destaque dos Barbantes</h2>
-        <div className={styles.productList}>
-          {barbanteEcoBrasil.slice(0, 4).map((product) => (
-            <div key={product.id} className={styles.productCardWrapper}>
-              <Link
-                to={`/produto/${product.id}`}
-                className={styles.productLink}
-              >
-                <img
-                  src={product.images[0]}
-                  alt={product.name}
-                  className={styles.productImage}
-                />
-                <h3>
-                  {product.name} - {product.color}
-                </h3>
-                <p>R$ {product.price.toFixed(2)}</p>
-              </Link>
-              <button
-                onClick={(event) => {
-                  event.stopPropagation();
-                  onAddToCart(product);
-                }}
-              >
-                Adicionar ao Carrinho
-              </button>
-            </div>
-          ))}
-        </div>
-        <div className={styles.viewMore}>
-          <Link to="/barbantes">Ver Mais Barbantes</Link>
-        </div>
-      </section>
+      <CategoryHighlightSection
+        title="Destaque dos Barbantes"
+        products={barbanteEcoBrasil}
+        onAddToCart={onAddToCart}
+        viewMoreLink="/barbantes"
+      />
 
-      <section className={styles.categorySection}>
-        <h2>Destaque das Linhas Barroco</h2>
-        <div className={styles.productList}>
-          {linhasBarroco.slice(0, 4).map((product) => (
-            <div key={product.id} className={styles.productCardWrapper}>
-              <Link
-                to={`/produto/${product.id}`}
-                className={styles.productLink}
-              >
-                <img
-                  src={product.images[0]}
-                  alt={product.name}
-                  className={styles.productImage}
-                />
-                <h3>
-                  {product.name} - {product.color}
-                </h3>
-                <p>R$ {product.price.toFixed(2)}</p>
-              </Link>
-              <button
-                onClick={(event) => {
-                  event.stopPropagation();
-                  onAddToCart(product);
-                }}
-              >
-                Adicionar ao Carrinho
-              </button>
-            </div>
-          ))}
-        </div>
-        <div className={styles.viewMore}>
-          <Link to="/linhas">Ver Mais Linhas Barroco</Link>
-        </div>
-      </section>
+      <CategoryHighlightSection
+        title="Destaque das Linhas Barroco"
+        products={linhasBarroco}
+        onAddToCart={onAddToCart}
+        viewMoreLink="/linhas"
+      />
 
-      <section className={styles.categorySection}>
-        <h2>Destaque dos Tapetes de Crochê</h2>
-        <div className={styles.productList}>
-          {crochesTapetes.slice(0, 4).map((product) => (
-            <div key={product.id} className={styles.productCardWrapper}>
-              <Link
-                to={`/produto/${product.id}`}
-                className={styles.productLink}
-              >
-                <img
-                  src={product.images[0]}
-                  alt={product.name}
-                  className={styles.productImage}
-                />
-                <h3>
-                  {product.name} - {product.color}
-                </h3>
-                <p>R$ {product.price.toFixed(2)}</p>
-              </Link>
-              <button
-                onClick={(event) => {
-                  event.stopPropagation();
-                  onAddToCart(product);
-                }}
-              >
-                Adicionar ao Carrinho
-              </button>
-            </div>
-          ))}
-        </div>
-        <div className={styles.viewMore}>
-          <Link to="/tapetes">Ver Mais Tapetes</Link>
-        </div>
-      </section>
+      <CategoryHighlightSection
+        title="Destaque dos Tapetes de Crochê"
+        products={crochesTapetes}
+        onAddToCart={onAddToCart}
+        viewMoreLink="/tapetes"
+      />
 
       <ContactSection />
       <Footer />
