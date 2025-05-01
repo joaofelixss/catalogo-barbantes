@@ -88,13 +88,80 @@
   color: #0056b3;
 }
 
+.imageGallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px; /* Adiciona um espaço abaixo da galeria */
+}
+
+.mainImage {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  margin-bottom: 15px;
+}
+
+.thumbnailsContainer {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto; /* Cria a barra de rolagem horizontal */
+  padding: 10px 0; /* Adiciona um pouco de espaço vertical */
+  max-width: 100%; /* Garante que não ultrapasse a largura do container principal */
+}
+
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease-in-out;
+  border: 2px solid transparent; /* Adiciona uma borda transparente para o efeito de ativo */
+}
+
+.thumbnail:hover {
+  opacity: 1;
+}
+
+.thumbnail.active {
+  opacity: 1;
+  border-color: #007bff; /* Indica qual miniatura está ativa */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Adaptação para layout de grid anterior em telas maiores */
+@media (min-width: 769px) {
+  .productDetailsContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .imageGallery {
+    align-items: flex-start;
+  }
+
+  .mainImage {
+    margin-bottom: 15px;
+  }
+
+  .thumbnailsContainer {
+    /* Mantém o layout horizontal */
+  }
+}
+
 /* Estilos para telas menores */
 @media (max-width: 768px) {
   .productDetailsContainer {
     grid-template-columns: 1fr;
   }
 
-  .imageContainer {
+  .imageGallery {
     margin-bottom: 20px;
+  }
+
+  .thumbnailsContainer {
+    /* Mantém o layout horizontal com overflow */
   }
 }

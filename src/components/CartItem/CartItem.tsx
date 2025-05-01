@@ -46,9 +46,9 @@ const CartItem: React.FC<CartItemProps> = ({
 
   return (
     <div className={styles.cartItem}>
-      {product.image && (
+      {product.images && product.images[0] && (
         <img
-          src={product.image}
+          src={product.images[0]}
           alt={product.name}
           className={styles.itemImage}
         />

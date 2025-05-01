@@ -18,7 +18,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
   const navigate = useNavigate(); // Inicialize useNavigate
-  const imageUrl = productImages[produto.id] || produto.image;
+  const imageUrl =
+    productImages[produto.id] || (produto.images && produto.images[0]);
   const isCurrentlyFavorite = isFavorite(produto.id);
 
   const handleCardClick = () => {

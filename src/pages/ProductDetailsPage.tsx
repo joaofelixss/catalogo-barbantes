@@ -1,5 +1,5 @@
 // src/pages/ProductDetailsPage.tsx
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Product } from "../types/product";
 import styles from "./ProductDetailsPage.module.css";
@@ -7,20 +7,20 @@ import { useFavorites } from "../contexts/FavoritesContext";
 
 interface ProductDetailsPageProps {
   products: Product[];
-  productImages: { [key: number]: string | null | undefined };
-  onAddToCart: (product: Product) => void; // Adicione a prop onAddToCart
+  onAddToCart: (product: Product) => void;
 }
 
 const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
   products,
-  productImages,
-  onAddToCart, // Receba a prop onAddToCart
+  onAddToCart,
 }) => {
   const { id } = useParams<{ id: string }>();
   const productId = id ? parseInt(id, 10) : null;
   const product = productId ? products.find((p) => p.id === productId) : null;
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
-  const imageUrl = (product && productImages[product.id]) || product?.image;
+  const [currentImage, setCurrentImage] = useState<string | undefined>(
+    product?.images[0]
+  );
 
   if (!product) {
     return (
@@ -29,6 +29,10 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
       </div>
     );
   }
+
+  const handleThumbnailClick = (imageUrl: string) => {
+    setCurrentImage(imageUrl);
+  };
 
   const handleFavoriteClick = () => {
     if (isFavorite(product.id)) {
@@ -40,13 +44,27 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
 
   return (
     <div className={styles.productDetailsContainer}>
-      <div className={styles.imageContainer}>
+      <div className={styles.imageGallery}>
         <img
-          src={imageUrl}
+          src={currentImage}
           alt={product.name}
-          className={styles.productImage}
+          className={styles.mainImage}
         />
-        {/* Se tivermos mais imagens, poderíamos adicioná-las aqui */}
+        {product.images.length > 1 && (
+          <div className={styles.thumbnailsContainer}>
+            {product.images.map((imgUrl, index) => (
+              <img
+                key={index}
+                src={imgUrl}
+                alt={`${product.name} - Miniatura ${index + 1}`}
+                className={`${styles.thumbnail} ${
+                  imgUrl === currentImage ? styles.active : ""
+                }`}
+                onClick={() => handleThumbnailClick(imgUrl)}
+              />
+            ))}
+          </div>
+        )}
       </div>
       <div className={styles.details}>
         <h1>{product.name}</h1>
@@ -56,8 +74,6 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
         <p className={styles.description}>{product.descricao}</p>
         <div className={styles.actions}>
           <button onClick={() => onAddToCart(product)}>
-            {" "}
-            {/* Use a prop onAddToCart */}
             Adicionar ao Carrinho
           </button>
           <button

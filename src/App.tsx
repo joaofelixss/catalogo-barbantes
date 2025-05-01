@@ -22,7 +22,11 @@ const App: React.FC = () => {
       color: "Azul Royal",
       price: 25.9,
       descricao: "Fio de algodão mercerizado para peças de decoração.",
-      image: "/images/barbantes-bonitos.jpg",
+      images: [
+        "/images/barbantes-bonitos.jpg",
+        "/images/produto3.png",
+        "/images/produto2.png",
+      ], // Exemplo com várias imagens
       num: "6",
     },
     {
@@ -31,7 +35,11 @@ const App: React.FC = () => {
       color: "Amarelo Canário",
       price: 12.5,
       descricao: "Fio de algodão ideal para a técnica japonesa de amigurumi.",
-      image: "/images/barbantes-bonitos2.jpg",
+      images: [
+        "/images/barbantes-bonitos.jpg",
+        "/images/produto3.png",
+        "/images/produto2.png",
+      ], // Exemplo com várias imagens
       num: "6",
     },
     {
@@ -40,7 +48,11 @@ const App: React.FC = () => {
       color: "Verde Musgo",
       price: 18.75,
       descricao: "Fio leve e macio para peças de vestuário.",
-      image: "/images/produto2.png",
+      images: [
+        "/images/barbantes-bonitos.jpg",
+        "/images/produto3.png",
+        "/images/produto2.png",
+      ], // Exemplo com várias imagens
       num: "8",
     },
     {
@@ -49,7 +61,11 @@ const App: React.FC = () => {
       color: "Vermelho Paixão",
       price: 15.3,
       descricao: "Fio de algodão penteado com toque macio e brilho.",
-      image: "/images/produto3.png",
+      images: [
+        "/images/barbantes-bonitos.jpg",
+        "/images/produto3.png",
+        "/images/produto2.png",
+      ], // Exemplo com várias imagens
       num: "8",
     },
   ]);
@@ -123,7 +139,6 @@ const App: React.FC = () => {
             element={
               <ProductDetailsPage
                 products={products}
-                productImages={{}}
                 onAddToCart={handleAddToCart} // Passa a função handleAddToCart como prop
               />
             } // Passa os produtos como prop
