@@ -31,7 +31,7 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
     const otherProducts = products.filter((p) => p.id !== product.id);
     // Embaralha o array e pega os primeiros 3 para sugestão
     const shuffledProducts = [...otherProducts].sort(() => 0.5 - Math.random());
-    return shuffledProducts.slice(0, 3);
+    return shuffledProducts.slice(0, 2);
   }, [product, products]);
 
   if (!product) {

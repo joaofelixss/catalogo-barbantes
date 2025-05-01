@@ -1,13 +1,17 @@
 /* src/components/ShoppingCart/ShoppingCart.module.css */
 .shoppingCartContainer {
-  padding: 20px;
-  max-width: 900px; /* Aumentei um pouco a largura máxima */
-  margin: 20px auto;
+  padding: 30px; /* Aumentei o padding interno */
+  max-width: 960px; /* Aumentei um pouco mais a largura máxima */
+  margin: 30px auto; /* Aumentei a margem superior e inferior */
+  background-color: #f9f9f9; /* Adicionei uma cor de fundo suave */
+  border-radius: 10px; /* Arredondei mais as bordas */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Adicionei uma sombra suave */
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px; /* Aumentei a margem inferior do título */
+  color: #333; /* Cor do texto do título */
 }
 
 .cartContent {
@@ -18,75 +22,95 @@ h1 {
 .cartItemsList {
   list-style: none;
   padding: 0;
-  margin-bottom: 20px;
+  margin-bottom: 30px; /* Aumentei a margem inferior da lista de itens */
 }
 
 .cartItem {
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  margin-bottom: 20px; /* Aumentei a margem inferior de cada item */
+  border: 1px solid #e0e0e0; /* Cor da borda mais clara */
+  border-radius: 10px; /* Arredondei mais as bordas do item */
   overflow: hidden;
+  background-color: white; /* Fundo branco para os itens */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra suave nos itens */
 }
 
 .cartSummary {
   display: flex;
   justify-content: space-between; /* Alinha o total e as ações nas extremidades */
   align-items: center;
-  padding: 15px;
+  padding: 20px; /* Aumentei o padding interno */
   border-top: 1px solid #eee;
+  font-size: 1.1em; /* Aumentei o tamanho da fonte */
 }
 
 .total {
-  font-size: 1.2em;
+  font-size: 1.3em; /* Aumentei o tamanho da fonte do total */
   font-weight: bold;
+  color: #555; /* Cor do texto do total */
 }
 
 .actions button {
-  padding: 10px 15px;
-  margin-left: 10px;
+  padding: 12px 20px; /* Aumentei o padding dos botões */
+  margin-left: 15px; /* Aumentei a margem esquerda */
   cursor: pointer;
   border: none;
-  border-radius: 5px;
-  font-size: 1em;
-  transition: background-color 0.3s ease;
+  border-radius: 8px; /* Arredondei mais as bordas dos botões */
+  font-size: 1.1em; /* Aumentei o tamanho da fonte dos botões */
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out; /* Transição mais suave */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Adicionei uma sombra suave aos botões */
 }
 
 .emptyButton {
-  background-color: #f44336;
+  background-color: #ff6b6b; /* Cor vermelha mais vibrante */
   color: white;
 }
 
 .emptyButton:hover {
-  background-color: #d32f2f;
+  background-color: #ff4757; /* Cor vermelha mais escura no hover */
 }
 
 .checkoutButton {
-  background-color: #4caf50;
+  background-color: #5cb85c; /* Cor verde mais agradável */
   color: white;
 }
 
 .checkoutButton:hover {
-  background-color: #45a049;
+  background-color: #4cae4c; /* Cor verde mais escura no hover */
 }
 
 .emptyCart {
   text-align: center;
-  padding: 30px;
-  border: 1px solid #eee;
-  border-radius: 8px;
+  padding: 40px; /* Aumentei o padding interno */
+  border: 1px solid #ddd;
+  border-radius: 10px; /* Arredondei mais as bordas */
+  background-color: white; /* Fundo branco */
 }
 
 .emptyCart p {
-  margin-bottom: 15px;
-  font-size: 1.1em;
-  color: #555;
+  margin-bottom: 20px; /* Aumentei a margem inferior do parágrafo */
+  font-size: 1.2em; /* Aumentei o tamanho da fonte */
+  color: #777; /* Cor do texto mais suave */
 }
 
 .emptyCart a {
-  color: #007bff;
+  color: var(--cor-primaria); /* Usando a cor primária da sua paleta */
   text-decoration: none;
+  font-weight: bold; /* Texto em negrito */
+  transition: color 0.2s ease-in-out; /* Transição suave na cor */
 }
 
 .emptyCart a:hover {
   text-decoration: underline;
+  color: var(--cor-primaria-hover); /* Cor no hover */
+}
+
+.cartEmptyConfirmation {
+  background-color: #e6ffe6; /* Verde claro suave */
+  color: #2e8b57; /* Verde escuro agradável */
+  padding: 15px; /* Aumentei o padding */
+  margin-bottom: 25px; /* Aumentei a margem inferior */
+  border: 1px solid #b8f5b8; /* Borda verde clara */
+  border-radius: 8px; /* Arredondei as bordas */
+  text-align: center;
+  font-size: 1.1em; /* Aumentei o tamanho da fonte */
 }
