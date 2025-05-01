@@ -11,7 +11,8 @@ import { Product } from "./types/product";
 import useCart from "./hooks/useCart";
 import CheckoutForm from "./components/CheckoutForm/CheckoutForm"; // Importe o CheckoutForm
 import { FavoritesProvider } from "./contexts/FavoritesContext";
-import FavoritesPage from "./pages/FavoritesPage"; // Importe o FavoritesProvider
+import FavoritesPage from "./pages/FavoritesPage";
+import ProductDetailsPage from "./pages/ProductDetailsPage";
 
 const App: React.FC = () => {
   const [products] = useState<Product[]>([
@@ -116,6 +117,16 @@ const App: React.FC = () => {
                 productImages={{}} // Você pode precisar ajustar isso se as imagens forem carregadas de forma diferente
               />
             }
+          />
+          <Route
+            path="/produto/:id" // Nova rota com parâmetro :id
+            element={
+              <ProductDetailsPage
+                products={products}
+                productImages={{}}
+                onAddToCart={handleAddToCart} // Passa a função handleAddToCart como prop
+              />
+            } // Passa os produtos como prop
           />
         </Routes>
         <ToastContainer />

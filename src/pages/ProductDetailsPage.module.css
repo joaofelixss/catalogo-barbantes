@@ -1,0 +1,100 @@
+/* src/pages/ProductDetailsPage.module.css */
+.productDetailsContainer {
+  padding: 30px;
+  max-width: 900px;
+  margin: 30px auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.imageContainer {
+  text-align: center;
+}
+
+.productImage {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.details h1 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.details p {
+  color: #555;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.details .color {
+  font-weight: bold;
+}
+
+.details .num {
+  font-weight: bold;
+}
+
+.details .price {
+  font-size: 1.5em;
+  color: #28a745;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.details .description {
+  margin-bottom: 25px;
+}
+
+.actions button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s ease-in-out;
+  margin-right: 10px;
+}
+
+.actions button:first-child {
+  background-color: #007bff;
+  color: white;
+}
+
+.actions button:first-child:hover {
+  background-color: #0056b3;
+}
+
+.actions .favoriteButton {
+  background-color: #f8f9fa;
+  color: #007bff;
+  border: 1px solid #007bff;
+}
+
+.actions .favoriteButton:hover {
+  background-color: #e9ecef;
+  color: #0056b3;
+}
+
+/* Estilos para telas menores */
+@media (max-width: 768px) {
+  .productDetailsContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .imageContainer {
+    margin-bottom: 20px;
+  }
+}

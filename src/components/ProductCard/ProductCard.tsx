@@ -2,7 +2,8 @@
 import React from "react";
 import styles from "./ProductCard.module.css";
 import { Product } from "../../types/product";
-import { useFavorites } from "../../contexts/FavoritesContext"; // Importe o hook
+import { useFavorites } from "../../contexts/FavoritesContext";
+import { useNavigate } from "react-router-dom"; // Importe useNavigate
 
 interface ProductCardProps {
   produto: Product;
@@ -16,11 +17,16 @@ const ProductCard: React.FC<ProductCardProps> = ({
   productImages,
 }) => {
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
+  const navigate = useNavigate(); // Inicialize useNavigate
   const imageUrl = productImages[produto.id] || produto.image;
   const isCurrentlyFavorite = isFavorite(produto.id);
 
+  const handleCardClick = () => {
+    navigate(`/produto/${produto.id}`);
+  };
+
   const handleFavoriteClick = (event: React.MouseEvent) => {
-    event.stopPropagation(); // Impede que o clique no favorito acione o addToCart
+    event.stopPropagation(); // Impede que o clique no favorito acione o handleCardClick
     if (isCurrentlyFavorite) {
       removeFromFavorites(produto.id);
     } else {
@@ -28,8 +34,17 @@ const ProductCard: React.FC<ProductCardProps> = ({
     }
   };
 
+  const handleAddToCartClick = (event: React.MouseEvent) => {
+    event.stopPropagation(); // Impede que o clique no carrinho acione o handleCardClick
+    onAddToCart(produto);
+  };
+
   return (
-    <div className={styles.productCard}>
+    <div
+      className={styles.productCard}
+      onClick={handleCardClick}
+      style={{ cursor: "pointer" }}
+    >
       <img src={imageUrl} alt={produto.name} className={styles.productImage} />
       <div className={styles.productInfo}>
         <h3>{produto.name}</h3>
@@ -39,9 +54,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         )}
         <p className={styles.productPrice}>R$ {produto.price.toFixed(2)}</p>
         <div className={styles.actions}>
-          <button onClick={() => onAddToCart(produto)}>
-            Adicionar ao Carrinho
-          </button>
+          <button onClick={handleAddToCartClick}>Adicionar ao Carrinho</button>
           <button
             className={styles.favoriteButton}
             onClick={handleFavoriteClick}
