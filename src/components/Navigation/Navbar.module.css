@@ -67,13 +67,20 @@
   background: none;
   border: none;
   padding: 10px;
+  /* Aumentei o tamanho para facilitar o toque */
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centraliza os ícones verticalmente */
+  align-items: center; /* Centraliza os ícones horizontalmente */
 }
 
 .menuIcon {
   width: 30px;
-  height: 3px;
-  background-color: var(--cor-texto-principal);
-  margin: 6px 0;
+  height: 4px; /* Aumentei a altura para torná-los mais visíveis */
+  background-color: #333; /* Defini a cor para um cinza escuro (você pode ajustar para branco #fff se preferir) */
+  margin: 5px 0; /* Ajustei a margem para separá-los um pouco */
   transition: 0.4s;
 }
 
@@ -81,10 +88,6 @@
 @media (max-width: 768px) {
   .navbar {
     justify-content: space-between; /* Logo na esquerda, botão de menu na direita */
-  }
-
-  .menuButton {
-    display: block; /* Mostra o botão no mobile */
   }
 
   .navList {
@@ -152,12 +155,27 @@
     font-weight: bold;
     z-index: 21; /* Acima do ícone do carrinho */
   }
+
+  /* Esconde o carrinho no link da navbar em telas menores */
+  .cartLink {
+    display: none;
+  }
 }
 
-/* Remove o ajuste de espaçamento para telas maiores (já centralizamos com space-around) */
+/* Ajustes para telas maiores (acima de 768px) */
 @media (min-width: 769px) {
   .navItem {
-    margin-left: 0; /* Remove a margem individual dos itens */
+    margin-left: 35px; /* Restaura o espaçamento entre os links no desktop */
+  }
+
+  /* Esconde o botão de menu hambúrguer no desktop */
+  .menuButton {
+    display: none;
+  }
+
+  /* Mostra o carrinho no link da navbar em telas maiores */
+  .cartLink {
+    display: flex;
   }
 
   /* Esconde o carrinho flutuante na versão desktop */

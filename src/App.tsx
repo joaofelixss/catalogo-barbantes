@@ -88,9 +88,11 @@ const App: React.FC = () => {
           );
           return null;
         }
-        return `${item.quantity} x ${product.name}`;
+        return `- ${item.quantity} x ${product.name} - R$ **${(
+          product.price * item.quantity
+        ).toFixed(2)}**`; // Formatação elegante com preço em negrito
       })
-      .filter(Boolean) // Remove os valores null do array
+      .filter(Boolean)
       .join("\n");
 
     if (orderDetails.length === 0 && cartItems.length > 0) {
@@ -113,7 +115,7 @@ const App: React.FC = () => {
     }
 
     const total = calculateTotal();
-    const message = `Olá! Gostaria de fazer o seguinte pedido:\n\n${orderDetails}\n\nTotal: R$ ${total}`;
+    const message = `Olá! Gostaria de fazer o seguinte pedido:\n\n${orderDetails}\n\nTotal do pedido: R$ **${total}**\n\nQual o valor do frete para minha região?`; // Mensagem mais elegante com total em negrito e pergunta sobre o frete
     const encodedMessage = encodeURIComponent(message);
 
     window.open(`${whatsappLink}?text=${encodedMessage}`, "_blank");

@@ -1,112 +1,59 @@
 /* App.module.css */
-.navbar {
-  background-color: #fff9ea;
-  color: #333;
-  position: fixed;
-  padding: 15px 20px;
-  top: 0;
-  left: 0;
+
+/* Estilos para o container principal da aplicação (abaixo da navbar fixa) */
+.appContainer {
+  margin-top: 60px; /* Adiciona margem superior para evitar que o conteúdo fique atrás da navbar (ajuste o valor conforme a altura da sua navbar) */
+  padding: 20px; /* Adiciona um pouco de padding geral ao conteúdo */
+  box-sizing: border-box; /* Garante que padding não afete a largura total */
   width: 100%;
-  z-index: 100;
+  max-width: 1200px; /* Largura máxima do conteúdo principal */
+  margin: 60px auto 0; /* Centraliza o conteúdo principal */
 }
 
-.navbarContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
+/* Estilos para a página inicial */
+.homePageContainer {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(300px, 1fr)
+  ); /* Layout responsivo em grid */
+  gap: 20px;
 }
 
-.logo {
-  color: #333;
-  text-decoration: none;
-  font-size: 1.5em;
+.productCard {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.productImage {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.productName {
   font-weight: bold;
-  display: flex;
-  align-items: center;
+  margin-bottom: 5px;
 }
 
-.logoImage {
-  height: 1.2em;
-  margin-right: 5px;
-}
-
-.centerNav {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 30px;
-  align-items: center;
-}
-
-.navItem {
-  margin: 0;
-}
-
-.navLink {
-  color: #333;
-  text-decoration: none;
-  font-size: 1em;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-.navLink:hover {
+.productPrice {
   color: #e44d26;
+  font-weight: bold;
 }
 
-.cartIconContainer {
-  position: relative; /* Para posicionar o contador */
-}
-
-.cartIcon {
-  font-size: 1.2em;
-}
-
-.cartCount {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background-color: red;
-  color: white;
-  font-size: 0.7em;
-  border-radius: 50%;
-  padding: 3px 5px;
-}
-
-.whatsappLink {
-  color: white;
-  text-decoration: none;
+.addToCartButton {
   background-color: #cc9900;
+  color: white;
+  border: none;
   padding: 8px 15px;
   border-radius: 5px;
-  font-size: 1em;
+  cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.whatsappLink:hover {
+.addToCartButton:hover {
   background-color: #b8860b;
-}
-
-/* Responsividade da Navbar */
-@media (max-width: 768px) {
-  .navbarContainer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .centerNav {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    margin-top: 10px;
-  }
-
-  .whatsappLink {
-    margin-top: 10px;
-  }
 }

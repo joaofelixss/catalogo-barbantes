@@ -3,12 +3,8 @@
   padding: 60px 20px;
   background-color: #f9f9f9; /* Cor de fundo branca/cinza claro */
   text-align: center;
-  width: 100vw; /* Use vw (viewport width) para cobrir toda a largura da tela */
-  position: relative; /* Necessário para sobrepor o fundo padrão se necessário */
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  width: 100%; 
+  box-sizing: border-box;
 }
 
 .cardapioSection h2 {
@@ -24,6 +20,7 @@
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
+  box-sizing: border-box; /* Garante que padding não aumente a largura total */
 }
 
 /* Responsividade para telas menores */
