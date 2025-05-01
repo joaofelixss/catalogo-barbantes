@@ -2,16 +2,16 @@
 .cartItem {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px;
+  padding: 20px; /* Aumentei o padding para mais espaço */
   border-bottom: 1px solid #eee;
 }
 
 .itemImage {
-  width: 50px; /* Ajuste o tamanho conforme necessário */
-  height: 50px;
-  object-fit: cover; /* Para manter a proporção da imagem */
-  margin-right: 10px;
+  width: 100px; /* Aumentei a largura da imagem */
+  height: 100px; /* Aumentei a altura da imagem */
+  object-fit: cover;
+  margin-right: 20px;
+  border-radius: 8px;
 }
 
 .itemDetails {
@@ -19,29 +19,31 @@
 }
 
 .itemDetails h3 {
-  font-size: 1em;
-  margin-bottom: 5px;
+  font-size: 1.2em; /* Aumentei a fonte do título */
+  margin-bottom: 8px;
 }
 
 .itemPrice {
   color: green;
   font-weight: bold;
-  font-size: 0.9em;
+  font-size: 1.1em; /* Aumentei a fonte do preço */
 }
 
 .quantityControl {
   display: flex;
   align-items: center;
-  border: 1px solid #ccc; /* Adiciona uma borda ao redor dos controles */
-  border-radius: 5px;
-  overflow: hidden; /* Esconde as bordas dos botões que ultrapassam a borda do container */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-left: auto; /* Empurra para a direita */
+  margin-right: 20px; /* Adiciona um pouco de espaço da borda */
 }
 
 .quantityControl button {
   background: none;
   border: none;
-  padding: 8px 10px;
-  font-size: 1em;
+  padding: 10px 12px; /* Ajustei o padding dos botões */
+  font-size: 1em; /* Mantive o tamanho da fonte */
   cursor: pointer;
   color: #333;
   transition: background-color 0.3s ease;
@@ -52,27 +54,93 @@
 }
 
 .quantityControl span {
-  padding: 8px;
+  padding: 10px;
   font-weight: bold;
-  font-size: 0.9em;
-  border-left: 1px solid #ccc; /* Separadores */
+  font-size: 1em; /* Mantive o tamanho da fonte */
+  border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
-  min-width: 30px; /* Garante um tamanho mínimo para o número */
+  min-width: 40px;
   text-align: center;
 }
 
-/* Melhora o botão de remover */
+.subtotal {
+  font-weight: bold;
+  font-size: 1.1em; /* Mantive o tamanho da fonte */
+  color: #007bff;
+  margin-left: auto; /* Empurra para a direita */
+  min-width: 120px;
+  text-align: right;
+}
+
 .removeItem {
-  background-color: #dc3545; /* Vermelho mais moderno */
+  background-color: #dc3545;
   color: white;
   border: none;
-  padding: 8px 12px;
+  padding: 10px 15px;
   cursor: pointer;
-  border-radius: 5px;
-  font-size: 0.9em;
+  border-radius: 8px;
+  font-size: 1em;
   transition: background-color 0.3s ease;
+  margin-left: 20px;
 }
 
 .removeItem:hover {
   background-color: #c82333;
+}
+
+@media (max-width: 768px) {
+  .cartItem {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .itemImage {
+    width: 80px; /* Aumentei um pouco para mobile */
+    height: 80px; /* Aumentei um pouco para mobile */
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+
+  .itemDetails {
+    margin-bottom: 10px;
+  }
+
+  .quantityControl {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+
+  .quantityControl button {
+    padding: 8px 10px; /* Ajustei o padding para mobile */
+    font-size: 1em; /* Mantive o tamanho da fonte para mobile */
+    margin: 0 5px; /* Adicionei um pouco de margem */
+  }
+
+  .quantityControl span {
+    padding: 8px;
+    font-size: 0.9em; /* Ajustei o tamanho da fonte para mobile */
+    min-width: 30px;
+  }
+
+  .subtotal {
+    margin-left: 0;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .removeItem {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+/* Estilos para telas ainda menores (smartphones) */
+@media (max-width: 480px) {
+  .itemDetails h3 {
+    font-size: 1.1em; /* Pequeno ajuste para telas menores */
+  }
+
+  .itemPrice {
+    font-size: 1em; /* Pequeno ajuste para telas menores */
+  }
 }

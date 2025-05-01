@@ -2,7 +2,7 @@
 import React from "react";
 import styles from "./ShoppingCart.module.css";
 import { CartItem as CartItemType, Product } from "../../types/product";
-import CartItem from "../CartItem/CartItem"; // Importe o CartItem
+import CartItem from "../CartItem/CartItem";
 import { Link } from "react-router-dom";
 
 interface ShoppingCartProps {
@@ -10,8 +10,8 @@ interface ShoppingCartProps {
   products: Product[];
   onQuantityChange: (productId: number, quantity: number) => void;
   onEmptyCart: () => void;
-  onCheckout: () => void;
-  onRemoveFromCart: (productId: number) => void; // Certifique-se de ter esta linha
+  onCheckout: () => void; // Adicione esta linha
+  onRemoveFromCart: (productId: number) => void;
 }
 
 const ShoppingCart: React.FC<ShoppingCartProps> = ({
@@ -19,13 +19,9 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
   products,
   onQuantityChange,
   onEmptyCart,
-  onCheckout,
+  onCheckout, // Recebe a função de navegação
   onRemoveFromCart,
 }) => {
-  const handleRemoveFromCartInternal = (productId: number) => {
-    onRemoveFromCart(productId); // Chama a função passada como prop
-  };
-
   const calculateTotal = () => {
     return cartItems
       .reduce((total, item) => {
@@ -45,7 +41,7 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
           <Link to="/">Voltar para a loja</Link>
         </div>
       ) : (
-        <>
+        <div className={styles.cartContent}>
           <ul className={styles.cartItemsList}>
             {cartItems.map((item) => {
               const product = products.find((p) => p.id === item.id);
@@ -55,7 +51,7 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
                     item={item}
                     product={product}
                     onQuantityChange={onQuantityChange}
-                    onRemoveFromCart={handleRemoveFromCartInternal} // Passa a função de remover
+                    onRemoveFromCart={onRemoveFromCart}
                   />
                 </li>
               );
@@ -64,11 +60,17 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
           <div className={styles.cartSummary}>
             <p className={styles.total}>Total: R$ {calculateTotal()}</p>
             <div className={styles.actions}>
-              <button onClick={onEmptyCart}>Esvaziar Carrinho</button>
-              <button onClick={onCheckout}>Finalizar Pedido</button>
+              <button onClick={onEmptyCart} className={styles.emptyButton}>
+                Esvaziar Carrinho
+              </button>
+              <button onClick={onCheckout} className={styles.checkoutButton}>
+                {" "}
+                {/* Chama a função de navegação */}
+                Finalizar Pedido
+              </button>
             </div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

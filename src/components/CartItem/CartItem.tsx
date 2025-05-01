@@ -34,13 +34,17 @@ const CartItem: React.FC<CartItemProps> = ({
     onRemoveFromCart(item.id);
   };
 
+  const subtotal = (product.price * (item.quantity || 0))
+    .toFixed(2)
+    .replace(".", ",");
+
   return (
     <div className={styles.cartItem}>
       {product.image && (
         <img
           src={product.image}
           alt={product.name}
-          className={styles.itemImage} // Adicione um estilo para a imagem no CSS
+          className={styles.itemImage}
         />
       )}
       <div className={styles.itemDetails}>
@@ -54,6 +58,7 @@ const CartItem: React.FC<CartItemProps> = ({
         <span>{item.quantity || 0}</span>
         <button onClick={handleIncrement}>+</button>
       </div>
+      <div className={styles.subtotal}>Subtotal: R$ {subtotal}</div>
       <button className={styles.removeItem} onClick={handleRemove}>
         Remover
       </button>

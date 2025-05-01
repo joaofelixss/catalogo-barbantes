@@ -1,6 +1,6 @@
 // src/App.tsx
 import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom"; // Importe useNavigate aqui
 import HomePage from "./pages/HomePage";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import styles from "./App.module.css";
@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./components/Navigation/Navbar";
 import { Product } from "./types/product";
 import useCart from "./hooks/useCart";
+import CheckoutForm from "./components/CheckoutForm/CheckoutForm"; // Importe o CheckoutForm
 
 const App: React.FC = () => {
   const [products] = useState<Product[]>([
@@ -58,64 +59,10 @@ const App: React.FC = () => {
   const whatsappNumber = "5569992784621";
   const whatsappLink = `https://wa.me/${whatsappNumber}`;
 
-  const handleCheckout = () => {
-    if (cartItems.length === 0) {
-      toast.warn(
-        "Seu carrinho está vazio. Adicione itens para fazer o pedido.",
-        {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        }
-      );
-      return;
-    }
+  const navigate = useNavigate(); // Inicialize useNavigate aqui
 
-    const orderDetails = cartItems
-      .map((item) => {
-        const product = products.find((p) => p.id === item.id);
-        if (!product) {
-          console.error(
-            `Produto com ID ${item.id} não encontrado no array de produtos.`
-          );
-          return null;
-        }
-        return `- ${item.quantity} x ${product.name} - R$ **${(
-          product.price * item.quantity
-        ).toFixed(2)}**`;
-      })
-      .filter(Boolean)
-      .join("\n");
-
-    if (orderDetails.length === 0 && cartItems.length > 0) {
-      console.error(
-        "Erro crítico: Nenhum produto válido encontrado no carrinho durante o checkout."
-      );
-      toast.error(
-        "Houve um erro ao preparar seu pedido. Por favor, revise seu carrinho.",
-        {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        }
-      );
-      return;
-    }
-
-    const total = calculateTotal();
-    const message = `Olá! Gostaria de fazer o seguinte pedido:\n\n${orderDetails}\n\nTotal do pedido: R$ **${total}**\n\nQual o valor do frete para minha região?`;
-    const encodedMessage = encodeURIComponent(message);
-
-    window.open(`${whatsappLink}?text=${encodedMessage}`, "_blank");
-  };
+  // Remova a lógica de orderDetails e envio do WhatsApp daqui
+  // pois ela será movida para o CheckoutForm
 
   const cartItemCount = cartItems.reduce(
     (total, item) => total + (item.quantity || 0),
@@ -140,10 +87,21 @@ const App: React.FC = () => {
               onQuantityChange={handleQuantityChange}
               products={products}
               onEmptyCart={handleEmptyCart}
-              onCheckout={handleCheckout}
+              onCheckout={() => navigate("/checkout")} // Navega para /checkout
               onRemoveFromCart={handleRemoveFromCart}
             />
           }
+        />
+        <Route
+          path="/checkout"
+          element={
+            <CheckoutForm
+              cartItems={cartItems}
+              products={products}
+              calculateTotal={calculateTotal}
+              onEmptyCart={handleEmptyCart}
+            />
+          } // Passa os dados necessários como props
         />
       </Routes>
       <ToastContainer />

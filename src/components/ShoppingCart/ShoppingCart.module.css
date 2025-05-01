@@ -1,52 +1,44 @@
 /* src/components/ShoppingCart/ShoppingCart.module.css */
 .shoppingCartContainer {
   padding: 20px;
-  max-width: 800px;
+  max-width: 900px; /* Aumentei um pouco a largura máxima */
   margin: 20px auto;
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
-.emptyCart {
-  text-align: center;
-  padding: 20px;
-  border: 1px solid #eee;
-  border-radius: 5px;
-}
-
-.emptyCart p {
-  margin-bottom: 10px;
+.cartContent {
+  display: flex;
+  flex-direction: column;
 }
 
 .cartItemsList {
   list-style: none;
   padding: 0;
+  margin-bottom: 20px;
 }
 
 .cartItem {
   margin-bottom: 15px;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 8px;
   overflow: hidden;
 }
 
 .cartSummary {
-  margin-top: 20px;
-  padding: 15px;
-  border: 1px solid #eee;
-  border-radius: 5px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  justify-content: space-between; /* Alinha o total e as ações nas extremidades */
+  align-items: center;
+  padding: 15px;
+  border-top: 1px solid #eee;
 }
 
 .total {
   font-size: 1.2em;
   font-weight: bold;
-  margin-bottom: 10px;
 }
 
 .actions button {
@@ -56,22 +48,45 @@ h1 {
   border: none;
   border-radius: 5px;
   font-size: 1em;
+  transition: background-color 0.3s ease;
 }
 
-.actions button:first-child {
+.emptyButton {
   background-color: #f44336;
   color: white;
 }
 
-.actions button:first-child:hover {
+.emptyButton:hover {
   background-color: #d32f2f;
 }
 
-.actions button:last-child {
+.checkoutButton {
   background-color: #4caf50;
   color: white;
 }
 
-.actions button:last-child:hover {
+.checkoutButton:hover {
   background-color: #45a049;
+}
+
+.emptyCart {
+  text-align: center;
+  padding: 30px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.emptyCart p {
+  margin-bottom: 15px;
+  font-size: 1.1em;
+  color: #555;
+}
+
+.emptyCart a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.emptyCart a:hover {
+  text-decoration: underline;
 }
