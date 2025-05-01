@@ -23,8 +23,14 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   const [notes, setNotes] = useState("");
   const [nameError, setNameError] = useState("");
   const [phoneError, setPhoneError] = useState("");
+  const [desejaEntrega, setDesejaEntrega] = useState(false);
+  const [enderecoEntrega, setEnderecoEntrega] = useState("");
+  const [frete] = useState(5.0); // Valor fixo do frete
   const whatsappNumber = "5569992784621";
   const navigate = useNavigate();
+
+  const totalCompra = parseFloat(calculateTotal());
+  const totalComFrete = desejaEntrega ? totalCompra + frete : totalCompra;
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
@@ -38,6 +44,22 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
 
   const handleNotesChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNotes(event.target.value);
+  };
+
+  const handleDesejaEntregaChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setDesejaEntrega(event.target.checked);
+    // Limpar o endereço se a entrega não for desejada
+    if (!event.target.checked) {
+      setEnderecoEntrega("");
+    }
+  };
+
+  const handleEnderecoEntregaChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    setEnderecoEntrega(event.target.value);
   };
 
   const validateForm = (): boolean => {
@@ -58,6 +80,11 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
       isValid = false;
     }
 
+    if (desejaEntrega && !enderecoEntrega.trim()) {
+      alert("Por favor, digite o endereço de entrega.");
+      isValid = false;
+    }
+
     return isValid;
   };
 
@@ -70,7 +97,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
         return;
       }
 
-      const orderDetails = cartItems
+      let orderDetails = cartItems
         .map((item) => {
           const product = products.find((p) => p.id === item.id);
           if (!product) {
@@ -90,9 +117,19 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
         .filter(Boolean)
         .join("\n");
 
-      const total = calculateTotal();
+      const total = totalComFrete.toFixed(2);
 
-      const message = `Olá! Gostaria de fazer o seguinte pedido:\n\n*Dados do Cliente:*\nNome: ${name}\nTelefone: ${phone}\n\n*Itens do Pedido:*\n${orderDetails}\n\n*Total do Pedido: R$ ${total}*\n\nObservações: ${notes}`;
+      let message = `Olá! Gostaria de fazer o seguinte pedido:\n\n*Dados do Cliente:*\nNome: ${name}\nTelefone: ${phone}\n\n`;
+
+      if (desejaEntrega) {
+        message += `*Entrega:*\nSim\nEndereço: ${enderecoEntrega}\nFrete: R$ ${frete.toFixed(
+          2
+        )}\n\n`;
+      } else {
+        message += `*Entrega:*\nNão (Retirada no local)\n\n`;
+      }
+
+      message += `*Itens do Pedido:*\n${orderDetails}\n\n*Total do Pedido: R$ ${total}*\n\nObservações: ${notes}`;
       const encodedMessage = encodeURIComponent(message);
       window.open(
         `https://wa.me/${whatsappNumber}?text=${encodedMessage}`,
@@ -144,6 +181,41 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
             />
             {phoneError && <p className={styles.errorMessage}>{phoneError}</p>}
           </div>
+        </div>
+
+        <div className={styles.section}>
+          <h2>Opção de Entrega</h2>
+          <div className={styles.formGroup}>
+            <label htmlFor="desejaEntrega">
+              Deseja que o produto seja entregue em sua casa?
+            </label>
+            <input
+              type="checkbox"
+              id="desejaEntrega"
+              name="desejaEntrega"
+              checked={desejaEntrega}
+              onChange={handleDesejaEntregaChange}
+            />
+          </div>
+          {desejaEntrega && (
+            <div className={styles.formGroup}>
+              <label htmlFor="enderecoEntrega">Endereço de Entrega:</label>
+              <textarea
+                id="enderecoEntrega"
+                name="enderecoEntrega"
+                rows={3}
+                value={enderecoEntrega}
+                onChange={handleEnderecoEntregaChange}
+                required
+              />
+            </div>
+          )}
+          {desejaEntrega && (
+            <p className={styles.freteInfo}>Frete: R$ {frete.toFixed(2)}</p>
+          )}
+          <p className={styles.total}>
+            Total: <strong>R$ {totalComFrete.toFixed(2)}</strong>
+          </p>
         </div>
 
         <div className={styles.section}>

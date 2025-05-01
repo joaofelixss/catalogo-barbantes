@@ -5,8 +5,8 @@
   margin: 30px auto;
   border: 1px solid #ddd;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra um pouco mais pronunciada */
+  background-color: #fff; /* Fundo branco para mais destaque */
 }
 
 h1 {
@@ -16,8 +16,8 @@ h1 {
 }
 
 .section {
-  margin-bottom: 25px;
-  padding-bottom: 20px;
+  margin-bottom: 30px; /* Mais espaço entre as seções */
+  padding-bottom: 25px; /* Mais espaço interno */
   border-bottom: 1px solid #eee;
 }
 
@@ -28,17 +28,19 @@ h1 {
 h2 {
   color: #555;
   margin-top: 0;
-  margin-bottom: 15px;
+  margin-bottom: 20px; /* Mais espaço abaixo do título da seção */
+  border-bottom: 2px solid #f0f0f0; /* Linha sutil abaixo do título */
+  padding-bottom: 10px;
 }
 
 .formGroup {
-  margin-bottom: 20px;
+  margin-bottom: 25px; /* Mais espaço entre os campos */
 }
 
 label {
   display: block;
   margin-bottom: 8px;
-  font-weight: bold;
+  font-weight: 500; /* Um pouco menos bold para suavizar */
   color: #444;
 }
 
@@ -53,6 +55,7 @@ textarea {
   box-sizing: border-box;
   font-size: 1em;
   color: #333;
+  transition: border-color 0.3s ease-in-out; /* Transição suave na borda */
 }
 
 input[type="text"]:focus,
@@ -61,31 +64,78 @@ input[type="tel"]:focus,
 textarea:focus {
   outline: none;
   border-color: #007bff; /* Cor de destaque ao focar */
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3); /* Sombra mais suave ao focar */
 }
 
 .errorMessage {
-  color: red;
+  color: #dc3545; /* Vermelho mais padrão para erros */
   font-size: 0.9em;
   margin-top: 5px;
 }
 
 textarea {
-  min-height: 100px;
+  min-height: 120px; /* Um pouco mais alto por padrão */
+}
+
+/* Estilos específicos para a opção de entrega */
+.freteInfo {
+  color: #6c757d; /* Cor um pouco mais suave para a informação de frete */
+  font-size: 0.95em;
+  margin-top: 10px;
+}
+
+.total {
+  font-size: 1.2em;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+  text-align: right;
+  color: #333;
+}
+
+.total strong {
+  font-weight: bold;
+  color: #28a745; /* Destacando o valor total */
 }
 
 .submitButton {
   background-color: #28a745;
   color: white;
-  padding: 12px 20px;
+  padding: 14px 24px; /* Um pouco maior */
   border: none;
-  border-radius: 6px;
+  border-radius: 8px; /* Bordas mais arredondadas */
   cursor: pointer;
   font-size: 1.1em;
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Transição na sombra também */
   width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adicionando uma leve sombra */
 }
 
 .submitButton:hover {
   background-color: #218838;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15); /* Sombra um pouco maior no hover */
+}
+
+/* Estilo para o checkbox de entrega */
+input[type="checkbox"] {
+  width: auto; /* Ajusta a largura ao conteúdo */
+  margin-right: 10px;
+  vertical-align: middle; /* Alinha verticalmente com o label */
+}
+
+.formGroup label[for="desejaEntrega"] {
+  display: inline-block; /* Permite que o checkbox fique na mesma linha */
+  font-weight: normal; /* Remove o bold do label principal */
+  color: #555;
+}
+
+/* Estilo para o container do checkbox de entrega */
+.formGroup.deliveryOption {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.formGroup.deliveryOption label {
+  margin-bottom: 0; /* Remove a margem inferior do label dentro do container flex */
 }
