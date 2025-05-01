@@ -1,8 +1,16 @@
 // src/components/Navigation/Navbar.tsx
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./Navbar.module.css";
-import { FaShoppingCart, FaHeart } from "react-icons/fa"; // Importe o FaHeart
-import { Link, useNavigate } from "react-router-dom"; // Importe useNavigate
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faShoppingCart,
+  faHeart,
+  faSearch,
+  faBars,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
+import { faWhatsapp as faWhatsappBrand } from "@fortawesome/free-brands-svg-icons"; // Renomeando para evitar conflito
+import { Link, useNavigate, useLocation } from "react-router-dom"; // Importe useLocation
 
 interface NavbarProps {
   cartItemCount: number;
@@ -13,6 +21,8 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState(""); // Estado para o termo de busca
   const navigate = useNavigate(); // Hook para navegação
+  const navRef = useRef<HTMLElement>(null);
+  const location = useLocation(); // Hook para obter informações sobre a localização atual
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -30,44 +40,98 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
     }
   };
 
+  // Fechar o menu ao clicar fora
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isMenuOpen &&
+        navRef.current &&
+        !navRef.current.contains(event.target as Node)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
+  // Fechar o menu ao clicar fora
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isMenuOpen &&
+        navRef.current &&
+        !navRef.current.contains(event.target as Node)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen, navRef]); // Adicionei navRef como dependência
+
   return (
-    <nav className={styles.navbar}>
-      <div className={styles.logoContainer}>
-        <Link to="/" aria-label="Página inicial">
-          <img
-            src="/images/logo.png"
-            alt="Logo da Loja"
-            className={styles.logo}
-          />
-          {/* Se você colocou a logo em public/images/logo, o caminho seria: */}
-          {/* <img src="/images/logo/logo.png" alt="Logo da Loja" className={styles.logo} /> */}
-        </Link>
+    <nav className={styles.navbar} ref={navRef}>
+      <div className={styles.leftSection}>
+        <div className={styles.logoContainer}>
+          <Link to="/" aria-label="Página inicial">
+            <img
+              src="/images/logo.png"
+              alt="Logo da Loja"
+              className={styles.logo}
+            />
+          </Link>
+        </div>
+
+        <div className={styles.searchContainer}>
+          <form className={styles.searchForm} onSubmit={handleSearchSubmit}>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Buscar" // Placeholder agora contém "Buscar"
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className={styles.searchInput}
+            />
+            <button
+              type="submit"
+              className={styles.searchButton}
+              aria-label="Buscar"
+            >
+              <FontAwesomeIcon icon={faSearch} />
+            </button>
+          </form>
+        </div>
       </div>
 
-      {/* Botão de menu hambúrguer (visível em telas menores) */}
-      <button className={styles.menuButton} onClick={toggleMenu}>
-        <div className={styles.menuIcon}></div>
-        <div className={styles.menuIcon}></div>
-        <div className={styles.menuIcon}></div>
+      <button
+        className={styles.menuButton}
+        onClick={toggleMenu}
+        aria-label={
+          isMenuOpen ? "Fechar menu de navegação" : "Abrir menu de navegação"
+        }
+        aria-expanded={isMenuOpen}
+        aria-controls="navbarNav"
+      >
+        {isMenuOpen ? (
+          <FontAwesomeIcon icon={faTimes} />
+        ) : (
+          <FontAwesomeIcon icon={faBars} />
+        )}
       </button>
 
-      <div className={styles.searchContainer}>
-        {/* Container para o formulário de busca */}
-        <form className={styles.searchForm} onSubmit={handleSearchSubmit}>
-          <input
-            type="text"
-            placeholder="Buscar barbantes..."
-            value={searchTerm}
-            onChange={handleSearchChange}
-            className={styles.searchInput}
-          />
-          <button type="submit" className={styles.searchButton}>
-            Buscar
-          </button>
-        </form>
-      </div>
-
-      <ul className={`${styles.navList} ${isMenuOpen ? styles.open : ""}`}>
+      <ul
+        className={`${styles.navList} ${isMenuOpen ? styles.open : ""}`}
+        id="navbarNav"
+      >
         <li className={styles.navItem}>
           <Link to="/" className={styles.navLink} aria-label="Página inicial">
             Home
@@ -96,36 +160,36 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
             Tapetes
           </Link>
         </li>
-        <li className={styles.navItem}>
-          <Link
-            to="/favoritos"
-            className={styles.navLink}
-            aria-label="Lista de favoritos"
-          >
-            Favoritos {(FaHeart as React.FC)({ className: styles.heartIcon })}
-          </Link>
-        </li>
-        <li className={styles.navItem}>
+        <li className={`${styles.navItem} ${styles.dropdown}`}>
+          {" "}
+          {/* Adicionei a classe dropdown ao item do carrinho */}
           <Link
             to="/carrinho"
             className={`${styles.navLink} ${styles.cartLink}`}
             aria-label={`Carrinho de compras. ${cartItemCount} itens`}
           >
             Carrinho ({cartItemCount})
-            {(FaShoppingCart as React.FC)({ className: styles.cartIcon })}
+            <FontAwesomeIcon
+              icon={faShoppingCart}
+              className={styles.cartIcon}
+            />
           </Link>
+          <ul className={styles.dropdownMenu}>
+            {" "}
+            {/* Adicionei o submenu de favoritos */}
+            <li className={styles.navItem}>
+              <Link
+                to="/favoritos"
+                className={styles.navLink}
+                aria-label="Lista de favoritos"
+              >
+                Favoritos{" "}
+                <FontAwesomeIcon icon={faHeart} className={styles.heartIcon} />
+              </Link>
+            </li>
+          </ul>
         </li>
-        <li className={styles.navItem}>
-          <a
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.navLink}
-            aria-label="Contato via WhatsApp"
-          >
-            Contato via WhatsApp
-          </a>
-        </li>
+        {/* Removido o link de contato via WhatsApp do menu principal */}
       </ul>
 
       {/* Carrinho flutuante (visível em telas menores) */}
@@ -134,11 +198,22 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
         className={styles.floatingCart}
         aria-label={`Carrinho de compras. ${cartItemCount} itens`}
       >
-        {(FaShoppingCart as React.FC)({})}
+        <FontAwesomeIcon icon={faShoppingCart} />
         {cartItemCount > 0 && (
           <span className={styles.cartCounter}>{cartItemCount}</span>
         )}
       </Link>
+
+      {/* Botão de contato via WhatsApp flutuante (visível em telas menores) */}
+      <a
+        href={whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.floatingWhatsapp}
+        aria-label="Contato via WhatsApp"
+      >
+        <FontAwesomeIcon icon={faWhatsappBrand} />
+      </a>
     </nav>
   );
 };
