@@ -201,3 +201,50 @@
     display: none;
   }
 }
+
+/* Estilos para a barra de busca */
+.searchContainer {
+  display: flex;
+  align-items: center; /* Alinha verticalmente o formulário */
+}
+
+.searchForm {
+  display: flex;
+}
+
+.searchInput {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  font-size: 1em;
+  width: 200px;
+  color: var(--cor-texto-principal);
+}
+
+.searchButton {
+  padding: 8px 15px;
+  background-color: var(--cor-acento-1); /* Tom de Rosa suave */
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.searchButton:hover {
+  background-color: var(--cor-acento-2); /* Lilás claro no hover */
+}
+
+/* Adaptações para a barra de busca em telas menores */
+@media (max-width: 768px) {
+  .searchContainer {
+    order: 1; /* Coloca a busca acima dos links na versão mobile */
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .searchInput {
+    width: calc(100% - 65px); /* Ajusta a largura considerando o botão */
+  }
+}

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import styles from "./Navbar.module.css";
 import { FaShoppingCart, FaHeart } from "react-icons/fa"; // Importe o FaHeart
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Importe useNavigate
 
 interface NavbarProps {
   cartItemCount: number;
@@ -11,9 +11,23 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState(""); // Estado para o termo de busca
+  const navigate = useNavigate(); // Hook para navegação
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleSearchSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (searchTerm.trim()) {
+      navigate(`/buscar?q=${searchTerm}`);
+      setSearchTerm("");
+    }
   };
 
   return (
@@ -36,6 +50,23 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
         <div className={styles.menuIcon}></div>
         <div className={styles.menuIcon}></div>
       </button>
+
+      <div className={styles.searchContainer}>
+        {" "}
+        {/* Container para o formulário de busca */}
+        <form className={styles.searchForm} onSubmit={handleSearchSubmit}>
+          <input
+            type="text"
+            placeholder="Buscar barbantes..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className={styles.searchInput}
+          />
+          <button type="submit" className={styles.searchButton}>
+            Buscar
+          </button>
+        </form>
+      </div>
 
       <ul className={`${styles.navList} ${isMenuOpen ? styles.open : ""}`}>
         <li className={styles.navItem}>

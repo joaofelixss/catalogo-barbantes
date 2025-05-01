@@ -13,6 +13,7 @@ import CheckoutForm from "./components/CheckoutForm/CheckoutForm"; // Importe o 
 import { FavoritesProvider } from "./contexts/FavoritesContext";
 import FavoritesPage from "./pages/FavoritesPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
+import SearchResultsPage from "./pages/SearchResultsPage";
 
 const App: React.FC = () => {
   const [products] = useState<Product[]>([
@@ -142,6 +143,15 @@ const App: React.FC = () => {
                 onAddToCart={handleAddToCart} // Passa a função handleAddToCart como prop
               />
             } // Passa os produtos como prop
+          />
+          <Route
+            path="/buscar"
+            element={
+              <SearchResultsPage
+                products={products}
+                onAddToCart={handleAddToCart}
+              />
+            }
           />
         </Routes>
         <ToastContainer />
