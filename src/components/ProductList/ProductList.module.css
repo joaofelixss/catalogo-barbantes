@@ -1,7 +1,7 @@
 /* src/components/ProductList/ProductList.module.css */
 .cardapioSection {
   padding: 60px 20px;
-  background-color: #f9f9f9; /* Cor de fundo branca/cinza claro */
+  background-color: #f9f9f9; 
   text-align: center;
   width: 100%; 
   box-sizing: border-box;
@@ -20,7 +20,7 @@
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  box-sizing: border-box; /* Garante que padding não aumente a largura total */
+  box-sizing: border-box; 
 }
 
 /* Responsividade para telas menores */

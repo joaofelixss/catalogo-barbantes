@@ -60,41 +60,39 @@
   font-size: 1.2em;
 }
 
-/* Estilos para o botão de menu hambúrguer (visível em telas menores) */
 .menuButton {
-  display: none; /* Oculta o botão no desktop */
+  display: none;
   cursor: pointer;
   background: none;
   border: none;
   padding: 10px;
-  /* Aumentei o tamanho para facilitar o toque */
   width: 40px;
   height: 40px;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centraliza os ícones verticalmente */
-  align-items: center; /* Centraliza os ícones horizontalmente */
+  justify-content: center;
+  align-items: center;
 }
 
 .menuIcon {
   width: 30px;
-  height: 4px; /* Aumentei a altura para torná-los mais visíveis */
-  background-color: #333; /* Defini a cor para um cinza escuro (você pode ajustar para branco #fff se preferir) */
-  margin: 5px 0; /* Ajustei a margem para separá-los um pouco */
+  height: 4px;
+  background-color: #333;
+  margin: 5px 0;
   transition: 0.4s;
 }
 
 /* Estilos para telas menores */
 @media (max-width: 768px) {
   .navbar {
-    justify-content: space-between; /* Logo na esquerda, botão de menu na direita */
+    justify-content: space-between;
   }
 
   .navList {
-    display: none; /* Esconde a lista padrão no mobile */
+    display: none;
     flex-direction: column;
     position: absolute;
-    top: 60px; /* Ajuste conforme a altura da navbar */
+    top: 60px;
     left: 0;
     background-color: var(--cor-base);
     width: 100%;
@@ -104,7 +102,7 @@
   }
 
   .navList.open {
-    display: flex; /* Mostra o menu quando a classe 'open' é adicionada */
+    display: flex;
   }
 
   .navItem {
@@ -116,15 +114,35 @@
     display: block;
   }
 
+  /* Estilos para o botão de menu hambúrguer (visível em telas menores) */
+  .menuButton {
+    display: flex;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .menuIcon {
+    width: 30px;
+    height: 4px;
+    background-color: #000;
+    margin: 5px 0;
+    transition: 0.4s;
+  }
+
   /* Estilos para o carrinho flutuante */
   .floatingCart {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: var(--cor-acento-2); /* Cor alterada para Lilás claro */
-    color: var(
-      --cor-texto-principal
-    ); /* Cor do ícone alterada para Azul Marinho suave */
+    background-color: var(--cor-acento-2);
+    color: var(--cor-texto-principal);
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -139,7 +157,7 @@
   }
 
   .floatingCart:hover {
-    background-color: var(--cor-acento-3); /* Um tom diferente no hover */
+    background-color: var(--cor-acento-3);
   }
 
   /* Estilo para o contador de itens no carrinho flutuante */
@@ -147,16 +165,15 @@
     position: absolute;
     top: -8px;
     right: -8px;
-    background-color: #ff4d4d; /* Cor vermelha vibrante para o contador */
+    background-color: #ff4d4d;
     color: white;
     border-radius: 50%;
     padding: 4px 6px;
     font-size: 0.7em;
     font-weight: bold;
-    z-index: 21; /* Acima do ícone do carrinho */
+    z-index: 21;
   }
 
-  /* Esconde o carrinho no link da navbar em telas menores */
   .cartLink {
     display: none;
   }
@@ -165,15 +182,11 @@
 /* Ajustes para telas maiores (acima de 768px) */
 @media (min-width: 769px) {
   .navItem {
-    margin-left: 35px; /* Restaura o espaçamento entre os links no desktop */
+    margin-left: 35px;
   }
-
-  /* Esconde o botão de menu hambúrguer no desktop */
   .menuButton {
     display: none;
   }
-
-  /* Mostra o carrinho no link da navbar em telas maiores */
   .cartLink {
     display: flex;
   }

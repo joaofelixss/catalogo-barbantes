@@ -1,7 +1,6 @@
 // src/components/Hero/HeroSection.tsx
 import React from "react";
 import styles from "./HeroSection.module.css";
-import heroImage from "../../assets/barbantes-bonitos.jpg";
 
 const HeroSection: React.FC = () => {
   return (
@@ -18,7 +17,7 @@ const HeroSection: React.FC = () => {
         </a>
       </div>
       <img
-        src={heroImage}
+        src="/images/barbantes-bonitos.jpg"
         alt="Diversos barbantes coloridos"
         className={styles.heroImage}
       />

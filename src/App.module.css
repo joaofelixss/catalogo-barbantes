@@ -1,13 +1,11 @@
 /* App.module.css */
-
-/* Estilos para o container principal da aplicação (abaixo da navbar fixa) */
 .appContainer {
-  margin-top: 60px; /* Adiciona margem superior para evitar que o conteúdo fique atrás da navbar (ajuste o valor conforme a altura da sua navbar) */
-  padding: 20px; /* Adiciona um pouco de padding geral ao conteúdo */
-  box-sizing: border-box; /* Garante que padding não afete a largura total */
+  margin-top: 60px;
+  padding: 20px; 
+  box-sizing: border-box; 
   width: 100%;
-  max-width: 1200px; /* Largura máxima do conteúdo principal */
-  margin: 60px auto 0; /* Centraliza o conteúdo principal */
+  max-width: 1200px; 
+  margin: 60px auto 0; 
 }
 
 /* Estilos para a página inicial */
@@ -16,7 +14,7 @@
   grid-template-columns: repeat(
     auto-fit,
     minmax(300px, 1fr)
-  ); /* Layout responsivo em grid */
+  ); 
   gap: 20px;
 }
 

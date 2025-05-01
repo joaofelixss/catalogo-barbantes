@@ -1,3 +1,4 @@
+// src/App.tsx
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
@@ -9,12 +10,6 @@ import Navbar from "./components/Navigation/Navbar";
 import { Product } from "./types/product";
 import useCart from "./hooks/useCart";
 
-// Importe as imagens (certifique-se de que esses caminhos estão corretos)
-import barrocoAzul from "../src/assets/barbantes-bonitos.jpg";
-import amigurumiAmarelo from "../src/assets/barbantes-bonitos2.jpg";
-import dunaVerde from "../src/assets/produto2.png";
-import charmeVermelho from "../src/assets/produto3.png";
-
 const App: React.FC = () => {
   const [products] = useState<Product[]>([
     {
@@ -23,7 +18,7 @@ const App: React.FC = () => {
       color: "Azul Royal",
       price: 25.9,
       descricao: "Fio de algodão mercerizado para peças de decoração.",
-      image: barrocoAzul, // Adicionando a imagem
+      image: "/images/barbantes-bonitos.jpg",
     },
     {
       id: 2,
@@ -31,7 +26,7 @@ const App: React.FC = () => {
       color: "Amarelo Canário",
       price: 12.5,
       descricao: "Fio de algodão ideal para a técnica japonesa de amigurumi.",
-      image: amigurumiAmarelo, // Adicionando a imagem
+      image: "/images/barbantes-bonitos2.jpg",
     },
     {
       id: 3,
@@ -39,7 +34,7 @@ const App: React.FC = () => {
       color: "Verde Musgo",
       price: 18.75,
       descricao: "Fio leve e macio para peças de vestuário.",
-      image: dunaVerde, // Adicionando a imagem
+      image: "/images/produto2.png",
     },
     {
       id: 4,
@@ -47,7 +42,7 @@ const App: React.FC = () => {
       color: "Vermelho Paixão",
       price: 15.3,
       descricao: "Fio de algodão penteado com toque macio e brilho.",
-      image: charmeVermelho, // Adicionando a imagem
+      image: "/images/produto3.png",
     },
   ]);
 
@@ -57,7 +52,7 @@ const App: React.FC = () => {
     handleQuantityChange,
     handleEmptyCart,
     calculateTotal,
-  } = useCart(products); // Passa products aqui
+  } = useCart(() => products); // Passa uma função que retorna o estado products
 
   const whatsappNumber = "5569992784621";
   const whatsappLink = `https://wa.me/${whatsappNumber}`;
@@ -90,7 +85,7 @@ const App: React.FC = () => {
         }
         return `- ${item.quantity} x ${product.name} - R$ **${(
           product.price * item.quantity
-        ).toFixed(2)}**`; // Formatação elegante com preço em negrito
+        ).toFixed(2)}**`;
       })
       .filter(Boolean)
       .join("\n");
@@ -115,21 +110,20 @@ const App: React.FC = () => {
     }
 
     const total = calculateTotal();
-    const message = `Olá! Gostaria de fazer o seguinte pedido:\n\n${orderDetails}\n\nTotal do pedido: R$ **${total}**\n\nQual o valor do frete para minha região?`; // Mensagem mais elegante com total em negrito e pergunta sobre o frete
+    const message = `Olá! Gostaria de fazer o seguinte pedido:\n\n${orderDetails}\n\nTotal do pedido: R$ **${total}**\n\nQual o valor do frete para minha região?`;
     const encodedMessage = encodeURIComponent(message);
 
     window.open(`${whatsappLink}?text=${encodedMessage}`, "_blank");
   };
 
   const cartItemCount = cartItems.reduce(
-    (total, item) => total + item.quantity,
+    (total, item) => total + (item.quantity || 0),
     0
   );
 
   return (
     <div>
-      <Navbar cartItemCount={cartItemCount} whatsappLink={whatsappLink} />{" "}
-      {/* Use o componente Navbar */}
+      <Navbar cartItemCount={cartItemCount} whatsappLink={whatsappLink} />
       <Routes>
         <Route
           path="/"

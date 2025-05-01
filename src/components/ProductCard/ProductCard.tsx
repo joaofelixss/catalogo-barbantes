@@ -8,13 +8,11 @@ import { toast } from "react-toastify";
 interface ProductCardProps {
   produto: Product;
   onAddToCart: (productId: number) => void;
-  productImages: { [key: number]: string | null | undefined };
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
   produto,
   onAddToCart,
-  productImages,
 }) => {
   const handleAddToCartClick = () => {
     onAddToCart(produto.id);
@@ -31,7 +29,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <div className={styles.produtoCard}>
       <img
-        src={productImages[produto.id] || "URL_DA_IMAGEM_PADRAO"}
+        src={produto.image || "URL_DA_IMAGEM_PADRAO"}
         alt={produto.name}
         className={styles.produtoImagem}
       />
@@ -44,9 +42,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <button
           className={styles.adicionarAoCarrinho}
           onClick={handleAddToCartClick}
-          aria-label={`Adicionar ${produto.name} ao carrinho`} // Adição do aria-label
+          aria-label={`Adicionar ${produto.name} ao carrinho`}
         >
-          {(FaShoppingCart as React.FC)({})} Adicionar Adicionar
+          {(FaShoppingCart as React.FC)({})} Adicionar
         </button>
       </div>
     </div>

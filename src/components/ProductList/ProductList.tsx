@@ -3,31 +3,25 @@ import React from "react";
 import styles from "./ProductList.module.css";
 import { Product } from "../../types/product";
 import ProductCard from "../ProductCard/ProductCard";
-
 interface ProductListProps {
   products: Product[];
   onAddToCart: (productId: number) => void;
-  productImages: { [key: number]: string | null | undefined };
 }
 
-const ProductList: React.FC<ProductListProps> = ({
-  products,
-  onAddToCart,
-  productImages,
-}) => {
+const ProductList: React.FC<ProductListProps> = ({ products, onAddToCart }) => {
   return (
-    <section id="cardapio" className={styles.cardapioSection}>
-      <h2>Nosso Cardápio</h2>
-      <div className={styles.listaDeProdutos}>
-        {products.map((produto) => (
-          <ProductCard
-            key={produto.id}
-            produto={produto}
-            onAddToCart={onAddToCart}
-            productImages={productImages}
-          />
+    <section className={styles.cardapioSection} id="cardapio">
+      <h2>Nosso Cardápio de Barbantes</h2>
+      <ul className={styles.listaDeProdutos}>
+        {products.map((product) => (
+          <li key={product.id} className={styles.productItem}>
+            <ProductCard
+              produto={product}
+              onAddToCart={onAddToCart}
+            />
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 };

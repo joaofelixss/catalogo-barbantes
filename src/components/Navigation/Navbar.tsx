@@ -1,7 +1,6 @@
 // src/components/Navigation/Navbar.tsx
 import React, { useState } from "react";
 import styles from "./Navbar.module.css";
-import logoImage from "../../assets/logo.png";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -21,7 +20,13 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
     <nav className={styles.navbar}>
       <div className={styles.logoContainer}>
         <Link to="/" aria-label="Página inicial">
-          <img src={logoImage} alt="Logo da Loja" className={styles.logo} />
+          <img
+            src="/images/logo.png"
+            alt="Logo da Loja"
+            className={styles.logo}
+          />
+          {/* Se você colocou a logo em public/images/logo, o caminho seria: */}
+          {/* <img src="/images/logo/logo.png" alt="Logo da Loja" className={styles.logo} /> */}
         </Link>
       </div>
 

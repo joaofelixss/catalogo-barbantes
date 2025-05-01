@@ -3,7 +3,7 @@
   background-color: #fff; /* Fundo branco para o card */
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* Garante que a imagem com borda arredondada não vaze */
+  overflow: hidden; 
   display: flex;
   flex-direction: column;
 }
@@ -13,12 +13,12 @@
   height: auto;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  display: block; /* Evita espaço extra abaixo da imagem */
+  display: block; 
 }
 
 .produtoTitulo {
   font-size: 1.5em;
-  color: var(--cor-texto-principal); /* Azul Marinho suave para o título */
+  color: var(--cor-texto-principal); 
   margin: 15px 10px 10px 10px;
 }
 
@@ -39,13 +39,13 @@
 
 .produtoPreco {
   font-size: 1.3em;
-  color: var(--cor-acento-1); /* Rosa Névoa suave para o preço */
+  color: var(--cor-acento-1); 
   font-weight: bold;
 }
 
 .adicionarAoCarrinho {
-  background-color: var(--cor-acento-3); /* Amarelo Limão pálido para o botão */
-  color: var(--cor-texto-principal); /* Azul Marinho suave no texto do botão */
+  background-color: var(--cor-acento-3); 
+  color: var(--cor-texto-principal); 
   border: none;
   padding: 10px 15px;
   border-radius: 5px;
@@ -63,7 +63,6 @@
 }
 
 .adicionarAoCarrinho svg {
-  /* Estilizando o ícone do carrinho dentro do botão */
   font-size: 1em;
 }
 

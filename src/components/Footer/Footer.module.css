@@ -1,20 +1,17 @@
 /* src/components/Footer/Footer.module.css */
 .footer {
-  background-color: var(--cor-base); /* Azul Celeste pálido para o fundo */
-  color: var(
-    --cor-texto-principal-mais-claro
-  ); /* Um tom mais claro do Azul Marinho para o texto */
+  background-color: var(--cor-base);
+  color: var(--cor-texto-principal-mais-claro);
   padding: 20px;
   text-align: center;
   font-size: 0.9em;
-  border-top: 1px solid #eee; /* Uma linha sutil para separar do conteúdo principal */
+  border-top: 1px solid #eee;
 }
 
 .footer p {
-  margin: 0; /* Remove a margem padrão do parágrafo */
+  margin: 0;
 }
 
-/* Responsividade (ajustes para telas menores, se necessário) */
 @media (max-width: 480px) {
   .footer {
     padding: 15px;
