@@ -3,7 +3,6 @@
   font-family: "Poppins", sans-serif;
   color: var(--cor-texto-principal); /* Azul Marinho suave */
   background-color: var(--cor-base); /* Azul Celeste pálido */
-  padding: 20px;
 }
 
 .header {

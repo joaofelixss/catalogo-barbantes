@@ -1,26 +1,31 @@
-import React from "react";
-import styles from "./ContactSection.module.css"; // Usa o mesmo CSS Module
-import { IconType } from "react-icons";
+// src/components/ContactSection/ContactLink.tsx
+import React, { FunctionComponent } from "react";
+import styles from "./ContactLink.module.css";
+import { IconBaseProps } from "react-icons";
 
 interface ContactLinkProps {
   href: string;
-  icon: IconType;
+  icon: FunctionComponent<IconBaseProps>; // Esperamos um componente funcional
   altText: string;
 }
 
-const ContactLink: React.FC<ContactLinkProps> = ({ href, icon, altText }) => {
+const ContactLink: React.FC<ContactLinkProps> = ({
+  href,
+  icon: IconComponent,
+  altText,
+}) => {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={styles.contactButton}
+      className={styles.contactLink}
     >
-      {(icon as React.FC)({
-        className: styles.contactIcon,
-        "aria-hidden": true,
-      })}
-      <span className={styles.visuallyHidden}>{altText}</span>
+      <span className={styles.iconWrapper}>
+        <IconComponent size={24} />{" "}
+        {/* Renderizamos o componente diretamente */}
+      </span>
+      <span className={styles.altText}>{altText}</span>
     </a>
   );
 };

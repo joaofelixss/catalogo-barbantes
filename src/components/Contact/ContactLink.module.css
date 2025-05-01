@@ -1,0 +1,32 @@
+/* src/components/ContactSection/ContactLink.module.css */
+.contactLink {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 20px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--cor-texto-principal);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contactLink:hover {
+  border-color: var(--cor-acento-1);
+  box-shadow: 0 4px 8px rgba(var(--cor-acento-rgb), 0.2);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--cor-fundo-secundario);
+  color: var(--cor-acento-1);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.altText {
+  font-weight: 500;
+}
