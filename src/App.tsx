@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import FavoritesPage from "./pages/FavoritesPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import SearchResultsPage from "./pages/SearchResultsPage";
+import PedidoEnviadoPage from "./pages/PedidoEnviadoPage"; // Importe a nova página
 
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import CheckoutForm from "./components/CheckoutForm/CheckoutForm";
@@ -157,6 +158,8 @@ const App: React.FC = () => {
               />
             }
           />
+          <Route path="/pedido-enviado" element={<PedidoEnviadoPage />} />{" "}
+          {/* Adicione a rota para a página de pedido enviado */}
         </Routes>
         <ToastContainer />
       </div>

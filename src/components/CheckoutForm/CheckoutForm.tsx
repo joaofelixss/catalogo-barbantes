@@ -147,7 +147,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
       });
 
       onEmptyCart();
-      navigate("/");
+      navigate("/pedido-enviado"); // Redireciona para a página de pedido enviado
     }
   };
 
