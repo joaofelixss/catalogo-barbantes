@@ -186,16 +186,22 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
         <div className={styles.section}>
           <h2>Opção de Entrega</h2>
           <div className={styles.formGroup}>
-            <label htmlFor="desejaEntrega">
-              Deseja que o produto seja entregue em sua casa?
+            <label
+              className={styles.entregaEmCasaLabel}
+              htmlFor="desejaEntrega"
+            >
+              <input
+                type="checkbox"
+                id="desejaEntrega"
+                name="desejaEntrega"
+                checked={desejaEntrega}
+                onChange={handleDesejaEntregaChange}
+                className={styles.entregaEmCasaInput}
+              />
+              <span className={styles.entregaEmCasaTexto}>
+                Deseja que o produto seja entregue em sua casa?
+              </span>
             </label>
-            <input
-              type="checkbox"
-              id="desejaEntrega"
-              name="desejaEntrega"
-              checked={desejaEntrega}
-              onChange={handleDesejaEntregaChange}
-            />
           </div>
           {desejaEntrega && (
             <div className={styles.formGroup}>
