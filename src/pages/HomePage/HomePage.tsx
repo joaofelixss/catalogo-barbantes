@@ -1,10 +1,10 @@
 // src/pages/HomePage.tsx
 import React from "react";
 import styles from "./HomePage.module.css";
-import { Product } from "../types/product";
-import HeroSection from "../components/Hero/HeroSection";
-import ContactSection from "../components/Contact/ContactSection";
-import Footer from "../components/Footer/Footer";
+import { Product } from "../../types/product";
+import HeroSection from "../../components/Hero/HeroSection";
+import ContactSection from "../../components/Contact/ContactSection";
+import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom"; // Importe o Link do React Router
 
 interface HomePageProps {

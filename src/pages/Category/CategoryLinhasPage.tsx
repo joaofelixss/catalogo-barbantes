@@ -1,8 +1,8 @@
 // src/pages/CategoryLinhasPage.tsx
 import React from "react";
-import { Product } from "../types/product";
+import { Product } from "../../types/product";
 import styles from "./CategoryPage.module.css";
-import ProductCard from "../components/ProductCard/ProductCard"; // Se já existir
+import ProductCard from "../../components/ProductCard/ProductCard"; // Se já existir
 
 interface CategoryPageProps {
   products: Product[];

@@ -4,14 +4,14 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import HomePage from "./pages/HomePage";
-import FavoritesPage from "./pages/FavoritesPage";
-import ProductDetailsPage from "./pages/ProductDetailsPage";
-import SearchResultsPage from "./pages/SearchResultsPage";
-import PedidoEnviadoPage from "./pages/PedidoEnviadoPage";
-import CategoryBarbantesPage from "./pages/CategoryBarbantesPage"; // Importe as novas páginas
-import CategoryLinhasPage from "./pages/CategoryLinhasPage";
-import CategoryTapetesPage from "./pages/CategoryTapetesPage";
+import HomePage from "./pages/HomePage/HomePage";
+import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
+import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
+import SearchResultsPage from "./pages/SearchResultsPage/SearchResultsPage";
+import PedidoEnviadoPage from "./pages/PedidoEnviadoPage/PedidoEnviadoPage";
+import CategoryBarbantesPage from "./pages/Category/CategoryBarbantesPage"; // Importe as novas páginas
+import CategoryLinhasPage from "./pages/Category/CategoryLinhasPage";
+import CategoryTapetesPage from "./pages/Category/CategoryTapetesPage";
 
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import CheckoutForm from "./components/CheckoutForm/CheckoutForm";

@@ -1,8 +1,8 @@
 // src/pages/FavoritesPage.tsx
 import React from "react";
-import { useFavorites } from "../contexts/FavoritesContext";
-import { Product } from "../types/product";
-import ProductCard from "../components/ProductCard/ProductCard";
+import { useFavorites } from "../../contexts/FavoritesContext";
+import { Product } from "../../types/product";
+import ProductCard from "../../components/ProductCard/ProductCard";
 import styles from "./FavoritesPage.module.css";
 
 interface FavoritesPageProps {

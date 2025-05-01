@@ -1,8 +1,8 @@
 // src/pages/SearchResultsPage.tsx
 import React from "react";
 import { useSearchParams } from "react-router-dom";
-import { Product } from "../types/product";
-import ProductCard from "../components/ProductCard/ProductCard";
+import { Product } from "../../types/product";
+import ProductCard from "../../components/ProductCard/ProductCard";
 import styles from "./SearchResultsPage.module.css";
 
 interface SearchResultsPageProps {

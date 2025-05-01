@@ -1,8 +1,8 @@
 // src/pages/CategoryBarbantesPage.tsx
 import React from "react";
-import { Product } from "../types/product";
-import styles from "./CategoryPage.module.css"; // Podemos criar um estilo comum para páginas de categoria
-import ProductCard from "../components/ProductCard/ProductCard"; // Se já existir
+import { Product } from "../../types/product";
+import styles from "./CategoryPage.module.css";
+import ProductCard from "../../components/ProductCard/ProductCard"; 
 
 interface CategoryPageProps {
   products: Product[];

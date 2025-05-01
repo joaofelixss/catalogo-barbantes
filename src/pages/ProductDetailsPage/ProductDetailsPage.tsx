@@ -1,10 +1,10 @@
 // src/pages/ProductDetailsPage.tsx
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Product } from "../types/product";
+import { Product } from "../../types/product";
 import styles from "./ProductDetailsPage.module.css";
-import { useFavorites } from "../contexts/FavoritesContext";
-import ProductCard from "../components/ProductCard/ProductCard"; // Importe o ProductCard
+import { useFavorites } from "../../contexts/FavoritesContext";
+import ProductCard from "../../components/ProductCard/ProductCard"; // Importe o ProductCard
 
 interface ProductDetailsPageProps {
   products: Product[];
