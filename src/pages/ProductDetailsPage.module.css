@@ -132,6 +132,27 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
+.relatedProductsSection {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.relatedProductsSection h2 {
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.relatedProductsGrid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(250px, 1fr)
+  ); /* Layout responsivo para os cards */
+  gap: 20px;
+}
+
 /* Adaptação para layout de grid anterior em telas maiores */
 @media (min-width: 769px) {
   .productDetailsContainer {
@@ -154,6 +175,10 @@
 /* Estilos para telas menores */
 @media (max-width: 768px) {
   .productDetailsContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .relatedProductsGrid {
     grid-template-columns: 1fr;
   }
 

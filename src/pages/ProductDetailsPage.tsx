@@ -1,9 +1,10 @@
 // src/pages/ProductDetailsPage.tsx
-import React, { useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { Product } from "../types/product";
 import styles from "./ProductDetailsPage.module.css";
 import { useFavorites } from "../contexts/FavoritesContext";
+import ProductCard from "../components/ProductCard/ProductCard"; // Importe o ProductCard
 
 interface ProductDetailsPageProps {
   products: Product[];
@@ -18,9 +19,20 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
   const productId = id ? parseInt(id, 10) : null;
   const product = productId ? products.find((p) => p.id === productId) : null;
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
-  const [currentImage, setCurrentImage] = useState<string | undefined>(
+  const [currentImage, setCurrentImage] = React.useState<string | undefined>(
     product?.images[0]
   );
+
+  // Lógica para obter produtos relacionados (por enquanto, alguns outros produtos aleatórios)
+  const relatedProducts = React.useMemo(() => {
+    if (!product) {
+      return [];
+    }
+    const otherProducts = products.filter((p) => p.id !== product.id);
+    // Embaralha o array e pega os primeiros 3 para sugestão
+    const shuffledProducts = [...otherProducts].sort(() => 0.5 - Math.random());
+    return shuffledProducts.slice(0, 3);
+  }, [product, products]);
 
   if (!product) {
     return (
@@ -85,6 +97,22 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
         </div>
         {/* Podemos adicionar sugestões de produtos relacionados aqui no futuro */}
       </div>
+
+      {relatedProducts.length > 0 && (
+        <div className={styles.relatedProductsSection}>
+          <h2>Produtos Relacionados</h2>
+          <div className={styles.relatedProductsGrid}>
+            {relatedProducts.map((relatedProduct) => (
+              <ProductCard
+                key={relatedProduct.id}
+                produto={relatedProduct}
+                onAddToCart={onAddToCart}
+                productImages={{}} // Por enquanto, passamos um objeto vazio
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
