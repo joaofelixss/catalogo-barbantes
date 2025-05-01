@@ -34,8 +34,8 @@
 
 .contactButton {
   background-color: var(
-    --cor-acento-principal
-  ); /* Rosa Névoa (tom mais forte) */
+    --cor-acento-1
+  ); /* Rosa Névoa (tom mais forte) - Assumindo que --cor-acento-principal é --cor-acento-1 */
   color: var(--cor-base); /* Branco */
   border: none;
   border-radius: 50%;
@@ -53,7 +53,9 @@
 }
 
 .contactButton:hover {
-  background-color: var(--cor-acento-secundario); /* Lilás claro */
+  background-color: var(
+    --cor-acento-2
+  ); /* Lilás claro - Assumindo que --cor-acento-secundario é --cor-acento-2 */
   transform: scale(1.05); /* Pequeno efeito de "zoom" no hover */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra um pouco maior no hover */
 }

@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./ContactSection.module.css";
 import { FaWhatsapp, FaInstagram, FaFacebook, FaPhone } from "react-icons/fa";
 import { contactLinks } from "../../config/contact";
+import ContactLink from "./ContactLink"; // Importe o novo componente
 
 const ContactSection: React.FC = () => {
   return (
@@ -9,53 +10,26 @@ const ContactSection: React.FC = () => {
       <h2>Entre em Contato</h2>
       <p>Estamos prontos para atender você!</p>
       <div className={styles.contactMethods}>
-        <a
+        <ContactLink
           href={contactLinks.whatsapp}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.contactButton}
-        >
-          {/* Type assertion aplicada corretamente */}
-          {(FaWhatsapp as React.FC)({
-            className: styles.contactIcon,
-            "aria-hidden": true,
-          })}
-          <span className={styles.visuallyHidden}>WhatsApp</span>
-        </a>
-        <a
+          icon={FaWhatsapp}
+          altText="WhatsApp"
+        />
+        <ContactLink
           href={contactLinks.instagram}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.contactButton}
-        >
-          {/* Type assertion aplicada corretamente */}
-          {(FaInstagram as React.FC)({
-            className: styles.contactIcon,
-            "aria-hidden": true,
-          })}
-          <span className={styles.visuallyHidden}>Instagram</span>
-        </a>
-        <a
+          icon={FaInstagram}
+          altText="Instagram"
+        />
+        <ContactLink
           href={contactLinks.facebook}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.contactButton}
-        >
-          {/* Type assertion aplicada corretamente */}
-          {(FaFacebook as React.FC)({
-            className: styles.contactIcon,
-            "aria-hidden": true,
-          })}
-          <span className={styles.visuallyHidden}>Facebook</span>
-        </a>
-        <a href={contactLinks.phone} className={styles.contactButton}>
-          {/* Type assertion aplicada corretamente */}
-          {(FaPhone as React.FC)({
-            className: styles.contactIcon,
-            "aria-hidden": true,
-          })}
-          <span className={styles.visuallyHidden}>Telefone</span>
-        </a>
+          icon={FaFacebook}
+          altText="Facebook"
+        />
+        <ContactLink
+          href={contactLinks.phone}
+          icon={FaPhone}
+          altText="Telefone"
+        />
       </div>
     </section>
   );
