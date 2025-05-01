@@ -52,7 +52,6 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
       </button>
 
       <div className={styles.searchContainer}>
-        {" "}
         {/* Container para o formulário de busca */}
         <form className={styles.searchForm} onSubmit={handleSearchSubmit}>
           <input
@@ -72,6 +71,29 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
         <li className={styles.navItem}>
           <Link to="/" className={styles.navLink} aria-label="Página inicial">
             Home
+          </Link>
+        </li>
+        <li className={styles.navItem}>
+          <Link
+            to="/barbantes"
+            className={styles.navLink}
+            aria-label="Ver barbantes"
+          >
+            Barbantes
+          </Link>
+        </li>
+        <li className={styles.navItem}>
+          <Link to="/linhas" className={styles.navLink} aria-label="Ver linhas">
+            Linhas
+          </Link>
+        </li>
+        <li className={styles.navItem}>
+          <Link
+            to="/tapetes"
+            className={styles.navLink}
+            aria-label="Ver tapetes"
+          >
+            Tapetes
           </Link>
         </li>
         <li className={styles.navItem}>

@@ -40,16 +40,26 @@ const HomePage: React.FC<HomePageProps> = ({ onAddToCart, products }) => {
         <div className={styles.productList}>
           {barbanteEcoBrasil.slice(0, 4).map((product) => (
             <div key={product.id} className={styles.productCardWrapper}>
-              <img
-                src={product.images[0]}
-                alt={product.name}
-                className={styles.productImage}
-              />
-              <h3>
-                {product.name} - {product.color}
-              </h3>
-              <p>R$ {product.price.toFixed(2)}</p>
-              <button onClick={() => onAddToCart(product)}>
+              <Link
+                to={`/produto/${product.id}`}
+                className={styles.productLink}
+              >
+                <img
+                  src={product.images[0]}
+                  alt={product.name}
+                  className={styles.productImage}
+                />
+                <h3>
+                  {product.name} - {product.color}
+                </h3>
+                <p>R$ {product.price.toFixed(2)}</p>
+              </Link>
+              <button
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onAddToCart(product);
+                }}
+              >
                 Adicionar ao Carrinho
               </button>
             </div>
@@ -65,16 +75,26 @@ const HomePage: React.FC<HomePageProps> = ({ onAddToCart, products }) => {
         <div className={styles.productList}>
           {linhasBarroco.slice(0, 4).map((product) => (
             <div key={product.id} className={styles.productCardWrapper}>
-              <img
-                src={product.images[0]}
-                alt={product.name}
-                className={styles.productImage}
-              />
-              <h3>
-                {product.name} - {product.color}
-              </h3>
-              <p>R$ {product.price.toFixed(2)}</p>
-              <button onClick={() => onAddToCart(product)}>
+              <Link
+                to={`/produto/${product.id}`}
+                className={styles.productLink}
+              >
+                <img
+                  src={product.images[0]}
+                  alt={product.name}
+                  className={styles.productImage}
+                />
+                <h3>
+                  {product.name} - {product.color}
+                </h3>
+                <p>R$ {product.price.toFixed(2)}</p>
+              </Link>
+              <button
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onAddToCart(product);
+                }}
+              >
                 Adicionar ao Carrinho
               </button>
             </div>
@@ -90,16 +110,26 @@ const HomePage: React.FC<HomePageProps> = ({ onAddToCart, products }) => {
         <div className={styles.productList}>
           {crochesTapetes.slice(0, 4).map((product) => (
             <div key={product.id} className={styles.productCardWrapper}>
-              <img
-                src={product.images[0]}
-                alt={product.name}
-                className={styles.productImage}
-              />
-              <h3>
-                {product.name} - {product.color}
-              </h3>
-              <p>R$ {product.price.toFixed(2)}</p>
-              <button onClick={() => onAddToCart(product)}>
+              <Link
+                to={`/produto/${product.id}`}
+                className={styles.productLink}
+              >
+                <img
+                  src={product.images[0]}
+                  alt={product.name}
+                  className={styles.productImage}
+                />
+                <h3>
+                  {product.name} - {product.color}
+                </h3>
+                <p>R$ {product.price.toFixed(2)}</p>
+              </Link>
+              <button
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onAddToCart(product);
+                }}
+              >
                 Adicionar ao Carrinho
               </button>
             </div>

@@ -4,7 +4,7 @@
   color: var(--cor-texto-principal); /* Azul Marinho suave */
   padding: 15px 20px;
   display: flex;
-  justify-content: space-around; /* Espaço igual entre logo e links no desktop */
+  justify-content: space-between; /* Espaço entre logo e o resto no desktop */
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -26,7 +26,7 @@
 }
 
 .navItem {
-  margin-left: 35px; /* Aumentei o espaçamento entre os links */
+  margin-left: 25px; /* Ajustei o espaçamento entre os links */
 }
 
 .navLink {
@@ -36,7 +36,7 @@
   transition: color 0.3s ease;
   display: flex;
   align-items: center;
-  padding: 8px 12px; /* Adicionei um pouco de padding para aumentar a área clicável e visual */
+  padding: 8px 10px; /* Ajustei um pouco o padding */
 }
 
 .navLink:hover {
@@ -184,12 +184,22 @@
   .cartLink {
     display: none;
   }
+
+  .searchContainer {
+    order: 1; /* Coloca a busca acima dos links na versão mobile */
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .searchInput {
+    width: calc(100% - 65px); /* Ajusta a largura considerando o botão */
+  }
 }
 
 /* Ajustes para telas maiores (acima de 768px) */
 @media (min-width: 769px) {
   .navItem {
-    margin-left: 35px;
+    margin-left: 25px; /* Ajustei o espaçamento aqui também */
   }
   .menuButton {
     display: none;
@@ -201,6 +211,11 @@
   /* Esconde o carrinho flutuante na versão desktop */
   .floatingCart {
     display: none;
+  }
+
+  .searchContainer {
+    order: 0; /* Retorna a busca para a ordem padrão no desktop */
+    margin-bottom: 0;
   }
 }
 
@@ -237,17 +252,4 @@
 .searchButton:hover {
   background-color: var(--cor-acento-2); /* Lilás claro no hover */
   color: var(--cor-base); /* Texto branco no hover para contraste */
-}
-
-/* Adaptações para a barra de busca em telas menores */
-@media (max-width: 768px) {
-  .searchContainer {
-    order: 1; /* Coloca a busca acima dos links na versão mobile */
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  .searchInput {
-    width: calc(100% - 65px); /* Ajusta a largura considerando o botão */
-  }
 }
