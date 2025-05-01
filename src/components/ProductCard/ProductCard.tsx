@@ -2,7 +2,7 @@
 import React from "react";
 import styles from "./ProductCard.module.css";
 import { Product } from "../../types/product";
-import { useNavigate, Link } from "react-router-dom"; // Importe Link
+import { Link } from "react-router-dom";
 import useProductImage from "../../hooks/useProductImage";
 import AddToCartButton from "./AddToCartButton";
 import FavoriteButton from "./FavoriteButton";
@@ -21,31 +21,37 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const imageUrl = useProductImage(produto, productImages);
 
   return (
-    <Link to={`/produto/${produto.id}`} className={styles.productLink}>
+    <div className={styles.productCardContainer}>
       {" "}
-      {/* Envolva com Link */}
-      <div className={styles.productCard}>
-        {" "}
-        {/* Mantenha o div para os estilos do card */}
-        <img
-          src={imageUrl}
-          alt={produto.name}
-          className={styles.productImage}
-        />
-        <div className={styles.productInfo}>
-          <h3>{produto.name}</h3>
-          <p className={styles.productColor}>Cor: {produto.color}</p>
-          {produto.num && (
-            <p className={styles.productNum}>Numeração: {produto.num}</p>
-          )}
-          <p className={styles.productPrice}>R$ {produto.price.toFixed(2)}</p>
-          <div className={styles.actions}>
-            <AddToCartButton product={produto} onAddToCart={onAddToCart} />
-            <FavoriteButton productId={produto.id} product={produto} />
+      {/* Container principal */}
+      <Link to={`/produto/${produto.id}`} className={styles.productLink}>
+        <div className={styles.productCard}>
+          {" "}
+          {/* Card do produto (clicável para detalhes) */}
+          <img
+            src={imageUrl}
+            alt={produto.name}
+            className={styles.productImage}
+          />
+          <div className={styles.productInfo}>
+            <h3>{produto.name}</h3>
+            <p className={styles.productColor}>Cor: {produto.color}</p>
+            {produto.num && (
+              <p className={styles.productNum}>Numeração: {produto.num}</p>
+            )}
+            <p className={styles.productPrice}>R$ {produto.price.toFixed(2)}</p>
           </div>
         </div>
+      </Link>
+      <div className={styles.actions}>
+        {" "}
+        {/* Container para os botões de ação */}
+        <AddToCartButton product={produto} onAddToCart={onAddToCart} />
+        <div className={styles.favoriteButtonWrapper}>
+          <FavoriteButton productId={produto.id} product={produto} />
+        </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

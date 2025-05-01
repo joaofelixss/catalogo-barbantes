@@ -1,17 +1,17 @@
 // src/hooks/useCart.tsx
 import { useState, useEffect, useCallback } from "react";
 import { CartItem, Product } from "../types/product";
-import { toast } from "react-toastify"; // Importe o toast aqui
+import { toast } from "react-toastify";
 
 const CART_STORAGE_KEY = "catalogoBarbantesCart";
 
 interface UseCartResult {
   cartItems: CartItem[];
-  handleAddToCart: (product: Product) => void; // Mudança aqui: recebe um Product
+  handleAddToCart: (product: Product) => void;
   handleQuantityChange: (productId: number, quantity: number) => void;
   handleEmptyCart: () => void;
   calculateTotal: () => string;
-  handleRemoveFromCart: (productId: number) => void; // Adicionei esta linha
+  handleRemoveFromCart: (productId: number) => void;
 }
 
 const useCart = (getProducts: () => Product[]): UseCartResult => {
@@ -26,7 +26,6 @@ const useCart = (getProducts: () => Product[]): UseCartResult => {
 
   const handleAddToCart = useCallback(
     (productToAdd: Product) => {
-      // Mudança aqui: recebe um Product
       const existingItem = cartItems.find(
         (item) => item.id === productToAdd.id
       );
@@ -39,10 +38,18 @@ const useCart = (getProducts: () => Product[]): UseCartResult => {
           )
         );
       } else {
-        setCartItems([...cartItems, { id: productToAdd.id, quantity: 1 }]);
+        setCartItems([
+          ...cartItems,
+          {
+            id: productToAdd.id,
+            quantity: 1,
+            name: productToAdd.name,
+            price: productToAdd.price,
+            // Adicione outras propriedades do produto que você precisa aqui
+          },
+        ]);
       }
       toast.success(`${productToAdd.name} adicionado ao carrinho!`, {
-        // Use o nome do produto adicionado
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -52,7 +59,7 @@ const useCart = (getProducts: () => Product[]): UseCartResult => {
         progress: undefined,
       });
     },
-    [cartItems, toast] // Removi getProducts das dependências, pois agora recebemos o produto completo
+    [cartItems, toast]
   );
 
   const handleQuantityChange = useCallback(
@@ -78,7 +85,6 @@ const useCart = (getProducts: () => Product[]): UseCartResult => {
       setCartItems(cartItems.filter((item) => item.id !== productId));
       if (productToRemove) {
         toast.error(`${productToRemove.name} removido do carrinho!`, {
-          // Use o nome do produto removido
           position: "top-right",
           autoClose: 2000,
           hideProgressBar: false,
@@ -89,18 +95,16 @@ const useCart = (getProducts: () => Product[]): UseCartResult => {
         });
       }
     },
-    [cartItems, setCartItems, getProducts, toast] // Mantenha getProducts para pegar o nome na remoção
+    [cartItems, setCartItems, getProducts, toast]
   );
 
   const calculateTotal = useCallback(() => {
-    const products = getProducts();
     return cartItems
       .reduce((total, item) => {
-        const product = products.find((p) => p.id === item.id);
-        return total + (product ? product.price * item.quantity : 0);
+        return total + item.price * item.quantity;
       }, 0)
       .toFixed(2);
-  }, [cartItems, getProducts]);
+  }, [cartItems]);
 
   return {
     cartItems,

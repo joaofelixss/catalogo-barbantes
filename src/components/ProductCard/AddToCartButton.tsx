@@ -13,11 +13,15 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   onAddToCart,
 }) => {
   const handleClick = (event: React.MouseEvent) => {
-    event.stopPropagation();
+    event.stopPropagation(); // Impede a propagação do evento para o Link pai
     onAddToCart(product);
   };
 
-  return <button onClick={handleClick}>Adicionar ao Carrinho</button>;
+  return (
+    <button className={styles.addToCartButton} onClick={handleClick}>
+      Adicionar ao Carrinho
+    </button>
+  );
 };
 
 export default AddToCartButton;

@@ -9,8 +9,10 @@ export interface Product {
   num?: string;
 }
 
-// src/types/cart-item.ts
 export interface CartItem {
   id: number;
   quantity: number;
+  name: string;
+  price: number;
+  // Adicione outras propriedades relevantes do produto aqui, se necessário
 }

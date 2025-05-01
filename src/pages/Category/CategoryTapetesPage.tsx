@@ -2,7 +2,7 @@
 import React from "react";
 import { Product } from "../../types/product";
 import styles from "./CategoryPage.module.css";
-import ProductCard from "../../components/ProductCard/ProductCard"; // Se já existir
+import ProductCard from "../../components/ProductCard/ProductCard";
 
 interface CategoryPageProps {
   products: Product[];
@@ -22,20 +22,11 @@ const CategoryTapetesPage: React.FC<CategoryPageProps> = ({
       <h1>Nossos Tapetes de Crochê</h1>
       <div className={styles.productList}>
         {tapetes.map((product) => (
-          <div key={product.id} className={styles.productCardWrapper}>
-            <img
-              src={product.images[0]}
-              alt={product.name}
-              className={styles.productImage}
-            />
-            <h3>
-              {product.name} - {product.color}
-            </h3>
-            <p>R$ {product.price.toFixed(2)}</p>
-            <button onClick={() => onAddToCart(product)}>
-              Adicionar ao Carrinho
-            </button>
-          </div>
+          <ProductCard
+            key={product.id}
+            produto={product}
+            onAddToCart={onAddToCart}
+          />
         ))}
       </div>
     </div>

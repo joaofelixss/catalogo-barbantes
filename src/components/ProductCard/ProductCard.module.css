@@ -1,8 +1,12 @@
 /* src/components/ProductCard/ProductCard.module.css */
+.productCardContainer {
+  position: relative; /* Define o container como ponto de referência para posicionamento absoluto */
+}
+
 .productLink {
   text-decoration: none;
-  color: inherit; /* Garante que a cor do texto herde do pai */
-  display: block; /* Faz o link ocupar todo o espaço do card */
+  color: inherit;
+  display: block;
 }
 
 .productCard {
@@ -13,6 +17,7 @@
   transition: transform 0.2s ease-in-out;
   display: flex;
   flex-direction: column;
+  min-height: 350px; /* Adicionando uma altura mínima para tentar uniformizar os cards */
 }
 
 .productCard:hover {
@@ -21,13 +26,18 @@
 
 .productImage {
   width: 100%;
-  height: auto;
+  height: 200px; /* Altura fixa para as imagens */
+  object-fit: cover; /* Mantém a proporção e cobre o espaço */
   display: block;
 }
 
 .productInfo {
   padding: 15px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribui o espaço entre os elementos internos */
+  flex-grow: 1; /* Permite que a info cresça para preencher o espaço */
 }
 
 .productInfo h3 {
@@ -40,18 +50,15 @@
 .productColor,
 .productNum,
 .productPrice {
-  margin-bottom: 8px;
-  color: var(
-    --cor-texto-secundario
-  ); /* Usando variável CSS (assumindo que você tem essa) */
+  margin-bottom: 5px;
+  color: var(--cor-texto-secundario); /* Usando variável CSS */
   font-size: 0.95em;
 }
 
 .productPrice {
   font-weight: bold;
-  color: var(
-    --cor-acento-2
-  ); /* Usando variável CSS (assumindo que você tem essa) */
+  color: var(--cor-acento-2); /* Usando variável CSS */
+  margin-bottom: 10px;
 }
 
 .actions {
@@ -87,19 +94,48 @@
   ); /* Assumindo que você tem essa variável */
 }
 
+.favoriteButtonWrapper {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10; /* Garante que o coração fique acima do card */
+}
+
 .favoriteButton {
   composes: actionButton;
-  background-color: var(
-    --cor-fundo-secundario
-  ); /* Assumindo que você tem essa variável */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Fundo branco com 80% de opacidade */
   color: var(--cor-primaria);
   border: 1px solid var(--cor-primaria);
+  padding: 6px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .favoriteButton:hover {
-  background-color: var(
-    --cor-fundo-secundario-hover
-  ); /* Assumindo que você tem essa variável */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    1
+  ); /* Fundo branco totalmente opaco no hover */
   color: var(--cor-primaria-hover);
   border-color: var(--cor-primaria-hover);
+}
+
+.favoriteButton svg {
+  display: block;
+}
+
+.favorited {
+  fill: #e53935;
+  stroke: none !important;
 }

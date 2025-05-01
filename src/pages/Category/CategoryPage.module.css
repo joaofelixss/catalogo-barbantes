@@ -1,95 +1,63 @@
 /* src/pages/CategoryPage.module.css */
 .categoryPageContainer {
   font-family: "Poppins", sans-serif;
-  color: var(--cor-texto-principal); /* Azul Marinho suave */
-  background-color: var(--cor-base); /* Azul Celeste pálido */
-  padding: 20px;
-  min-height: calc(
-    100vh - /* Altura do Navbar */ 60px - /* Altura do Footer */ 100px
-  ); /* Ajuste os valores conforme necessário */
+  color: var(--cor-texto-principal);
+  background-color: var(--cor-base);
+  padding: 30px 20px;
+  min-height: calc(100vh - 60px - 100px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .categoryPageContainer h1 {
-  color: var(--cor-acento-1); /* Rosa Névoa suave para o título */
+  color: var(--cor-acento-1);
+  margin-top: 30px;
   margin-bottom: 20px;
   text-align: center;
-  border-bottom: 2px solid var(--cor-acento-2); /* Um tom mais escuro de rosa para a linha */
+  border-bottom: 2px solid var(--cor-acento-2);
   padding-bottom: 10px;
+  width: 80%;
+}
+
+.voltarButton {
+  background-color: var(--cor-fundo-secundario);
+  color: var(--cor-texto-principal);
+  border: 1px solid var(--cor-texto-principal);
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.voltarButton:hover {
+  background-color: var(--cor-fundo-secundario-hover);
 }
 
 .productList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center; /* Centraliza os cards de produtos */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
   margin-top: 20px;
+  width: 90%;
 }
 
-.productCardWrapper {
-  width: calc(
-    33.33% - 20px
-  ); /* Aproximadamente 3 produtos por linha em telas maiores */
-  background-color: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
+@media (min-width: 960px) {
+  .productList {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-.productCardWrapper:hover {
-  transform: scale(1.02);
-}
-
-.productImage {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-bottom: 1px solid #eee;
-}
-
-.productCardWrapper h3 {
-  font-size: 1rem;
-  margin: 10px 0 5px;
-  padding: 0 10px;
-  color: var(--cor-texto-secundario); /* Um tom mais claro do azul marinho */
-  text-align: center;
-}
-
-.productCardWrapper p {
-  color: #555;
-  margin-bottom: 10px;
-  padding: 0 10px;
-  text-align: center;
-}
-
-.productCardWrapper button {
-  background-color: var(
-    --cor-acento-2
-  ); /* Um tom mais escuro de rosa para o botão */
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-  transition: background-color 0.3s ease;
-}
-
-.productCardWrapper button:hover {
-  background-color: var(
-    --cor-acento-1
-  ); /* Rosa Névoa suave para o hover do botão */
-}
-
-/* Responsividade para a lista de produtos */
-@media (max-width: 960px) {
-  .productCardWrapper {
-    width: calc(50% - 20px); /* 2 produtos por linha em telas médias */
+@media (max-width: 768px) {
+  .productList {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
 }
 
 @media (max-width: 600px) {
-  .productCardWrapper {
-    width: 100%; /* 1 produto por linha em telas pequenas */
+  .productList {
+    grid-template-columns: 1fr;
   }
 }
