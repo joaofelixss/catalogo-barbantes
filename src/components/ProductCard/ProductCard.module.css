@@ -1,4 +1,10 @@
 /* src/components/ProductCard/ProductCard.module.css */
+.productLink {
+  text-decoration: none;
+  color: inherit; /* Garante que a cor do texto herde do pai */
+  display: block; /* Faz o link ocupar todo o espaço do card */
+}
+
 .productCard {
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -28,20 +34,24 @@
   margin-top: 0;
   margin-bottom: 5px;
   font-size: 1.2em;
-  color: #333;
+  color: var(--cor-texto-principal); /* Usando variável CSS */
 }
 
 .productColor,
 .productNum,
 .productPrice {
   margin-bottom: 8px;
-  color: #666;
+  color: var(
+    --cor-texto-secundario
+  ); /* Usando variável CSS (assumindo que você tem essa) */
   font-size: 0.95em;
 }
 
 .productPrice {
   font-weight: bold;
-  color: #28a745;
+  color: var(
+    --cor-acento-2
+  ); /* Usando variável CSS (assumindo que você tem essa) */
 }
 
 .actions {
@@ -51,31 +61,45 @@
   justify-content: center;
 }
 
-.actions button {
+.actionButton {
   padding: 8px 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 0.9em;
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
 }
 
-.actions button:first-child {
-  background-color: #007bff;
-  color: white;
+.addToCartButton {
+  composes: actionButton;
+  background-color: var(
+    --cor-primaria
+  ); /* Assumindo que você tem essa variável */
+  color: var(
+    --cor-texto-botao-primario
+  ); /* Assumindo que você tem essa variável */
 }
 
-.actions button:first-child:hover {
-  background-color: #0056b3;
+.addToCartButton:hover {
+  background-color: var(
+    --cor-primaria-hover
+  ); /* Assumindo que você tem essa variável */
 }
 
 .favoriteButton {
-  background-color: #f8f9fa; /* Cor de fundo neutra */
-  color: #007bff; /* Cor primária para o texto/ícone */
-  border: 1px solid #007bff;
+  composes: actionButton;
+  background-color: var(
+    --cor-fundo-secundario
+  ); /* Assumindo que você tem essa variável */
+  color: var(--cor-primaria);
+  border: 1px solid var(--cor-primaria);
 }
 
 .favoriteButton:hover {
-  background-color: #e9ecef;
-  color: #0056b3;
+  background-color: var(
+    --cor-fundo-secundario-hover
+  ); /* Assumindo que você tem essa variável */
+  color: var(--cor-primaria-hover);
+  border-color: var(--cor-primaria-hover);
 }

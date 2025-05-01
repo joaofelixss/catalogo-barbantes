@@ -2,6 +2,7 @@
 import React from "react";
 import styles from "./CartItem.module.css";
 import { CartItem as CartItemType, Product } from "../../types/product";
+import formatPrice from "../../utils/formatPrice"; // Importe a função
 
 interface CartItemProps {
   item: CartItemType;
@@ -34,9 +35,8 @@ const CartItem: React.FC<CartItemProps> = ({
     onRemoveFromCart(item.id);
   };
 
-  const subtotal = (product.price * (item.quantity || 0))
-    .toFixed(2)
-    .replace(".", ",");
+  const subtotal = formatPrice(product.price * (item.quantity || 0));
+  const formattedPrice = formatPrice(product.price);
 
   const details: string[] = [`Cor: ${product.color}`];
   if (product.num) {
@@ -56,14 +56,16 @@ const CartItem: React.FC<CartItemProps> = ({
       <div className={styles.itemDetails}>
         <h3>{product.name}</h3>
         <p className={styles.itemDetailsText}>{itemDetailsText}</p>
-        <p className={styles.itemPrice}>
-          R$ {product.price.toFixed(2).replace(".", ",")}
-        </p>
+        <p className={styles.itemPrice}>R$ {formattedPrice}</p>
       </div>
       <div className={styles.quantityControl}>
-        <button onClick={handleDecrement}>-</button>
+        <button onClick={handleDecrement} aria-label="Decrementar quantidade">
+          -
+        </button>
         <span>{item.quantity || 0}</span>
-        <button onClick={handleIncrement}>+</button>
+        <button onClick={handleIncrement} aria-label="Incrementar quantidade">
+          +
+        </button>
       </div>
       <div className={styles.subtotal}>Subtotal: R$ {subtotal}</div>
       <button className={styles.removeItem} onClick={handleRemove}>

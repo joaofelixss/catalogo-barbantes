@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   padding: 20px; /* Aumentei o padding para mais espaço */
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #eee; /* Mantive o cinza claro, pois não há variável específica */
 }
 
 .itemImage {
@@ -21,10 +21,13 @@
 .itemDetails h3 {
   font-size: 1.2em; /* Aumentei a fonte do título */
   margin-bottom: 8px;
+  color: var(--cor-texto-principal); /* Usando variável CSS */
 }
 
 .itemPrice {
-  color: green;
+  color: var(
+    --cor-acento-2
+  ); /* Usando variável CSS (Lilás claro para o preço) */
   font-weight: bold;
   font-size: 1.1em; /* Aumentei a fonte do preço */
 }
@@ -32,7 +35,7 @@
 .quantityControl {
   display: flex;
   align-items: center;
-  border: 1px solid #ccc;
+  border: 1px solid #ccc; /* Mantive o cinza, sem variável específica */
   border-radius: 8px;
   overflow: hidden;
   margin-left: auto; /* Empurra para a direita */
@@ -45,20 +48,20 @@
   padding: 10px 12px; /* Ajustei o padding dos botões */
   font-size: 1em; /* Mantive o tamanho da fonte */
   cursor: pointer;
-  color: #333;
+  color: var(--cor-texto-principal); /* Usando variável CSS */
   transition: background-color 0.3s ease;
 }
 
 .quantityControl button:hover {
-  background-color: #f0f0f0;
+  background-color: #f0f0f0; /* Mantive o cinza claro, sem variável específica */
 }
 
 .quantityControl span {
   padding: 10px;
   font-weight: bold;
   font-size: 1em; /* Mantive o tamanho da fonte */
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc; /* Mantive o cinza, sem variável específica */
+  border-right: 1px solid #ccc; /* Mantive o cinza, sem variável específica */
   min-width: 40px;
   text-align: center;
 }
@@ -66,14 +69,16 @@
 .subtotal {
   font-weight: bold;
   font-size: 1.1em; /* Mantive o tamanho da fonte */
-  color: #007bff;
+  color: var(
+    --cor-acento-1
+  ); /* Usando variável CSS (Rosa Névoa para o subtotal) */
   margin-left: auto; /* Empurra para a direita */
   min-width: 120px;
   text-align: right;
 }
 
 .removeItem {
-  background-color: #dc3545;
+  background-color: #dc3545; /* Mantive o vermelho, sem variável específica */
   color: white;
   border: none;
   padding: 10px 15px;
@@ -85,7 +90,7 @@
 }
 
 .removeItem:hover {
-  background-color: #c82333;
+  background-color: #c82333; /* Mantive o vermelho mais escuro, sem variável específica */
 }
 
 @media (max-width: 768px) {
