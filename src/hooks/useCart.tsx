@@ -7,7 +7,7 @@ const CART_STORAGE_KEY = "catalogoBarbantesCart";
 
 interface UseCartResult {
   cartItems: CartItem[];
-  handleAddToCart: (productId: number) => void;
+  handleAddToCart: (product: Product) => void; // Mudança aqui: recebe um Product
   handleQuantityChange: (productId: number, quantity: number) => void;
   handleEmptyCart: () => void;
   calculateTotal: () => string;
@@ -25,25 +25,34 @@ const useCart = (getProducts: () => Product[]): UseCartResult => {
   }, [cartItems]);
 
   const handleAddToCart = useCallback(
-    (productId: number) => {
-      const products = getProducts();
-      const existingItem = cartItems.find((item) => item.id === productId);
+    (productToAdd: Product) => {
+      // Mudança aqui: recebe um Product
+      const existingItem = cartItems.find(
+        (item) => item.id === productToAdd.id
+      );
       if (existingItem) {
         setCartItems(
           cartItems.map((item) =>
-            item.id === productId
+            item.id === productToAdd.id
               ? { ...item, quantity: item.quantity + 1 }
               : item
           )
         );
       } else {
-        const productToAdd = products.find((p) => p.id === productId);
-        if (productToAdd) {
-          setCartItems([...cartItems, { id: productId, quantity: 1 }]);
-        }
+        setCartItems([...cartItems, { id: productToAdd.id, quantity: 1 }]);
       }
+      toast.success(`${productToAdd.name} adicionado ao carrinho!`, {
+        // Use o nome do produto adicionado
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     },
-    [cartItems, getProducts]
+    [cartItems, toast] // Removi getProducts das dependências, pois agora recebemos o produto completo
   );
 
   const handleQuantityChange = useCallback(
@@ -65,18 +74,22 @@ const useCart = (getProducts: () => Product[]): UseCartResult => {
 
   const handleRemoveFromCart = useCallback(
     (productId: number) => {
+      const productToRemove = getProducts().find((p) => p.id === productId);
       setCartItems(cartItems.filter((item) => item.id !== productId));
-      toast.error("Item removido do carrinho!", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      if (productToRemove) {
+        toast.error(`${productToRemove.name} removido do carrinho!`, {
+          // Use o nome do produto removido
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
     },
-    [cartItems, setCartItems, toast] // Adicionei toast como dependência
+    [cartItems, setCartItems, getProducts, toast] // Mantenha getProducts para pegar o nome na remoção
   );
 
   const calculateTotal = useCallback(() => {

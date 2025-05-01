@@ -1,28 +1,39 @@
 // src/components/ProductList/ProductList.tsx
 import React from "react";
-import styles from "./ProductList.module.css";
 import { Product } from "../../types/product";
 import ProductCard from "../ProductCard/ProductCard";
+import styles from "./ProductList.module.css";
+
 interface ProductListProps {
   products: Product[];
-  onAddToCart: (productId: number) => void;
+  onAddToCart: (product: Product) => void;
+  productImages: { [key: number]: string | null | undefined };
 }
 
-const ProductList: React.FC<ProductListProps> = ({ products, onAddToCart }) => {
+const ProductList: React.FC<ProductListProps> = ({
+  products,
+  onAddToCart,
+  productImages,
+}) => {
   return (
-    <section className={styles.cardapioSection} id="cardapio">
-      <h2>Nosso Cardápio de Barbantes</h2>
+    <div className={styles.cardapioSection}>
+      {" "}
+      {/* Use cardapioSection aqui */}
+      <h2>Nosso Cardápio</h2>
       <ul className={styles.listaDeProdutos}>
+        {" "}
+        {/* Use listaDeProdutos aqui */}
         {products.map((product) => (
-          <li key={product.id} className={styles.productItem}>
+          <li key={product.id} className={styles.listItem}>
             <ProductCard
               produto={product}
               onAddToCart={onAddToCart}
+              productImages={productImages}
             />
           </li>
         ))}
       </ul>
-    </section>
+    </div>
   );
 };
 

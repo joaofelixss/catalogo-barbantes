@@ -20,6 +20,7 @@ const App: React.FC = () => {
       price: 25.9,
       descricao: "Fio de algodão mercerizado para peças de decoração.",
       image: "/images/barbantes-bonitos.jpg",
+      num: "6",
     },
     {
       id: 2,
@@ -28,6 +29,7 @@ const App: React.FC = () => {
       price: 12.5,
       descricao: "Fio de algodão ideal para a técnica japonesa de amigurumi.",
       image: "/images/barbantes-bonitos2.jpg",
+      num: "6",
     },
     {
       id: 3,
@@ -36,6 +38,7 @@ const App: React.FC = () => {
       price: 18.75,
       descricao: "Fio leve e macio para peças de vestuário.",
       image: "/images/produto2.png",
+      num: "8",
     },
     {
       id: 4,
@@ -44,6 +47,7 @@ const App: React.FC = () => {
       price: 15.3,
       descricao: "Fio de algodão penteado com toque macio e brilho.",
       image: "/images/produto3.png",
+      num: "8",
     },
   ]);
 

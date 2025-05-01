@@ -7,8 +7,21 @@ import ProductList from "../components/ProductList/ProductList";
 import ContactSection from "../components/Contact/ContactSection";
 import Footer from "../components/Footer/Footer";
 
+// Defina o tipo para productImages
+interface ProductImageMap {
+  [key: number]: string | null | undefined;
+}
+
+// Mapeie as imagens para os IDs correspondentes
+const productImages: ProductImageMap = {
+  1: "/images/produto1.png",
+  2: "/images/produto2.png",
+  3: "/images/produto3.png",
+  4: null,
+};
+
 interface HomePageProps {
-  onAddToCart: (productId: number) => void;
+  onAddToCart: (product: Product) => void;
   products: Product[];
 }
 
@@ -19,8 +32,7 @@ const HomePage: React.FC<HomePageProps> = ({ onAddToCart, products }) => {
       <ProductList
         products={products}
         onAddToCart={onAddToCart}
-        // Remova a prop productImages
-        // productImages={productImages}
+        productImages={productImages} // Passe a prop aqui
       />
       <ContactSection />
       <Footer />

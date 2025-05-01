@@ -1,24 +1,24 @@
-/* src/components/ProductCard/ProductCard.module.css */
 .produtoCard {
-  background-color: #fff; /* Fundo branco para o card */
+  /* Seus outros estilos para o card */
+  border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow: hidden; 
-  display: flex;
-  flex-direction: column;
+  padding: 15px;
+  margin-bottom: 20px;
+  width: 300px; /* Ou a largura desejada para o card */
 }
 
 .produtoImagem {
-  width: 100%;
-  height: auto;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  display: block; 
+  width: 100%; /* A imagem vai ocupar toda a largura do card */
+  max-width: 250px; /* Define uma largura máxima para evitar que cresça demais */
+  height: auto; /* A altura se ajustará automaticamente para manter a proporção */
+  display: block; /* Remove espaçamento extra abaixo da imagem */
+  margin: 0 auto 10px; /* Centraliza a imagem e adiciona um pouco de margem abaixo */
+  border-radius: 4px; /* Opcional: bordas arredondadas para a imagem */
 }
 
 .produtoTitulo {
   font-size: 1.5em;
-  color: var(--cor-texto-principal); 
+  color: var(--cor-texto-principal);
   margin: 15px 10px 10px 10px;
 }
 
@@ -39,13 +39,13 @@
 
 .produtoPreco {
   font-size: 1.3em;
-  color: var(--cor-acento-1); 
+  color: var(--cor-acento-1);
   font-weight: bold;
 }
 
 .adicionarAoCarrinho {
-  background-color: var(--cor-acento-3); 
-  color: var(--cor-texto-principal); 
+  background-color: var(--cor-acento-3);
+  color: var(--cor-texto-principal);
   border: none;
   padding: 10px 15px;
   border-radius: 5px;

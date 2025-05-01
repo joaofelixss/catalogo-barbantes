@@ -38,6 +38,12 @@ const CartItem: React.FC<CartItemProps> = ({
     .toFixed(2)
     .replace(".", ",");
 
+  const details: string[] = [`Cor: ${product.color}`];
+  if (product.num) {
+    details.push(`Numeração: ${product.num}`);
+  }
+  const itemDetailsText = details.join(" - ");
+
   return (
     <div className={styles.cartItem}>
       {product.image && (
@@ -49,6 +55,7 @@ const CartItem: React.FC<CartItemProps> = ({
       )}
       <div className={styles.itemDetails}>
         <h3>{product.name}</h3>
+        <p className={styles.itemDetailsText}>{itemDetailsText}</p>
         <p className={styles.itemPrice}>
           R$ {product.price.toFixed(2).replace(".", ",")}
         </p>

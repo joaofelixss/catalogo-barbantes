@@ -6,6 +6,7 @@ export interface Product {
   price: number;
   descricao: string;
   image: string;
+  num?: string;
 }
 
 // src/types/cart-item.ts
