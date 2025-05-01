@@ -1,21 +1,15 @@
 {
   "files": {
-    "main.css": "./static/css/main.f21c859e.css",
-    "main.js": "./static/js/main.07fbf9be.js",
+    "main.css": "./static/css/main.bc3addee.css",
+    "main.js": "./static/js/main.714fbb66.js",
     "static/js/453.7e8267fe.chunk.js": "./static/js/453.7e8267fe.chunk.js",
-    "static/media/produto3.png": "./static/media/produto3.e9228f0c009d1a080125.png",
-    "static/media/barbantes-bonitos2.jpg": "./static/media/barbantes-bonitos2.b86ed80f14ede8f398f6.jpg",
-    "static/media/barbantes-bonitos.jpg": "./static/media/barbantes-bonitos.b80809d5008720cd4728.jpg",
-    "static/media/produto1.png": "./static/media/produto1.be689876c1f46ad3b578.png",
-    "static/media/produto2.png": "./static/media/produto2.fbc77d41305f517a8523.png",
-    "static/media/logo.png": "./static/media/logo.4b52bacd436d88496953.png",
     "index.html": "./index.html",
-    "main.f21c859e.css.map": "./static/css/main.f21c859e.css.map",
-    "main.07fbf9be.js.map": "./static/js/main.07fbf9be.js.map",
+    "main.bc3addee.css.map": "./static/css/main.bc3addee.css.map",
+    "main.714fbb66.js.map": "./static/js/main.714fbb66.js.map",
     "453.7e8267fe.chunk.js.map": "./static/js/453.7e8267fe.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f21c859e.css",
-    "static/js/main.07fbf9be.js"
+    "static/css/main.bc3addee.css",
+    "static/js/main.714fbb66.js"
   ]
 }
