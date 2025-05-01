@@ -1,61 +1,126 @@
 /* src/components/CategoryHighlightSection/CategoryHighlightSection.module.css */
 .categorySection {
-  margin-bottom: 30px;
-  padding: 15px; /* Ajustado para consistência com HomePage */
-  background-color: #f9f9f9; /* Cor de fundo levemente mais escura */
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Adicionado box-shadow */
+  margin-bottom: 40px; /* Aumentei a margem inferior */
+  padding: 25px; /* Aumentei o padding geral */
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  text-align: center; /* Centralizar o título e o link "Ver Mais" */
 }
 
 .categorySection h2 {
-  color: var(--cor-acento-1); /* Rosa Névoa suave */
-  margin-bottom: 10px;
-  border-bottom: 2px solid var(--cor-acento-2); /* Tom mais escuro de rosa */
-  padding-bottom: 5px;
-  text-align: center;
-  font-size: 1.5em; /* Ajustado para consistência */
+  color: var(--cor-acento-1);
+  margin-bottom: 20px; /* Mais espaço abaixo do título */
+  border-bottom: 3px solid var(--cor-acento-2);
+  padding-bottom: 10px;
+  font-size: 1.8em; /* Título um pouco maior */
+  letter-spacing: -0.01em;
+}
+
+.carouselContainer {
+  position: relative; /* Para posicionar os botões do carrossel */
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px; /* Aumentei um pouco a margem inferior */
+  padding: 0 20px; /* Adicionei padding lateral para espaço dos botões */
+}
+
+.carouselButtonLeft,
+.carouselButtonRight {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Fundo branco semi-transparente */
+  border: 1px solid var(--cor-texto-secundario); /* Adicionei uma borda */
+  border-radius: 50%;
+  width: 40px; /* Aumentei o tamanho dos botões */
+  height: 40px; /* Aumentei o tamanho dos botões */
+  font-size: 1.2em; /* Reduzi um pouco o tamanho da fonte */
+  color: var(--cor-texto-secundario);
+  cursor: pointer;
+  z-index: 20;
+  opacity: 0.8; /* Aumentei um pouco a opacidade padrão */
+  transition: opacity 0.2s ease-in-out, background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carouselButtonLeft:hover,
+.carouselButtonRight:hover {
+  opacity: 1;
+  background-color: var(--cor-acento-1); /* Cor de destaque no hover */
+  color: white;
+  border-color: var(--cor-acento-1);
+}
+
+.carouselButtonLeft {
+  left: 0;
+}
+
+.carouselButtonRight {
+  right: 0;
 }
 
 .productList {
   display: flex;
-  gap: 15px; /* Ajustado para consistência com HomePage */
-  overflow-x: auto;
-  padding-bottom: 10px;
-  -webkit-overflow-scrolling: touch;
+  gap: 25px; /* Aumentei o gap entre os produtos */
+  overflow-x: auto; /* Habilita o scroll horizontal */
+  padding: 15px 20px; /* Adicionei padding lateral para alinhar com o container */
+  -webkit-overflow-scrolling: touch; /* Para um scroll mais suave em iOS */
+  margin: 0 auto; /* Centralizar a lista de produtos */
+  max-width: calc(
+    3 * 295px
+  ); /* Largura máxima para mostrar 3 itens + gaps (ajustei para o novo tamanho do card) */
+  justify-content: flex-start; /* Alinhar os itens à esquerda inicialmente */
 }
 
 .productCardWrapper {
-  width: 220px; /* Ajustado para consistência com HomePage */
+  width: 280px; /* Aumentei a largura dos cards */
   background-color: white;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
-  flex-shrink: 0;
+  flex-shrink: 0; /* Impede que os cards encolham */
+  position: relative; /* Para posicionar o ícone de favorito */
+  display: flex; /* Habilitar Flexbox no card */
+  flex-direction: column; /* Organizar os itens verticalmente */
 }
 
 .productCardWrapper:hover {
-  transform: scale(1.05);
+  transform: scale(1.06);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .productLink {
   text-decoration: none;
   color: inherit;
   display: block;
+  flex-grow: 1; /* Permitir que o link (que contém imagem e texto) cresça */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Espaçar imagem e texto */
 }
 
 .productImage {
   width: 100%;
   height: auto;
   display: block;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #f0f0f0;
+  border-radius: 12px 12px 0 0;
 }
 
 .productLink h3 {
-  font-size: 0.9rem;
-  margin: 8px 0 4px;
-  padding: 0 8px;
-  color: var(--cor-texto-secundario);
+  font-size: 1.1rem; /* Aumentei a fonte do título do produto */
+  margin: 12px 15px 6px;
+  color: var(--cor-texto-principal);
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
@@ -63,42 +128,85 @@
 }
 
 .productLink p {
-  color: #555;
-  margin-bottom: 8px;
-  padding: 0 8px;
+  color: #777;
+  margin: 0 15px 12px;
   text-align: center;
-  font-size: 0.85rem;
+  font-size: 0.95rem; /* Aumentei um pouco a fonte do preço */
 }
 
 .productCardWrapper button {
-  background-color: var(--cor-acento-2); /* Tom mais escuro de rosa */
+  background-color: var(--cor-acento-1);
   color: white;
   border: none;
-  padding: 8px 12px;
-  border-radius: 5px;
+  padding: 12px 20px; /* Aumentei o padding do botão */
+  border-radius: 0 0 12px 12px;
   cursor: pointer;
   width: 100%;
   transition: background-color 0.3s ease;
-  font-size: 0.8rem;
+  font-size: 1rem; /* Aumentei a fonte do botão */
+  font-weight: 500;
+  margin-top: auto; /* Empurrar o botão para baixo */
 }
 
 .productCardWrapper button:hover {
-  background-color: var(--cor-acento-1); /* Rosa Névoa suave */
+  background-color: var(--cor-acento-1-mais-escuro);
 }
 
 .viewMore {
-  margin-top: 10px;
+  margin-top: 20px;
   text-align: center;
 }
 
 .viewMore a {
-  color: var(--cor-acento-2);
+  color: var(--cor-acento-1);
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease;
-  font-size: 0.9rem;
+  font-size: 1.1rem; /* Aumentei a fonte do link "Ver Mais" */
 }
 
 .viewMore a:hover {
-  color: var(--cor-acento-1);
+  color: var(--cor-acento-1-mais-escuro);
+  text-decoration: underline;
+}
+
+/* Estilos para o ícone de favorito flutuante */
+.favoriteIcon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.7); /* Fundo semi-transparente */
+  border-radius: 50%;
+  width: 40px; /* Aumentei o tamanho do container do ícone */
+  height: 40px; /* Aumentei o tamanho do container do ícone */
+  display: flex;
+  justify-content: center; /* Centralizar horizontalmente */
+  align-items: center; /* Centralizar verticalmente */
+  cursor: pointer;
+  z-index: 30; /* Garante que fique acima do card */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Pequena sombra para destaque */
+  transition: transform 0.2s ease-in-out;
+}
+
+.favoriteIcon:hover {
+  transform: scale(1.1);
+}
+
+/* Estilos para o FavoriteButton (agora renderizando o ícone de react-feather) */
+.favoriteIcon button.favoriteButton {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.favoriteIcon button.favoriteButton svg {
+  font-size: 1.5em; /* Tamanho do ícone de coração */
+  color: var(--cor-texto-secundario); /* Cor padrão do coração */
+  transition: color 0.2s ease-in-out;
+}
+
+.favoriteIcon button.favoriteButton svg.favorited {
+  color: var(--cor-acento-1); /* Cor do coração preenchido (favoritado) */
 }

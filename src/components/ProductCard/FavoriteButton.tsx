@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./ProductCard.module.css";
 import { useFavorites } from "../../contexts/FavoritesContext";
 import { Product } from "../../types/product";
+import { Heart } from "react-feather";
 
 interface FavoriteButtonProps {
   productId: number;
@@ -26,9 +27,16 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({
   };
 
   return (
-    <button className={styles.favoriteButton} onClick={handleClick}>
-      {isCurrentlyFavorite ? "❤️ Remover Favorito" : "🤍 Favoritar"}
-    </button>
+    <div className={styles.favoriteIcon} onClick={handleClick}>
+      <button className={styles.favoriteButton}>
+        <Heart
+          size={20}
+          className={isCurrentlyFavorite ? "favorited" : ""}
+          fill={isCurrentlyFavorite ? "#e53935" : "none"}
+          stroke={!isCurrentlyFavorite ? "currentColor" : undefined}
+        />
+      </button>
+    </div>
   );
 };
 
