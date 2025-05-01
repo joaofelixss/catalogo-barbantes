@@ -1,19 +1,23 @@
 // src/App.tsx
 import React, { useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom"; // Importe useNavigate aqui
-import HomePage from "./pages/HomePage";
-import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
-import styles from "./App.module.css";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Navbar from "./components/Navigation/Navbar";
-import { Product } from "./types/product";
-import useCart from "./hooks/useCart";
-import CheckoutForm from "./components/CheckoutForm/CheckoutForm"; // Importe o CheckoutForm
-import { FavoritesProvider } from "./contexts/FavoritesContext";
+
+import HomePage from "./pages/HomePage";
 import FavoritesPage from "./pages/FavoritesPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import SearchResultsPage from "./pages/SearchResultsPage";
+
+import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
+import CheckoutForm from "./components/CheckoutForm/CheckoutForm";
+import Navbar from "./components/Navigation/Navbar";
+
+import { FavoritesProvider } from "./contexts/FavoritesContext";
+import useCart from "./hooks/useCart";
+
+import { Product } from "./types/product";
+import styles from "./App.module.css";
 
 const App: React.FC = () => {
   const [products] = useState<Product[]>([
@@ -27,7 +31,7 @@ const App: React.FC = () => {
         "/images/barbantes-bonitos.jpg",
         "/images/produto3.png",
         "/images/produto2.png",
-      ], // Exemplo com várias imagens
+      ],
       num: "6",
     },
     {
@@ -40,7 +44,7 @@ const App: React.FC = () => {
         "/images/barbantes-bonitos.jpg",
         "/images/produto3.png",
         "/images/produto2.png",
-      ], // Exemplo com várias imagens
+      ],
       num: "6",
     },
     {
@@ -53,7 +57,7 @@ const App: React.FC = () => {
         "/images/barbantes-bonitos.jpg",
         "/images/produto3.png",
         "/images/produto2.png",
-      ], // Exemplo com várias imagens
+      ],
       num: "8",
     },
     {
@@ -66,7 +70,7 @@ const App: React.FC = () => {
         "/images/barbantes-bonitos.jpg",
         "/images/produto3.png",
         "/images/produto2.png",
-      ], // Exemplo com várias imagens
+      ],
       num: "8",
     },
   ]);
@@ -126,23 +130,23 @@ const App: React.FC = () => {
             }
           />
           <Route
-            path="/favoritos" // Adicione a rota para a página de favoritos
+            path="/favoritos"
             element={
               <FavoritesPage
                 products={products}
                 onAddToCart={handleAddToCart}
-                productImages={{}} // Você pode precisar ajustar isso se as imagens forem carregadas de forma diferente
+                productImages={{}}
               />
             }
           />
           <Route
-            path="/produto/:id" // Nova rota com parâmetro :id
+            path="/produto/:id"
             element={
               <ProductDetailsPage
                 products={products}
-                onAddToCart={handleAddToCart} // Passa a função handleAddToCart como prop
+                onAddToCart={handleAddToCart}
               />
-            } // Passa os produtos como prop
+            }
           />
           <Route
             path="/buscar"

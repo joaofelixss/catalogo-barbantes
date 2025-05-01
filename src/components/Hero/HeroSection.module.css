@@ -1,52 +1,61 @@
 /* src/components/Hero/HeroSection.module.css */
 .heroSection {
-  background-color: var(--cor-base);
+  background-color: var(--cor-base); /* Branco */
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 80px 20px;
+  gap: 40px; /* Adiciona um espaçamento entre o conteúdo e a imagem em telas maiores */
 }
 
 .heroContent {
   flex: 1;
-  padding-right: 40px;
+  padding-right: 40px; /* Mantido para espaçamento em telas maiores */
 }
 
 .heroTitle {
   font-size: 3em;
-  color: var(--cor-texto-principal);
+  color: var(--cor-texto-principal); /* Azul Marinho suave */
   margin-bottom: 20px;
-  line-height: 1.2;
+  line-height: 1.1; /* Ligeiramente mais apertado para melhor leitura */
+  letter-spacing: -0.01em; /* Pequeno ajuste no espaçamento entre letras para elegância */
 }
 
 .heroSubtitle {
   font-size: 1.5em;
-  color: #555;
+  color: var(
+    --cor-texto-principal-mais-claro
+  ); /* Tom mais claro do Azul Marinho para o subtítulo */
   margin-bottom: 30px;
+  line-height: 1.6; /* Melhora a legibilidade de blocos de texto */
+  font-weight: 300; /* Deixa o subtítulo um pouco mais leve */
 }
 
 .heroButton {
   display: inline-block;
-  background-color: var(--cor-acento-1);
-  color: var(--cor-base);
-  padding: 15px 30px;
+  background-color: var(--cor-acento-1); /* Rosa Névoa */
+  color: var(--cor-base); /* Branco */
+  padding: 16px 32px; /* Ligeiramente maior para melhor toque/clique */
   text-decoration: none;
-  border-radius: 8px;
+  border-radius: 10px; /* Um pouco mais arredondado para um visual moderno */
   font-size: 1.2em;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+  font-weight: 600; /* Um pouco mais forte para destacar o botão */
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out; /* Transição mais suave e adiciona um pequeno efeito ao interagir */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona uma leve sombra para profundidade */
 }
 
 .heroButton:hover {
-  background-color: var(--cor-acento-2);
+  background-color: var(--cor-acento-2); /* Lilás claro no hover */
+  transform: translateY(-2px); /* Pequeno efeito de elevação no hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Sombra um pouco maior no hover */
 }
 
 .heroImage {
   flex: 1;
   max-width: 50%;
   height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px; /* A mesma borda arredondada do botão para consistência */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra um pouco mais pronunciada para a imagem */
 }
 
 /* Responsividade para telas menores */
@@ -54,29 +63,47 @@
   .heroSection {
     flex-direction: column;
     text-align: center;
+    padding: 60px 20px; /* Reduz um pouco o padding vertical */
+    gap: 30px; /* Reduz o espaçamento entre os elementos na vertical */
   }
 
   .heroContent {
     padding-right: 0;
-    margin-bottom: 40px;
+    margin-bottom: 30px; /* Reduz um pouco a margem inferior */
+  }
+
+  .heroTitle {
+    font-size: 2.7em; /* Ligeiramente menor em telas médias */
+    margin-bottom: 15px;
+  }
+
+  .heroSubtitle {
+    font-size: 1.3em; /* Ligeiramente menor em telas médias */
+    margin-bottom: 25px;
   }
 
   .heroImage {
-    max-width: 80%;
+    max-width: 90%; /* A imagem ocupa mais largura em telas médias */
   }
 }
 
 @media (max-width: 480px) {
   .heroTitle {
-    font-size: 2.5em;
+    font-size: 2.2em; /* Menor em telas pequenas */
   }
 
   .heroSubtitle {
-    font-size: 1.1em;
+    font-size: 1em; /* Menor em telas pequenas */
+    line-height: 1.4; /* Ajusta a altura da linha para melhor leitura */
   }
 
   .heroButton {
     font-size: 1em;
-    padding: 10px 20px;
+    padding: 12px 24px; /* Reduz um pouco o padding do botão */
+    border-radius: 8px; /* Mantém o arredondamento */
+  }
+
+  .heroImage {
+    max-width: 100%; /* A imagem ocupa toda a largura em telas pequenas */
   }
 }

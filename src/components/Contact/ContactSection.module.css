@@ -1,56 +1,66 @@
 /* src/components/Contact/ContactSection.module.css */
 .contactSection {
-  background-color: #f0f8ff;
-  padding: 60px 20px;
+  background-color: var(
+    --cor-fundo-secundario
+  ); /* Um tom de azul bem claro ou cinza claro */
+  padding: 80px 20px; /* Aumentei um pouco o padding superior e inferior */
   text-align: center;
   width: 100%;
   box-sizing: border-box;
 }
 
 .contactSection h2 {
-  font-size: 2.5em;
-  color: var(--cor-texto-principal);
-  margin-bottom: 20px;
+  font-size: 2.75em; /* Aumentei um pouco a fonte do título */
+  color: var(--cor-texto-principal); /* Azul Marinho suave */
+  margin-bottom: 25px; /* Aumentei um pouco a margem inferior */
+  letter-spacing: -0.02em; /* Pequeno ajuste para elegância */
 }
 
 .contactSection p {
-  color: #555;
-  font-size: 1.1em;
-  margin-bottom: 30px;
+  color: var(--cor-texto-secundario); /* Um tom de cinza mais suave */
+  font-size: 1.15em; /* Pequeno aumento na fonte do parágrafo */
+  line-height: 1.7; /* Melhora a legibilidade de blocos de texto */
+  margin-bottom: 40px; /* Aumentei a margem inferior para mais espaço antes dos botões */
+  font-weight: 300; /* Deixa o texto um pouco mais leve */
 }
 
 .contactMethods {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 30px; /* Aumentei o espaçamento entre os botões */
   margin-top: 30px;
   box-sizing: border-box;
 }
 
 .contactButton {
   background-color: var(
-    --cor-acento-1
-  ); 
-  color: var(--cor-base);
+    --cor-acento-principal
+  ); /* Rosa Névoa (tom mais forte) */
+  color: var(--cor-base); /* Branco */
   border: none;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width: 70px; /* Aumentei o tamanho dos botões */
+  height: 70px; /* Aumentei o tamanho dos botões */
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  font-size: 1.5em;
-  transition: background-color 0.3s ease;
+  font-size: 1.6em; /* Aumentei o tamanho do ícone */
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out; /* Transições mais suaves e para a sombra */
   position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma leve sombra */
 }
 
 .contactButton:hover {
-  background-color: var(--cor-acento-2);
+  background-color: var(--cor-acento-secundario); /* Lilás claro */
+  transform: scale(1.05); /* Pequeno efeito de "zoom" no hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra um pouco maior no hover */
 }
 
 .contactIcon {
-  font-size: 1.8em;
+  font-size: 2em; /* Aumentei o tamanho do ícone */
+  color: var(--cor-acento-2);
 }
 
 .visuallyHidden {
@@ -67,41 +77,65 @@
 
 /* Responsividade para telas menores */
 @media (max-width: 768px) {
+  .contactSection {
+    padding: 60px 15px; /* Reduz um pouco o padding lateral */
+  }
+
+  .contactSection h2 {
+    font-size: 2.4em;
+    margin-bottom: 20px;
+  }
+
+  .contactSection p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+  }
+
   .contactMethods {
-    gap: 15px;
+    gap: 20px; /* Reduz o espaçamento entre os botões */
+    margin-top: 25px;
   }
 
   .contactButton {
-    width: 50px;
-    height: 50px;
-    font-size: 1.2em;
+    width: 60px; /* Mantém o tamanho em telas médias */
+    height: 60px; /* Mantém o tamanho em telas médias */
+    font-size: 1.4em;
   }
 
   .contactIcon {
-    font-size: 1.5em;
+    font-size: 1.7em;
   }
 }
 
 @media (max-width: 480px) {
+  .contactSection {
+    padding: 50px 10px; /* Reduz ainda mais o padding lateral */
+  }
+
   .contactSection h2 {
     font-size: 2em;
+    margin-bottom: 15px;
   }
 
   .contactSection p {
     font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 35px;
   }
 
   .contactMethods {
-    gap: 10px;
+    gap: 15px; /* Reduz ainda mais o espaçamento entre os botões */
+    margin-top: 20px;
   }
 
   .contactButton {
-    width: 40px;
-    height: 40px;
-    font-size: 1em;
+    width: 50px; /* Reduz o tamanho dos botões */
+    height: 50px; /* Reduz o tamanho dos botões */
+    font-size: 1.2em;
   }
 
   .contactIcon {
-    font-size: 1.2em;
+    font-size: 1.4em;
+    color: var(--cor-acento-2);
   }
 }

@@ -1,20 +1,17 @@
 /* App.module.css */
 .appContainer {
   margin-top: 60px;
-  padding: 20px; 
-  box-sizing: border-box; 
+  padding: 20px;
+  box-sizing: border-box;
   width: 100%;
-  max-width: 1200px; 
-  margin: 60px auto 0; 
+  max-width: 1200px;
+  margin: 60px auto 0;
 }
 
 /* Estilos para a página inicial */
 .homePageContainer {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(300px, 1fr)
-  ); 
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
 }
 
@@ -35,16 +32,17 @@
 .productName {
   font-weight: bold;
   margin-bottom: 5px;
+  color: var(--cor-texto-principal); /* Usando a variável de cor */
 }
 
 .productPrice {
-  color: #e44d26;
+  color: var(--cor-acento-1); /* Usando a variável de cor */
   font-weight: bold;
 }
 
 .addToCartButton {
-  background-color: #cc9900;
-  color: white;
+  background-color: var(--cor-acento-2); /* Usando a variável de cor */
+  color: var(--cor-base); /* Usando a variável de cor */
   border: none;
   padding: 8px 15px;
   border-radius: 5px;
@@ -53,5 +51,5 @@
 }
 
 .addToCartButton:hover {
-  background-color: #b8860b;
+  background-color: var(--cor-acento-3); /* Usando a variável de cor */
 }

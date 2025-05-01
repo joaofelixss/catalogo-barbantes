@@ -1,6 +1,6 @@
 /* src/components/Navigation/Navbar.module.css */
 .navbar {
-  background-color: var(--cor-base); /* Azul Celeste pálido */
+  background-color: var(--cor-base); /* Branco */
   color: var(--cor-texto-principal); /* Azul Marinho suave */
   padding: 15px 20px;
   display: flex;
@@ -58,11 +58,13 @@
 
 .cartIcon {
   font-size: 1.2em;
+  color: var(--cor-acento-1); /* Ícone do carrinho com cor de acento */
 }
 
 .heartIcon {
   font-size: 1.2em;
   margin-left: 5px;
+  color: var(--cor-acento-1); /* Ícone de coração com cor de acento */
 }
 
 .menuButton {
@@ -82,7 +84,7 @@
 .menuIcon {
   width: 30px;
   height: 4px;
-  background-color: #333;
+  background-color: var(--cor-texto-principal); /* Cor do ícone do menu */
   margin: 5px 0;
   transition: 0.4s;
 }
@@ -136,7 +138,7 @@
   .menuIcon {
     width: 30px;
     height: 4px;
-    background-color: #000;
+    background-color: var(--cor-texto-principal); /* Cor do ícone do menu */
     margin: 5px 0;
     transition: 0.4s;
   }
@@ -147,7 +149,7 @@
     bottom: 20px;
     right: 20px;
     background-color: var(--cor-acento-2);
-    color: var(--cor-texto-principal);
+    color: var(--cor-base);
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -170,7 +172,7 @@
     position: absolute;
     top: -8px;
     right: -8px;
-    background-color: #ff4d4d;
+    background-color: #ff4d4d; /* Cor específica, pode ser uma variável se desejar */
     color: white;
     border-radius: 50%;
     padding: 4px 6px;
@@ -214,7 +216,7 @@
 
 .searchInput {
   padding: 8px 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #ccc; /* Uma cor mais neutra para a borda */
   border-radius: 4px 0 0 4px;
   font-size: 1em;
   width: 200px;
@@ -224,7 +226,7 @@
 .searchButton {
   padding: 8px 15px;
   background-color: var(--cor-acento-1); /* Tom de Rosa suave */
-  color: white;
+  color: var(--cor-texto-principal); /* Cor do texto do botão */
   border: none;
   border-radius: 0 4px 4px 0;
   cursor: pointer;
@@ -234,6 +236,7 @@
 
 .searchButton:hover {
   background-color: var(--cor-acento-2); /* Lilás claro no hover */
+  color: var(--cor-base); /* Texto branco no hover para contraste */
 }
 
 /* Adaptações para a barra de busca em telas menores */
