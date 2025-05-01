@@ -10,6 +10,8 @@ import Navbar from "./components/Navigation/Navbar";
 import { Product } from "./types/product";
 import useCart from "./hooks/useCart";
 import CheckoutForm from "./components/CheckoutForm/CheckoutForm"; // Importe o CheckoutForm
+import { FavoritesProvider } from "./contexts/FavoritesContext";
+import FavoritesPage from "./pages/FavoritesPage"; // Importe o FavoritesProvider
 
 const App: React.FC = () => {
   const [products] = useState<Product[]>([
@@ -58,15 +60,12 @@ const App: React.FC = () => {
     handleEmptyCart,
     calculateTotal,
     handleRemoveFromCart,
-  } = useCart(() => products); // Passa uma função que retorna o estado products
+  } = useCart(() => products);
 
   const whatsappNumber = "5569992784621";
   const whatsappLink = `https://wa.me/${whatsappNumber}`;
 
-  const navigate = useNavigate(); // Inicialize useNavigate aqui
-
-  // Remova a lógica de orderDetails e envio do WhatsApp daqui
-  // pois ela será movida para o CheckoutForm
+  const navigate = useNavigate();
 
   const cartItemCount = cartItems.reduce(
     (total, item) => total + (item.quantity || 0),
@@ -74,42 +73,54 @@ const App: React.FC = () => {
   );
 
   return (
-    <div>
-      <Navbar cartItemCount={cartItemCount} whatsappLink={whatsappLink} />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <HomePage onAddToCart={handleAddToCart} products={products} />
-          }
-        />
-        <Route
-          path="/carrinho"
-          element={
-            <ShoppingCart
-              cartItems={cartItems}
-              onQuantityChange={handleQuantityChange}
-              products={products}
-              onEmptyCart={handleEmptyCart}
-              onCheckout={() => navigate("/checkout")} // Navega para /checkout
-              onRemoveFromCart={handleRemoveFromCart}
-            />
-          }
-        />
-        <Route
-          path="/checkout"
-          element={
-            <CheckoutForm
-              cartItems={cartItems}
-              products={products}
-              calculateTotal={calculateTotal}
-              onEmptyCart={handleEmptyCart}
-            />
-          } // Passa os dados necessários como props
-        />
-      </Routes>
-      <ToastContainer />
-    </div>
+    <FavoritesProvider>
+      <div>
+        <Navbar cartItemCount={cartItemCount} whatsappLink={whatsappLink} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <HomePage onAddToCart={handleAddToCart} products={products} />
+            }
+          />
+          <Route
+            path="/carrinho"
+            element={
+              <ShoppingCart
+                cartItems={cartItems}
+                onQuantityChange={handleQuantityChange}
+                products={products}
+                onEmptyCart={handleEmptyCart}
+                onCheckout={() => navigate("/checkout")}
+                onRemoveFromCart={handleRemoveFromCart}
+              />
+            }
+          />
+          <Route
+            path="/checkout"
+            element={
+              <CheckoutForm
+                cartItems={cartItems}
+                products={products}
+                calculateTotal={calculateTotal}
+                onEmptyCart={handleEmptyCart}
+              />
+            }
+          />
+          <Route
+            path="/favoritos" // Adicione a rota para a página de favoritos
+            element={
+              <FavoritesPage
+                products={products}
+                onAddToCart={handleAddToCart}
+                productImages={{}} // Você pode precisar ajustar isso se as imagens forem carregadas de forma diferente
+              />
+            }
+          />
+        </Routes>
+        <ToastContainer />
+      </div>
+    </FavoritesProvider>
   );
 };
 

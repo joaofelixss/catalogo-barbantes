@@ -1,0 +1,33 @@
+/* src/pages/FavoritesPage.module.css */
+.favoritesPageContainer {
+  padding: 30px;
+  max-width: 1200px;
+  margin: 30px auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.favoritesList {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.favoriteItem {
+  /* Os estilos do ProductCard já cuidam da aparência individual do produto */
+}
+
+.favoritesPageContainer p {
+  text-align: center;
+  color: #777;
+  font-size: 1em;
+}

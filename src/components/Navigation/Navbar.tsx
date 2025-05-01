@@ -1,7 +1,7 @@
 // src/components/Navigation/Navbar.tsx
 import React, { useState } from "react";
 import styles from "./Navbar.module.css";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaHeart } from "react-icons/fa"; // Importe o FaHeart
 import { Link } from "react-router-dom";
 
 interface NavbarProps {
@@ -41,6 +41,15 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
         <li className={styles.navItem}>
           <Link to="/" className={styles.navLink} aria-label="Página inicial">
             Home
+          </Link>
+        </li>
+        <li className={styles.navItem}>
+          <Link
+            to="/favoritos"
+            className={styles.navLink}
+            aria-label="Lista de favoritos"
+          >
+            Favoritos {(FaHeart as React.FC)({ className: styles.heartIcon })}
           </Link>
         </li>
         <li className={styles.navItem}>

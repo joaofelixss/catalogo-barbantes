@@ -60,6 +60,11 @@
   font-size: 1.2em;
 }
 
+.heartIcon {
+  font-size: 1.2em;
+  margin-left: 5px;
+}
+
 .menuButton {
   display: none;
   cursor: pointer;
