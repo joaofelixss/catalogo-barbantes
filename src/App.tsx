@@ -8,7 +8,10 @@ import HomePage from "./pages/HomePage";
 import FavoritesPage from "./pages/FavoritesPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import SearchResultsPage from "./pages/SearchResultsPage";
-import PedidoEnviadoPage from "./pages/PedidoEnviadoPage"; // Importe a nova página
+import PedidoEnviadoPage from "./pages/PedidoEnviadoPage";
+import CategoryBarbantesPage from "./pages/CategoryBarbantesPage"; // Importe as novas páginas
+import CategoryLinhasPage from "./pages/CategoryLinhasPage";
+import CategoryTapetesPage from "./pages/CategoryTapetesPage";
 
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import CheckoutForm from "./components/CheckoutForm/CheckoutForm";
@@ -73,6 +76,73 @@ const App: React.FC = () => {
         "/images/produto2.png",
       ],
       num: "8",
+    },
+
+    // Novos produtos: Barbante Eco Brasil
+    {
+      id: 5,
+      name: "Barbante Eco Brasil",
+      color: "Azul Bebê",
+      price: 19.9,
+      descricao: "Barbante ecológico de alta qualidade.",
+      images: ["/images/barbante-eco-brasil-azul.jpg"], // Adicione as imagens reais
+      num: "6",
+    },
+    {
+      id: 6,
+      name: "Barbante Eco Brasil",
+      color: "Vermelho Vivo",
+      price: 19.9,
+      descricao: "Barbante ecológico de alta qualidade.",
+      images: ["/images/barbante-eco-brasil-vermelho.jpg"], // Adicione as imagens reais
+      num: "6",
+    },
+    {
+      id: 7,
+      name: "Barbante Eco Brasil",
+      color: "Cru",
+      price: 18.5,
+      descricao: "Barbante ecológico de alta qualidade.",
+      images: ["/images/barbante-eco-brasil-cru.jpg"], // Adicione as imagens reais
+      num: "8",
+    },
+    // Adicione as outras cores do Barbante Eco Brasil aqui...
+
+    // Novos produtos: Linhas Barroco
+    {
+      id: 15,
+      name: "Barroco Multicolor",
+      color: "Floral",
+      price: 32.5,
+      descricao: "Fio Barroco com cores vibrantes e mescladas.",
+      images: ["/images/barroco-multicolor-floral.jpg"], // Adicione as imagens reais
+    },
+    {
+      id: 16,
+      name: "Barroco Decore",
+      color: "Avelã",
+      price: 28.0,
+      descricao: "Fio Barroco com toque felpudo, ideal para detalhes.",
+      images: ["/images/barroco-decore-avela.jpg"], // Adicione as imagens reais
+    },
+    // Adicione outras linhas Barroco aqui...
+
+    // Novos produtos: CrocHês (Tapetes)
+    {
+      id: 20,
+      name: "Tapete de Crochê Geométrico",
+      color: "Cinza e Amarelo",
+      price: 75.0,
+      descricao: "Tapete feito à mão com design geométrico moderno.",
+      images: ["/images/tapete-croche-geometrico.jpg"], // Adicione as imagens reais
+    },
+    {
+      id: 21,
+      name: "Tapete de Crochê Floral",
+      color: "Tons de Rosa",
+      price: 89.9,
+      descricao: "Tapete artesanal com delicadas flores em crochê.",
+      images: ["/images/tapete-croche-floral.jpg"], // Adicione as imagens reais
     },
   ]);
 
@@ -158,8 +228,34 @@ const App: React.FC = () => {
               />
             }
           />
-          <Route path="/pedido-enviado" element={<PedidoEnviadoPage />} />{" "}
-          {/* Adicione a rota para a página de pedido enviado */}
+          <Route path="/pedido-enviado" element={<PedidoEnviadoPage />} />
+          <Route
+            path="/barbantes"
+            element={
+              <CategoryBarbantesPage
+                products={products}
+                onAddToCart={handleAddToCart}
+              />
+            }
+          />
+          <Route
+            path="/linhas"
+            element={
+              <CategoryLinhasPage
+                products={products}
+                onAddToCart={handleAddToCart}
+              />
+            }
+          />
+          <Route
+            path="/tapetes"
+            element={
+              <CategoryTapetesPage
+                products={products}
+                onAddToCart={handleAddToCart}
+              />
+            }
+          />
         </Routes>
         <ToastContainer />
       </div>

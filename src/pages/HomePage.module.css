@@ -3,6 +3,7 @@
   font-family: "Poppins", sans-serif;
   color: var(--cor-texto-principal); /* Azul Marinho suave */
   background-color: var(--cor-base); /* Azul Celeste pálido */
+  padding: 20px;
 }
 
 .header {
@@ -50,10 +51,117 @@
   font-size: 1.5em;
 }
 
+/* Estilos para as seções de categoria */
+.categorySection {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #f9f9f9; /* Um fundo levemente mais escuro para destacar as seções */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.categorySection h2 {
+  color: var(--cor-acento-1); /* Rosa Névoa suave para os títulos das seções */
+  margin-bottom: 15px;
+  border-bottom: 2px solid var(--cor-acento-2); /* Um tom mais escuro de rosa para a linha */
+  padding-bottom: 8px;
+  text-align: center; /* Centraliza o título da seção */
+}
+
+.productList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center; /* Centraliza os cards de produtos */
+}
+
+.productCardWrapper {
+  width: calc(
+    33.33% - 20px
+  ); /* Aproximadamente 3 produtos por linha em telas maiores */
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.productCardWrapper:hover {
+  transform: scale(1.02);
+}
+
+.productCardWrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-bottom: 1px solid #eee;
+}
+
+.productCardWrapper h3 {
+  font-size: 1rem;
+  margin: 10px 0 5px;
+  padding: 0 10px;
+  color: var(--cor-texto-secundario); /* Um tom mais claro do azul marinho */
+  text-align: center;
+}
+
+.productCardWrapper p {
+  color: #555;
+  margin-bottom: 10px;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.productCardWrapper button {
+  background-color: var(
+    --cor-acento-2
+  ); /* Um tom mais escuro de rosa para o botão */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.productCardWrapper button:hover {
+  background-color: var(
+    --cor-acento-1
+  ); /* Rosa Névoa suave para o hover do botão */
+}
+
+.viewMore {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.viewMore a {
+  color: var(--cor-acento-2);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.viewMore a:hover {
+  color: var(--cor-acento-1);
+}
+
 /* Responsividade para a lista de produtos */
+@media (max-width: 960px) {
+  .productCardWrapper {
+    width: calc(50% - 20px); /* 2 produtos por linha em telas médias */
+  }
+}
+
 @media (max-width: 600px) {
-  .listaDeProdutos {
-    grid-template-columns: 1fr;
+  .productList {
+    flex-direction: column; /* 1 produto por linha em telas pequenas */
+  }
+
+  .productCardWrapper {
+    width: 100%;
   }
 }
 
