@@ -54,7 +54,7 @@ const CategoryHighlightSection: React.FC<CategoryHighlightSectionProps> = ({
                 className={styles.productLink}
               >
                 <img
-                  src={product.images[0]}
+                  src={`${process.env.PUBLIC_URL}${product.images[0]}`} // ADICIONADO PUBLIC_URL AQUI
                   alt={product.name}
                   className={styles.productImage}
                 />

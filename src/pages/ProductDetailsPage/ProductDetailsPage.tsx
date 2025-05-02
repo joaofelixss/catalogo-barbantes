@@ -29,7 +29,7 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
       return [];
     }
     const otherProducts = products.filter((p) => p.id !== product.id);
-    // Embaralha o array e pega os primeiros 3 para sugestão
+    // Embaralha o array e pega os primeiros 2 para sugestão
     const shuffledProducts = [...otherProducts].sort(() => 0.5 - Math.random());
     return shuffledProducts.slice(0, 2);
   }, [product, products]);
@@ -58,7 +58,7 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
     <div className={styles.productDetailsContainer}>
       <div className={styles.imageGallery}>
         <img
-          src={currentImage}
+          src={`${process.env.PUBLIC_URL}${currentImage}`} // ADICIONADO PUBLIC_URL AQUI
           alt={product.name}
           className={styles.mainImage}
         />
@@ -67,7 +67,7 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
             {product.images.map((imgUrl, index) => (
               <img
                 key={index}
-                src={imgUrl}
+                src={`${process.env.PUBLIC_URL}${imgUrl}`} // ADICIONADO PUBLIC_URL AQUI
                 alt={`${product.name} - Miniatura ${index + 1}`}
                 className={`${styles.thumbnail} ${
                   imgUrl === currentImage ? styles.active : ""
@@ -107,7 +107,7 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
                 key={relatedProduct.id}
                 produto={relatedProduct}
                 onAddToCart={onAddToCart}
-                productImages={{}} // Por enquanto, passamos um objeto vazio
+                productImages={{}} // O ProductCard já lida com o PUBLIC_URL
               />
             ))}
           </div>

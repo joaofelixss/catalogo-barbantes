@@ -53,7 +53,7 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
       {cartItems.length === 0 ? (
         <div className={styles.emptyCart}>
           <p>Seu carrinho está vazio.</p>
-          <Link to="">Voltar para a loja</Link>
+          <Link to="/">Voltar para a loja</Link>
         </div>
       ) : (
         <div className={styles.cartContent}>

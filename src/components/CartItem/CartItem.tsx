@@ -48,7 +48,7 @@ const CartItem: React.FC<CartItemProps> = ({
     <div className={styles.cartItem}>
       {product.images && product.images[0] && (
         <img
-          src={product.images[0]}
+          src={`${process.env.PUBLIC_URL}${product.images[0]}`}
           alt={product.name}
           className={styles.itemImage}
         />

@@ -4,6 +4,7 @@ import { useFavorites } from "../../contexts/FavoritesContext";
 import { Product } from "../../types/product";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import styles from "./FavoritesPage.module.css";
+import { Link } from "react-router-dom";
 
 interface FavoritesPageProps {
   products: Product[];
@@ -28,6 +29,7 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({
       <div className={styles.favoritesPageContainer}>
         <h2>Meus Favoritos</h2>
         <p>Sua lista de favoritos está vazia.</p>
+        <Link to="/">Voltar para a loja</Link>
       </div>
     );
   }
