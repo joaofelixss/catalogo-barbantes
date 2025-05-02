@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/catalogo-barbantes/static/css/main.d01210c0.css",
-    "main.js": "/catalogo-barbantes/static/js/main.86172fce.js",
+    "main.css": "/catalogo-barbantes/static/css/main.89f49892.css",
+    "main.js": "/catalogo-barbantes/static/js/main.3a7728bb.js",
     "static/js/453.7e8267fe.chunk.js": "/catalogo-barbantes/static/js/453.7e8267fe.chunk.js",
     "index.html": "/catalogo-barbantes/index.html",
-    "main.d01210c0.css.map": "/catalogo-barbantes/static/css/main.d01210c0.css.map",
-    "main.86172fce.js.map": "/catalogo-barbantes/static/js/main.86172fce.js.map",
+    "main.89f49892.css.map": "/catalogo-barbantes/static/css/main.89f49892.css.map",
+    "main.3a7728bb.js.map": "/catalogo-barbantes/static/js/main.3a7728bb.js.map",
     "453.7e8267fe.chunk.js.map": "/catalogo-barbantes/static/js/453.7e8267fe.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d01210c0.css",
-    "static/js/main.86172fce.js"
+    "static/css/main.89f49892.css",
+    "static/js/main.3a7728bb.js"
   ]
 }
