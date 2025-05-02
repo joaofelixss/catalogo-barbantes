@@ -2,10 +2,10 @@
 import React from "react";
 import styles from "./HomePage.module.css";
 import { Product } from "../../types/product";
-import HeroSection from "../../components/Hero/HeroSection";
-import ContactSection from "../../components/Contact/ContactSection";
+import HeroSection from "./components/HeroSection";
+import ContactSection from "./components/ContactSection";
 import { Link } from "react-router-dom";
-import CategoryHighlightSection from "../../components/CategoryHighlightSection/CategoryHighlightSection"; // Importe o novo componente
+import CategoryHighlightSection from "../../shared/components/CategoryHighlightSection/CategoryHighlightSection"; // Importe o novo componente
 
 interface HomePageProps {
   onAddToCart: (product: Product) => void;

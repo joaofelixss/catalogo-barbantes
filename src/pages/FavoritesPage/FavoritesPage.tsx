@@ -1,8 +1,8 @@
 // src/pages/FavoritesPage.tsx
 import React from "react";
-import { useFavorites } from "../../contexts/FavoritesContext";
+import { useFavorites } from "../../shared/contexts/FavoritesContext";
 import { Product } from "../../types/product";
-import ProductCard from "../../components/ProductCard/ProductCard";
+import ProductCard from "../../features/product-catalog/components/ProductCard";
 import styles from "./FavoritesPage.module.css";
 import { Link } from "react-router-dom";
 
