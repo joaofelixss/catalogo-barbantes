@@ -1,11 +1,8 @@
 /* App.module.css */
 .appContainer {
-  margin-top: 60px;
-  padding: 20px;
   box-sizing: border-box;
   width: 100%;
-  max-width: 1200px;
-  margin: 60px auto 0;
+  margin: 0 auto 0 auto;
 }
 
 /* Estilos para a página inicial */

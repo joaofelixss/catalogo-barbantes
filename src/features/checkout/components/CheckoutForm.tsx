@@ -1,23 +1,19 @@
-// src/components/CheckoutForm/CheckoutForm.tsx
+// src/features/checkout/components/CheckoutForm.tsx
 import React, { useState } from "react";
 import styles from "./CheckoutForm.module.css";
 import { useNavigate } from "react-router-dom";
-import { CartItem as CartItemType, Product } from "../../../types/product";
+import { Product } from "../../../types/product";
 import { toast } from "react-toastify";
+import { useCartStore } from "../../../store/cartStore"; // Importe o Zustand store
+import { useProductStore } from "../../../store/productStore"; // Importe para acessar os produtos
 
-interface CheckoutFormProps {
-  cartItems: CartItemType[];
-  products: Product[];
-  calculateTotal: () => string;
-  onEmptyCart: () => void;
-}
+const CheckoutForm: React.FC = () => {
+  const cartItems = useCartStore((state) => state.items);
+  const clearCart = useCartStore((state) => state.clearCart);
+  const getTotalPrice = useCartStore((state) => state.getTotalPrice);
+  const products = useProductStore((state) => state.products);
+  const navigate = useNavigate();
 
-const CheckoutForm: React.FC<CheckoutFormProps> = ({
-  cartItems,
-  products,
-  calculateTotal,
-  onEmptyCart,
-}) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [notes, setNotes] = useState("");
@@ -27,19 +23,18 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   const [enderecoEntrega, setEnderecoEntrega] = useState("");
   const [frete] = useState(5.0); // Valor fixo do frete
   const whatsappNumber = "5569992784621";
-  const navigate = useNavigate();
 
-  const totalCompra = parseFloat(calculateTotal());
+  const totalCompra = getTotalPrice();
   const totalComFrete = desejaEntrega ? totalCompra + frete : totalCompra;
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
-    setNameError(""); // Limpa o erro ao digitar
+    setNameError("");
   };
 
   const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPhone(event.target.value);
-    setPhoneError(""); // Limpa o erro ao digitar
+    setPhoneError("");
   };
 
   const handleNotesChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -50,7 +45,6 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setDesejaEntrega(event.target.checked);
-    // Limpar o endereço se a entrega não for desejada
     if (!event.target.checked) {
       setEnderecoEntrega("");
     }
@@ -99,10 +93,10 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
 
       let orderDetails = cartItems
         .map((item) => {
-          const product = products.find((p) => p.id === item.id);
+          const product = products.find((p) => p.id === item.product.id);
           if (!product) {
             console.error(
-              `Produto com ID ${item.id} não encontrado no array de produtos.`
+              `Produto com ID ${item.product.id} não encontrado no array de produtos.`
             );
             return null;
           }
@@ -146,8 +140,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
         progress: undefined,
       });
 
-      onEmptyCart();
-      navigate("/pedido-enviado"); // Redireciona para a página de pedido enviado
+      clearCart();
+      navigate("/pedido-enviado");
     }
   };
 

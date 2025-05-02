@@ -1,4 +1,4 @@
-// src/components/Navigation/Navbar.tsx
+// src/shared/components/Navbar.tsx
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./Navbar.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

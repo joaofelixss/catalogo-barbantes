@@ -1,41 +1,37 @@
-// src/components/CartItem/CartItem.tsx
+// src/features/shopping-cart/components/CartItem.tsx
 import React from "react";
 import styles from "./CartItem.module.css";
 import { CartItem as CartItemType, Product } from "../../../types/product";
-import formatPrice from "../../../shared/utils/formatPrice"; // Importe a função
+import formatPrice from "../../../shared/utils/formatPrice";
 
 interface CartItemProps {
-  item: CartItemType;
-  product: Product | undefined;
+  product: Product; // Garante que product não seja undefined aqui
+  quantity: number;
   onQuantityChange: (productId: number, quantity: number) => void;
   onRemoveFromCart: (productId: number) => void;
 }
 
 const CartItem: React.FC<CartItemProps> = ({
-  item,
   product,
+  quantity,
   onQuantityChange,
   onRemoveFromCart,
 }) => {
-  if (!product) {
-    return null;
-  }
-
   const handleIncrement = () => {
-    onQuantityChange(item.id, (item.quantity || 0) + 1);
+    onQuantityChange(product.id, quantity + 1);
   };
 
   const handleDecrement = () => {
-    if ((item.quantity || 0) > 1) {
-      onQuantityChange(item.id, (item.quantity || 0) - 1);
+    if (quantity > 1) {
+      onQuantityChange(product.id, quantity - 1);
     }
   };
 
   const handleRemove = () => {
-    onRemoveFromCart(item.id);
+    onRemoveFromCart(product.id);
   };
 
-  const subtotal = formatPrice(product.price * (item.quantity || 0));
+  const subtotal = formatPrice(product.price * quantity);
   const formattedPrice = formatPrice(product.price);
 
   const details: string[] = [`Cor: ${product.color}`];
@@ -62,7 +58,7 @@ const CartItem: React.FC<CartItemProps> = ({
         <button onClick={handleDecrement} aria-label="Decrementar quantidade">
           -
         </button>
-        <span>{item.quantity || 0}</span>
+        <span>{quantity}</span>
         <button onClick={handleIncrement} aria-label="Incrementar quantidade">
           +
         </button>

@@ -1,4 +1,4 @@
-// src/hooks/useCart.tsx
+// src/features/shopping-cart/hooks/useCart.tsx
 import { useState, useEffect, useCallback } from "react";
 import { CartItem, Product } from "../../../types/product";
 import { toast } from "react-toastify";

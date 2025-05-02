@@ -1,45 +1,58 @@
-// src/components/ShoppingCart/ShoppingCart.tsx
-import React, { useState } from "react"; // Importe useState
+// src/features/shopping-cart/components/ShoppingCart.tsx
+import React, { useState } from "react";
 import styles from "./ShoppingCart.module.css";
-import { CartItem as CartItemType, Product } from "../../../types/product";
+import { Product } from "../../../types/product";
 import CartItem from "./CartItem";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useCartStore } from "../../../store/cartStore";
+import { useProductStore } from "../../../store/productStore";
 
-interface ShoppingCartProps {
-  cartItems: CartItemType[];
-  products: Product[];
-  onQuantityChange: (productId: number, quantity: number) => void;
-  onEmptyCart: () => void;
-  onCheckout: () => void;
-  onRemoveFromCart: (productId: number) => void;
-}
-
-const ShoppingCart: React.FC<ShoppingCartProps> = ({
-  cartItems,
-  products,
-  onQuantityChange,
-  onEmptyCart,
-  onCheckout,
-  onRemoveFromCart,
-}) => {
-  const [cartEmptyMessageVisible, setCartEmptyMessageVisible] = useState(false); // Novo estado
+const ShoppingCart: React.FC = () => {
+  const cartItems = useCartStore((state) => state.items);
+  const removeItem = useCartStore((state) => state.removeItem);
+  const increaseQuantity = useCartStore((state) => state.increaseQuantity);
+  const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
+  const clearCart = useCartStore((state) => state.clearCart);
+  const getTotalPrice = useCartStore((state) => state.getTotalPrice);
+  const products = useProductStore((state) => state.products);
+  const navigate = useNavigate();
+  const [cartEmptyMessageVisible, setCartEmptyMessageVisible] = useState(false);
 
   const calculateTotal = () => {
-    return cartItems
-      .reduce((total, item) => {
-        const product = products.find((p) => p.id === item.id);
-        return total + (product ? product.price * (item.quantity || 1) : 0);
-      }, 0)
-      .toFixed(2)
-      .replace(".", ",");
+    return getTotalPrice().toFixed(2).replace(".", ",");
   };
 
   const handleEmptyCart = () => {
-    onEmptyCart();
-    setCartEmptyMessageVisible(true); // Mostra a mensagem após esvaziar
+    clearCart();
+    setCartEmptyMessageVisible(true);
     setTimeout(() => {
-      setCartEmptyMessageVisible(false); // Esconde a mensagem após alguns segundos
-    }, 3000); // A mensagem desaparece após 3 segundos (ajuste conforme necessário)
+      setCartEmptyMessageVisible(false);
+    }, 3000);
+  };
+
+  const handleQuantityChange = (productId: number, quantity: number) => {
+    if (quantity > 0) {
+      const itemInCart = cartItems.find(
+        (item) => item.product.id === productId
+      );
+      if (itemInCart) {
+        if (quantity > itemInCart.quantity) {
+          increaseQuantity(productId);
+        } else if (quantity < itemInCart.quantity) {
+          decreaseQuantity(productId);
+        }
+      }
+    } else if (quantity === 0) {
+      removeItem(productId);
+    }
+  };
+
+  const handleRemoveFromCart = (productId: number) => {
+    removeItem(productId);
+  };
+
+  const handleCheckout = () => {
+    navigate("/checkout");
   };
 
   return (
@@ -58,15 +71,20 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
       ) : (
         <div className={styles.cartContent}>
           <ul className={styles.cartItemsList}>
-            {cartItems.map((item) => {
-              const product = products.find((p) => p.id === item.id);
+            {cartItems.map((cartItem) => {
+              const product = products.find(
+                (p) => p.id === cartItem.product.id
+              );
+              if (!product) {
+                return null;
+              }
               return (
-                <li key={item.id} className={styles.cartItem}>
+                <li key={cartItem.product.id} className={styles.cartItem}>
                   <CartItem
-                    item={item}
                     product={product}
-                    onQuantityChange={onQuantityChange}
-                    onRemoveFromCart={onRemoveFromCart}
+                    quantity={cartItem.quantity}
+                    onQuantityChange={handleQuantityChange}
+                    onRemoveFromCart={handleRemoveFromCart}
                   />
                 </li>
               );
@@ -78,7 +96,10 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
               <button onClick={handleEmptyCart} className={styles.emptyButton}>
                 Esvaziar Carrinho
               </button>
-              <button onClick={onCheckout} className={styles.checkoutButton}>
+              <button
+                onClick={handleCheckout}
+                className={styles.checkoutButton}
+              >
                 Finalizar Pedido
               </button>
             </div>
