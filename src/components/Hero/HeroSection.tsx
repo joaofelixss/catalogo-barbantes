@@ -73,7 +73,7 @@ const HeroSection: React.FC = () => {
         <div
           className={`${styles.imageContainer} ${loaded ? styles.fadeIn : ""}`}
           style={{
-            backgroundImage: `url(${images[currentImageIndex]})`,
+            backgroundImage: `url(${process.env.PUBLIC_URL}${images[currentImageIndex]})`,
             opacity: loaded ? 1 : 0,
           }}
         >

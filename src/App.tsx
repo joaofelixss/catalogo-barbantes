@@ -171,13 +171,13 @@ const App: React.FC = () => {
         <Navbar cartItemCount={cartItemCount} whatsappLink={whatsappLink} />
         <Routes>
           <Route
-            path="/"
+            path=""
             element={
               <HomePage onAddToCart={handleAddToCart} products={products} />
             }
           />
           <Route
-            path="/carrinho"
+            path="carrinho"
             element={
               <ShoppingCart
                 cartItems={cartItems}
@@ -190,7 +190,7 @@ const App: React.FC = () => {
             }
           />
           <Route
-            path="/checkout"
+            path="checkout"
             element={
               <CheckoutForm
                 cartItems={cartItems}
@@ -201,7 +201,7 @@ const App: React.FC = () => {
             }
           />
           <Route
-            path="/favoritos"
+            path="favoritos"
             element={
               <FavoritesPage
                 products={products}
@@ -211,7 +211,7 @@ const App: React.FC = () => {
             }
           />
           <Route
-            path="/produto/:id"
+            path="produto/:id"
             element={
               <ProductDetailsPage
                 products={products}
@@ -220,7 +220,7 @@ const App: React.FC = () => {
             }
           />
           <Route
-            path="/buscar"
+            path="buscar"
             element={
               <SearchResultsPage
                 products={products}
@@ -228,9 +228,9 @@ const App: React.FC = () => {
               />
             }
           />
-          <Route path="/pedido-enviado" element={<PedidoEnviadoPage />} />
+          <Route path="pedido-enviado" element={<PedidoEnviadoPage />} />
           <Route
-            path="/barbantes"
+            path="barbantes"
             element={
               <CategoryBarbantesPage
                 products={products}
@@ -239,7 +239,7 @@ const App: React.FC = () => {
             }
           />
           <Route
-            path="/linhas"
+            path="linhas"
             element={
               <CategoryLinhasPage
                 products={products}
@@ -248,7 +248,7 @@ const App: React.FC = () => {
             }
           />
           <Route
-            path="/tapetes"
+            path="tapetes"
             element={
               <CategoryTapetesPage
                 products={products}
