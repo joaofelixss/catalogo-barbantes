@@ -35,7 +35,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
   const handleSearchSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (searchTerm.trim()) {
-      navigate(`/buscar?q=${searchTerm}`);
+      navigate(`buscar?q=${searchTerm}`); // Removida a barra inicial
       setSearchTerm("");
     }
   };
@@ -82,7 +82,9 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
     <nav className={styles.navbar} ref={navRef}>
       <div className={styles.leftSection}>
         <div className={styles.logoContainer}>
-          <Link to="/" aria-label="Página inicial">
+          <Link to="" aria-label="Página inicial">
+            {" "}
+            {/* Alterado para to="" */}
             <img
               src={`${process.env.PUBLIC_URL}/images/logo.png`}
               alt="Logo da Loja"
@@ -133,13 +135,15 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
         id="navbarNav"
       >
         <li className={styles.navItem}>
-          <Link to="/" className={styles.navLink} aria-label="Página inicial">
+          <Link to="" className={styles.navLink} aria-label="Página inicial">
+            {" "}
+            {/* Alterado para to="" */}
             Home
           </Link>
         </li>
         <li className={styles.navItem}>
           <Link
-            to="/barbantes"
+            to="barbantes"
             className={styles.navLink}
             aria-label="Ver barbantes"
           >
@@ -147,13 +151,13 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
           </Link>
         </li>
         <li className={styles.navItem}>
-          <Link to="/linhas" className={styles.navLink} aria-label="Ver linhas">
+          <Link to="linhas" className={styles.navLink} aria-label="Ver linhas">
             Linhas
           </Link>
         </li>
         <li className={styles.navItem}>
           <Link
-            to="/tapetes"
+            to="tapetes"
             className={styles.navLink}
             aria-label="Ver tapetes"
           >
@@ -164,7 +168,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
           {" "}
           {/* Adicionei a classe dropdown ao item do carrinho */}
           <Link
-            to="/carrinho"
+            to="carrinho"
             className={`${styles.navLink} ${styles.cartLink}`}
             aria-label={`Carrinho de compras. ${cartItemCount} itens`}
           >
@@ -179,7 +183,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
             {/* Adicionei o submenu de favoritos */}
             <li className={styles.navItem}>
               <Link
-                to="/favoritos"
+                to="favoritos"
                 className={styles.navLink}
                 aria-label="Lista de favoritos"
               >
@@ -194,7 +198,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
 
       {/* Carrinho flutuante (visível em telas menores) */}
       <Link
-        to="/carrinho"
+        to="carrinho"
         className={styles.floatingCart}
         aria-label={`Carrinho de compras. ${cartItemCount} itens`}
       >

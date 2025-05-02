@@ -39,21 +39,21 @@ const HomePage: React.FC<HomePageProps> = ({ onAddToCart, products }) => {
         title="Destaque dos Barbantes"
         products={barbanteEcoBrasil}
         onAddToCart={onAddToCart}
-        viewMoreLink="/barbantes"
+        viewMoreLink="barbantes"
       />
 
       <CategoryHighlightSection
         title="Destaque das Linhas Barroco"
         products={linhasBarroco}
         onAddToCart={onAddToCart}
-        viewMoreLink="/linhas"
+        viewMoreLink="linhas"
       />
 
       <CategoryHighlightSection
         title="Destaque dos Tapetes de Crochê"
         products={crochesTapetes}
         onAddToCart={onAddToCart}
-        viewMoreLink="/tapetes"
+        viewMoreLink="tapetes"
       />
 
       <ContactSection />

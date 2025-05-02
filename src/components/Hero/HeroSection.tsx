@@ -61,7 +61,7 @@ const HeroSection: React.FC = () => {
           encantadoras.
         </p>
         <Link
-          to="/barbantes"
+          to="barbantes"
           className={`${styles.heroButton} ${
             loaded ? styles.fadeInDelayMore : ""
           }`}

@@ -24,7 +24,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     <div className={styles.productCardContainer}>
       {" "}
       {/* Container principal */}
-      <Link to={`/produto/${produto.id}`} className={styles.productLink}>
+      <Link to={`produto/${produto.id}`} className={styles.productLink}>
         <div className={styles.productCard}>
           {" "}
           {/* Card do produto (clicável para detalhes) */}

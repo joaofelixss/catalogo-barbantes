@@ -16,7 +16,7 @@ const PedidoEnviadoPage: React.FC = () => {
         Caso tenha alguma dúvida, você pode nos contatar diretamente pelo
         WhatsApp.
       </p>
-      <Link to="/" className={styles.voltarParaHome}>
+      <Link to="" className={styles.voltarParaHome}>
         Voltar para a Página Inicial
       </Link>
     </div>
