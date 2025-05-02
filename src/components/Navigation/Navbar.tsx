@@ -84,7 +84,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
         <div className={styles.logoContainer}>
           <Link to="/" aria-label="Página inicial">
             <img
-              src="{`${process.env.PUBLIC_URL}/images/logo.png"
+              src={`${process.env.PUBLIC_URL}/images/logo.png"´`}
               alt="Logo da Loja"
               className={styles.logo}
             />
