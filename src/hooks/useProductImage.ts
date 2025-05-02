@@ -10,10 +10,20 @@ const useProductImage = (
   productImages?: ProductImageMap
 ): string | undefined => {
   const imageFromMap = productImages?.[product.id];
+  let imageUrl: string | undefined;
+
   if (typeof imageFromMap === "string") {
-    return imageFromMap;
+    imageUrl = imageFromMap;
+  } else if (Array.isArray(product.images) && product.images.length > 0) {
+    imageUrl = product.images[0];
   }
-  return product.images?.[0];
+
+  // Adiciona o prefixo PUBLIC_URL se imageUrl existir e começar com '/'
+  if (imageUrl && imageUrl.startsWith("/")) {
+    return `${process.env.PUBLIC_URL}${imageUrl}`;
+  }
+
+  return imageUrl;
 };
 
 export default useProductImage;
