@@ -1,6 +1,6 @@
 // src/components/ProductCard/AddToCartButton.tsx
 import React from "react";
-import styles from "./ProductCard.module.css";
+import styles from "../../product-catalog/components/ProductCard.module.css";
 import { Product } from "../../../types/product";
 
 interface AddToCartButtonProps {

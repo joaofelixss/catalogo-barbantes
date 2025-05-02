@@ -1,6 +1,6 @@
 // src/components/ProductCard/FavoriteButton.tsx
 import React from "react";
-import styles from "./ProductCard.module.css";
+import styles from "../../product-catalog/components/ProductCard.module.css";
 import { useFavorites } from "../../../shared/contexts/FavoritesContext";
 import { Product } from "../../../types/product";
 import { Heart } from "react-feather";
