@@ -1,5 +1,5 @@
 // src/shared/components/Navbar.tsx
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect  } from "react";
 import styles from "./Navbar.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp as faWhatsappBrand } from "@fortawesome/free-brands-svg-icons"; // Renomeando para evitar conflito
 import { Link, useNavigate, useLocation } from "react-router-dom"; // Importe useLocation
+import useClickOutside from "../../hooks/useClickOutside";
 
 interface NavbarProps {
   cartItemCount: number;
@@ -40,43 +41,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartItemCount, whatsappLink }) => {
     }
   };
 
-  // Fechar o menu ao clicar fora
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        isMenuOpen &&
-        navRef.current &&
-        !navRef.current.contains(event.target as Node)
-      ) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isMenuOpen]);
-
-  // Fechar o menu ao clicar fora
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        isMenuOpen &&
-        navRef.current &&
-        !navRef.current.contains(event.target as Node)
-      ) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isMenuOpen, navRef]); // Adicionei navRef como dependência
+  useClickOutside(navRef, () => setIsMenuOpen(false), isMenuOpen);
 
   return (
     <nav className={styles.navbar} ref={navRef}>
