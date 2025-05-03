@@ -1,93 +1,50 @@
-// src/app/App.tsx
-import React, { useEffect, useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+//src/app/App.tsx
+import React, { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
-import HomePage from "../pages/HomePage/HomePage";
-import FavoritesPage from "../pages/FavoritesPage/FavoritesPage";
-import ProductDetailsPage from "../features/product-catalog/pages/ProductDetailsPage";
-import SearchResultsPage from "../features/search/pages/SearchResultsPage";
-import PedidoEnviadoPage from "../features/checkout/pages/PedidoEnviadoPage";
-import CategoryBarbantesPage from "../features/product-catalog/pages/CategoryBarbantesPage";
-import CategoryLinhasPage from "../features/product-catalog/pages/CategoryLinhasPage";
-import CategoryTapetesPage from "../features/product-catalog/pages/CategoryTapetesPage";
+import HomePage from '../pages/HomePage/HomePage'
+import FavoritesPage from '../pages/FavoritesPage/FavoritesPage'
+import ProductDetailsPage from '../features/product-catalog/pages/ProductDetailsPage'
+import SearchResultsPage from '../features/search/pages/SearchResultsPage'
+import PedidoEnviadoPage from '../features/checkout/pages/PedidoEnviadoPage'
+import CategoryBarbantesPage from '../features/product-catalog/pages/CategoryBarbantesPage'
+import CategoryLinhasPage from '../features/product-catalog/pages/CategoryLinhasPage'
+import CategoryTapetesPage from '../features/product-catalog/pages/CategoryTapetesPage'
 
-import ShoppingCart from "../features/shopping-cart/components/ShoppingCart";
-import CheckoutForm from "../features/checkout/components/CheckoutForm";
-import Navbar from "../shared/components/Navbar";
+import ShoppingCart from '../features/shopping-cart/components/ShoppingCart'
+import CheckoutForm from '../features/checkout/components/CheckoutForm'
+import Navbar from '../shared/components/Navbar'
 
-import { FavoritesProvider } from "../shared/contexts/FavoritesContext";
-import { useCartStore } from "../store/cartStore";
-import { useProductStore } from "../store/productStore";
-import { Product } from "../types/product";
-import styles from "./App.module.css";
-import useLoadInitialProducts from "../hooks/useLoadInitialProducts";
+import { FavoritesProvider } from '../shared/contexts/FavoritesContext'
+import { useCartStore } from '../store/cartStore'
+import { useProductStore } from '../store/productStore'
+import { Product } from '../types/product'
+import styles from './App.module.css'
+import useLoadInitialProducts from '../hooks/useLoadInitialProducts'
 
 const App: React.FC = () => {
-  const {
-    items: cartItems,
-    addItem: handleAddToCartZustand,
-    increaseQuantity: handleQuantityChangeZustand,
-    decreaseQuantity: handleDecreaseQuantityZustand,
-    clearCart: handleEmptyCartZustand,
-    getTotalItems,
-    getTotalPrice,
-    removeItem: handleRemoveFromCartZustand,
-  } = useCartStore();
-  const { setProducts } = useProductStore();
-  const products = useProductStore((state) => state.products);
-  const navigate = useNavigate();
+  const { addItem: handleAddToCartZustand, getTotalItems } = useCartStore()
+  const products = useProductStore((state) => state.products)
 
-  const [whatsappNumber] = useState("5569992784621");
-  const whatsappLink = `https://wa.me/${whatsappNumber}`;
+  const [whatsappNumber] = useState('5569992784621')
+  const whatsappLink = `https://wa.me/${whatsappNumber}`
 
   const handleAddToCart = (product: Product) => {
-    handleAddToCartZustand(product);
+    handleAddToCartZustand(product)
     toast.success(`${product.name} adicionado ao carrinho!`, {
-      position: "top-right",
+      position: 'top-right',
       autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-    });
-  };
+    })
+  }
 
-  const handleQuantityChange = (productId: number, quantity: number) => {
-    if (quantity > 0) {
-      handleQuantityChangeZustand(productId);
-    } else if (quantity === 0) {
-      handleRemoveFromCartZustand(productId);
-    }
-  };
-
-  const handleEmptyCart = () => {
-    handleEmptyCartZustand();
-  };
-
-  const handleRemoveFromCart = (productId: number) => {
-    const productToRemove = products.find((p) => p.id === productId);
-    handleRemoveFromCartZustand(productId);
-    if (productToRemove) {
-      toast.error(`${productToRemove.name} removido do carrinho!`, {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
-  };
-
-  const calculateTotal = () => {
-    return getTotalPrice().toFixed(2);
-  };
-
-  useLoadInitialProducts();
+  useLoadInitialProducts()
 
   return (
     <FavoritesProvider>
@@ -97,12 +54,7 @@ const App: React.FC = () => {
           <Routes>
             <Route
               path="/"
-              element={
-                <HomePage
-                  onAddToCart={handleAddToCart}
-                  products={products.slice(0, 8)}
-                />
-              }
+              element={<HomePage onAddToCart={handleAddToCart} products={products.slice(0, 8)} />}
             />
             <Route
               path="/favoritos"
@@ -116,49 +68,24 @@ const App: React.FC = () => {
             />
             <Route
               path="/buscar"
-              element={
-                <SearchResultsPage
-                  products={products}
-                  onAddToCart={handleAddToCart}
-                />
-              }
+              element={<SearchResultsPage products={products} onAddToCart={handleAddToCart} />}
             />
             <Route path="/pedido-enviado" element={<PedidoEnviadoPage />} />
             <Route
               path="/barbantes"
-              element={
-                <CategoryBarbantesPage
-                  products={products}
-                  onAddToCart={handleAddToCart}
-                />
-              }
+              element={<CategoryBarbantesPage products={products} onAddToCart={handleAddToCart} />}
             />
             <Route
               path="/linhas"
-              element={
-                <CategoryLinhasPage
-                  products={products}
-                  onAddToCart={handleAddToCart}
-                />
-              }
+              element={<CategoryLinhasPage products={products} onAddToCart={handleAddToCart} />}
             />
             <Route
               path="/tapetes"
-              element={
-                <CategoryTapetesPage
-                  products={products}
-                  onAddToCart={handleAddToCart}
-                />
-              }
+              element={<CategoryTapetesPage products={products} onAddToCart={handleAddToCart} />}
             />
             <Route
               path="/produto/:id"
-              element={
-                <ProductDetailsPage
-                  products={products}
-                  onAddToCart={handleAddToCart}
-                />
-              }
+              element={<ProductDetailsPage products={products} onAddToCart={handleAddToCart} />}
             />
             <Route
               path="/carrinho"
@@ -173,7 +100,7 @@ const App: React.FC = () => {
         <ToastContainer />
       </div>
     </FavoritesProvider>
-  );
-};
+  )
+}
 
-export default App;
+export default App

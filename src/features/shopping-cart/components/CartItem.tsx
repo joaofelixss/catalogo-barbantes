@@ -1,14 +1,14 @@
 // src/features/shopping-cart/components/CartItem.tsx
-import React from "react";
-import styles from "./CartItem.module.css";
-import { CartItem as CartItemType, Product } from "../../../types/product";
-import formatPrice from "../../../shared/utils/formatPrice";
+import React from 'react'
+import styles from './CartItem.module.css'
+import { CartItem as CartItemType, Product } from '../../../types/product'
+import formatPrice from '../../../shared/utils/formatPrice'
 
 interface CartItemProps {
-  product: Product; // Garante que product não seja undefined aqui
-  quantity: number;
-  onQuantityChange: (productId: number, quantity: number) => void;
-  onRemoveFromCart: (productId: number) => void;
+  product: Product // Garante que product não seja undefined aqui
+  quantity: number
+  onQuantityChange: (productId: number, quantity: number) => void
+  onRemoveFromCart: (productId: number) => void
 }
 
 const CartItem: React.FC<CartItemProps> = ({
@@ -18,27 +18,27 @@ const CartItem: React.FC<CartItemProps> = ({
   onRemoveFromCart,
 }) => {
   const handleIncrement = () => {
-    onQuantityChange(product.id, quantity + 1);
-  };
+    onQuantityChange(product.id, quantity + 1)
+  }
 
   const handleDecrement = () => {
     if (quantity > 1) {
-      onQuantityChange(product.id, quantity - 1);
+      onQuantityChange(product.id, quantity - 1)
     }
-  };
+  }
 
   const handleRemove = () => {
-    onRemoveFromCart(product.id);
-  };
-
-  const subtotal = formatPrice(product.price * quantity);
-  const formattedPrice = formatPrice(product.price);
-
-  const details: string[] = [`Cor: ${product.color}`];
-  if (product.num) {
-    details.push(`Numeração: ${product.num}`);
+    onRemoveFromCart(product.id)
   }
-  const itemDetailsText = details.join(" - ");
+
+  const subtotal = formatPrice(product.price * quantity)
+  const formattedPrice = formatPrice(product.price)
+
+  const details: string[] = [`Cor: ${product.color}`]
+  if (product.num) {
+    details.push(`Numeração: ${product.num}`)
+  }
+  const itemDetailsText = details.join(' - ')
 
   return (
     <div className={styles.cartItem}>
@@ -68,7 +68,7 @@ const CartItem: React.FC<CartItemProps> = ({
         Remover
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default CartItem;
+export default CartItem

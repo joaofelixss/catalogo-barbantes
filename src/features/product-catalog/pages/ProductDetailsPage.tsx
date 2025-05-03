@@ -1,58 +1,49 @@
-// src/pages/ProductDetailsPage.tsx
-import React from "react";
-import { useParams } from "react-router-dom";
-import { Product } from "../../../types/product";
-import styles from "./ProductDetailsPage.module.css";
-import { useFavorites } from "../../../shared/contexts/FavoritesContext";
-import ProductCard from "../components/ProductCard"; // Importe o ProductCard
+// src/features/product-catalog/pages/ProductDetailsPage.tsx
+import React from 'react'
+import { useParams } from 'react-router-dom'
+import { Product } from '../../../types/product'
+import styles from './ProductDetailsPage.module.css'
+import { useFavorites } from '../../../shared/contexts/FavoritesContext'
+import ProductCard from '../components/ProductCard' // Importe o ProductCard
 
 interface ProductDetailsPageProps {
-  products: Product[];
-  onAddToCart: (product: Product) => void;
+  products: Product[]
+  onAddToCart: (product: Product) => void
 }
 
-const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
-  products,
-  onAddToCart,
-}) => {
-  const { id } = useParams<{ id: string }>();
-  const productId = id ? parseInt(id, 10) : null;
-  const product = productId ? products.find((p) => p.id === productId) : null;
-  const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
-  const [currentImage, setCurrentImage] = React.useState<string | undefined>(
-    product?.images[0]
-  );
+const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ products, onAddToCart }) => {
+  const { id } = useParams<{ id: string }>()
+  const productId = id ? parseInt(id, 10) : null
+  const product = productId ? products.find((p) => p.id === productId) : null
+  const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites()
+  const [currentImage, setCurrentImage] = React.useState<string | undefined>(product?.images[0])
 
   // Lógica para obter produtos relacionados (por enquanto, alguns outros produtos aleatórios)
   const relatedProducts = React.useMemo(() => {
     if (!product) {
-      return [];
+      return []
     }
-    const otherProducts = products.filter((p) => p.id !== product.id);
+    const otherProducts = products.filter((p) => p.id !== product.id)
     // Embaralha o array e pega os primeiros 2 para sugestão
-    const shuffledProducts = [...otherProducts].sort(() => 0.5 - Math.random());
-    return shuffledProducts.slice(0, 2);
-  }, [product, products]);
+    const shuffledProducts = [...otherProducts].sort(() => 0.5 - Math.random())
+    return shuffledProducts.slice(0, 2)
+  }, [product, products])
 
   if (!product) {
-    return (
-      <div className={styles.productDetailsContainer}>
-        Produto não encontrado.
-      </div>
-    );
+    return <div className={styles.productDetailsContainer}>Produto não encontrado.</div>
   }
 
   const handleThumbnailClick = (imageUrl: string) => {
-    setCurrentImage(imageUrl);
-  };
+    setCurrentImage(imageUrl)
+  }
 
   const handleFavoriteClick = () => {
     if (isFavorite(product.id)) {
-      removeFromFavorites(product.id);
+      removeFromFavorites(product.id)
     } else {
-      addToFavorites(product);
+      addToFavorites(product)
     }
-  };
+  }
 
   return (
     <div className={styles.productDetailsContainer}>
@@ -69,9 +60,7 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
                 key={index}
                 src={`${process.env.PUBLIC_URL}${imgUrl}`} // ADICIONADO PUBLIC_URL AQUI
                 alt={`${product.name} - Miniatura ${index + 1}`}
-                className={`${styles.thumbnail} ${
-                  imgUrl === currentImage ? styles.active : ""
-                }`}
+                className={`${styles.thumbnail} ${imgUrl === currentImage ? styles.active : ''}`}
                 onClick={() => handleThumbnailClick(imgUrl)}
               />
             ))}
@@ -85,14 +74,9 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
         <p className={styles.price}>R$ {product.price.toFixed(2)}</p>
         <p className={styles.description}>{product.descricao}</p>
         <div className={styles.actions}>
-          <button onClick={() => onAddToCart(product)}>
-            Adicionar ao Carrinho
-          </button>
-          <button
-            className={styles.favoriteButton}
-            onClick={handleFavoriteClick}
-          >
-            {isFavorite(product.id) ? "❤️ Remover Favorito" : "🤍 Favoritar"}
+          <button onClick={() => onAddToCart(product)}>Adicionar ao Carrinho</button>
+          <button className={styles.favoriteButton} onClick={handleFavoriteClick}>
+            {isFavorite(product.id) ? '❤️ Remover Favorito' : '🤍 Favoritar'}
           </button>
         </div>
         {/* Podemos adicionar sugestões de produtos relacionados aqui no futuro */}
@@ -114,7 +98,7 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ProductDetailsPage;
+export default ProductDetailsPage

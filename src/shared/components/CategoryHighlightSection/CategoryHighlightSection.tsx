@@ -1,16 +1,16 @@
 // src/shared/components/CategoryHighlightSection/CategoryHighlightSection.tsx
-import React, { useRef } from "react";
-import styles from "./CategoryHighlightSection.module.css";
-import { Product } from "../../../types/product";
-import { Link } from "react-router-dom";
-import FavoriteButton from "../../../features/favorites/components/FavoriteButton";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai"; // Importe os ícones se o FavoriteButton usar
+import React, { useRef } from 'react'
+import styles from './CategoryHighlightSection.module.css'
+import { Product } from '../../../types/product'
+import { Link } from 'react-router-dom'
+import FavoriteButton from '../../../features/favorites/components/FavoriteButton'
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai' // Importe os ícones se o FavoriteButton usar
 
 interface CategoryHighlightSectionProps {
-  title: string;
-  products: Product[];
-  onAddToCart: (product: Product) => void;
-  viewMoreLink: string;
+  title: string
+  products: Product[]
+  onAddToCart: (product: Product) => void
+  viewMoreLink: string
 }
 
 const CategoryHighlightSection: React.FC<CategoryHighlightSectionProps> = ({
@@ -19,28 +19,25 @@ const CategoryHighlightSection: React.FC<CategoryHighlightSectionProps> = ({
   onAddToCart,
   viewMoreLink,
 }) => {
-  const productListRef = useRef<HTMLDivElement>(null);
+  const productListRef = useRef<HTMLDivElement>(null)
 
   const handleScrollLeft = () => {
     if (productListRef.current) {
-      productListRef.current.scrollLeft -= productListRef.current.offsetWidth;
+      productListRef.current.scrollLeft -= productListRef.current.offsetWidth
     }
-  };
+  }
 
   const handleScrollRight = () => {
     if (productListRef.current) {
-      productListRef.current.scrollLeft += productListRef.current.offsetWidth;
+      productListRef.current.scrollLeft += productListRef.current.offsetWidth
     }
-  };
+  }
 
   return (
     <section className={styles.categorySection}>
       <h2>{title}</h2>
       <div className={styles.carouselContainer}>
-        <button
-          className={styles.carouselButtonLeft}
-          onClick={handleScrollLeft}
-        >
+        <button className={styles.carouselButtonLeft} onClick={handleScrollLeft}>
           &lt;
         </button>
         <div ref={productListRef} className={styles.productList}>
@@ -49,10 +46,7 @@ const CategoryHighlightSection: React.FC<CategoryHighlightSectionProps> = ({
               <div className={styles.favoriteIcon}>
                 <FavoriteButton productId={product.id} product={product} />
               </div>
-              <Link
-                to={`/produto/${product.id}`}
-                className={styles.productLink}
-              >
+              <Link to={`/produto/${product.id}`} className={styles.productLink}>
                 <img
                   src={`${process.env.PUBLIC_URL}${product.images[0]}`} // ADICIONADO PUBLIC_URL AQUI
                   alt={product.name}
@@ -65,8 +59,8 @@ const CategoryHighlightSection: React.FC<CategoryHighlightSectionProps> = ({
               </Link>
               <button
                 onClick={(event) => {
-                  event.stopPropagation();
-                  onAddToCart(product);
+                  event.stopPropagation()
+                  onAddToCart(product)
                 }}
               >
                 Adicionar ao Carrinho
@@ -74,18 +68,15 @@ const CategoryHighlightSection: React.FC<CategoryHighlightSectionProps> = ({
             </div>
           ))}
         </div>
-        <button
-          className={styles.carouselButtonRight}
-          onClick={handleScrollRight}
-        >
+        <button className={styles.carouselButtonRight} onClick={handleScrollRight}>
           &gt;
         </button>
       </div>
       <div className={styles.viewMore}>
-        <Link to={viewMoreLink}>Ver Mais {title.split(" ")[2]}</Link>
+        <Link to={viewMoreLink}>Ver Mais {title.split(' ')[2]}</Link>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default CategoryHighlightSection;
+export default CategoryHighlightSection

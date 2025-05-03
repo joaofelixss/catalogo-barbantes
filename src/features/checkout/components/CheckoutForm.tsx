@@ -1,149 +1,137 @@
 // src/features/checkout/components/CheckoutForm.tsx
-import React, { useState } from "react";
-import styles from "./CheckoutForm.module.css";
-import { useNavigate } from "react-router-dom";
-import { Product } from "../../../types/product";
-import { toast } from "react-toastify";
-import { useCartStore } from "../../../store/cartStore"; // Importe o Zustand store
-import { useProductStore } from "../../../store/productStore"; // Importe para acessar os produtos
+import React, { useState } from 'react'
+import styles from './CheckoutForm.module.css'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { useCartStore } from '../../../store/cartStore' // Importe o Zustand store
+import { useProductStore } from '../../../store/productStore' // Importe para acessar os produtos
 
 const CheckoutForm: React.FC = () => {
-  const cartItems = useCartStore((state) => state.items);
-  const clearCart = useCartStore((state) => state.clearCart);
-  const getTotalPrice = useCartStore((state) => state.getTotalPrice);
-  const products = useProductStore((state) => state.products);
-  const navigate = useNavigate();
+  const cartItems = useCartStore((state) => state.items)
+  const clearCart = useCartStore((state) => state.clearCart)
+  const getTotalPrice = useCartStore((state) => state.getTotalPrice)
+  const products = useProductStore((state) => state.products)
+  const navigate = useNavigate()
 
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [notes, setNotes] = useState("");
-  const [nameError, setNameError] = useState("");
-  const [phoneError, setPhoneError] = useState("");
-  const [desejaEntrega, setDesejaEntrega] = useState(false);
-  const [enderecoEntrega, setEnderecoEntrega] = useState("");
-  const [frete] = useState(5.0); // Valor fixo do frete
-  const whatsappNumber = "5569992784621";
+  const [name, setName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [notes, setNotes] = useState('')
+  const [nameError, setNameError] = useState('')
+  const [phoneError, setPhoneError] = useState('')
+  const [desejaEntrega, setDesejaEntrega] = useState(false)
+  const [enderecoEntrega, setEnderecoEntrega] = useState('')
+  const [frete] = useState(5.0) // Valor fixo do frete
+  const whatsappNumber = '5569992784621'
 
-  const totalCompra = getTotalPrice();
-  const totalComFrete = desejaEntrega ? totalCompra + frete : totalCompra;
+  const totalCompra = getTotalPrice()
+  const totalComFrete = desejaEntrega ? totalCompra + frete : totalCompra
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
-    setNameError("");
-  };
+    setName(event.target.value)
+    setNameError('')
+  }
 
   const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPhone(event.target.value);
-    setPhoneError("");
-  };
+    setPhone(event.target.value)
+    setPhoneError('')
+  }
 
   const handleNotesChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setNotes(event.target.value);
-  };
+    setNotes(event.target.value)
+  }
 
-  const handleDesejaEntregaChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setDesejaEntrega(event.target.checked);
+  const handleDesejaEntregaChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDesejaEntrega(event.target.checked)
     if (!event.target.checked) {
-      setEnderecoEntrega("");
+      setEnderecoEntrega('')
     }
-  };
+  }
 
-  const handleEnderecoEntregaChange = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    setEnderecoEntrega(event.target.value);
-  };
+  const handleEnderecoEntregaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setEnderecoEntrega(event.target.value)
+  }
 
   const validateForm = (): boolean => {
-    let isValid = true;
+    let isValid = true
 
     if (!name.trim()) {
-      setNameError("Por favor, digite seu nome completo.");
-      isValid = false;
+      setNameError('Por favor, digite seu nome completo.')
+      isValid = false
     }
 
     if (!phone.trim()) {
-      setPhoneError("Por favor, digite seu telefone com DDD.");
-      isValid = false;
+      setPhoneError('Por favor, digite seu telefone com DDD.')
+      isValid = false
     } else if (!/^\d{2}\d{8,9}$/.test(phone)) {
-      setPhoneError(
-        "Por favor, digite um telefone válido com DDD (ex: 69999999999)."
-      );
-      isValid = false;
+      setPhoneError('Por favor, digite um telefone válido com DDD (ex: 69999999999).')
+      isValid = false
     }
 
     if (desejaEntrega && !enderecoEntrega.trim()) {
-      alert("Por favor, digite o endereço de entrega.");
-      isValid = false;
+      alert('Por favor, digite o endereço de entrega.')
+      isValid = false
     }
 
-    return isValid;
-  };
+    return isValid
+  }
 
   const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
+    event.preventDefault()
 
     if (validateForm()) {
       if (cartItems.length === 0) {
-        alert("Seu carrinho está vazio. Adicione itens para fazer o pedido.");
-        return;
+        alert('Seu carrinho está vazio. Adicione itens para fazer o pedido.')
+        return
       }
 
-      let orderDetails = cartItems
+      const orderDetails = cartItems
         .map((item) => {
-          const product = products.find((p) => p.id === item.product.id);
+          const product = products.find((p) => p.id === item.product.id)
           if (!product) {
-            console.error(
-              `Produto com ID ${item.product.id} não encontrado no array de produtos.`
-            );
-            return null;
+            console.error(`Produto com ID ${item.product.id} não encontrado no array de produtos.`)
+            return null
           }
-          const details = [`${product.color}`];
+          const details = [`${product.color}`]
           if (product.num) {
-            details.push(`Numeração ${product.num}`);
+            details.push(`Numeração ${product.num}`)
           }
           return `- ${item.quantity} x ${product.name} (${details.join(
-            ", "
-          )}) - R$ ${(product.price * item.quantity).toFixed(2)}`;
+            ', '
+          )}) - R$ ${(product.price * item.quantity).toFixed(2)}`
         })
         .filter(Boolean)
-        .join("\n");
+        .join('\n')
 
-      const total = totalComFrete.toFixed(2);
+      const total = totalComFrete.toFixed(2)
 
-      let message = `Olá! Gostaria de fazer o seguinte pedido:\n\n*Dados do Cliente:*\nNome: ${name}\nTelefone: ${phone}\n\n`;
+      let message = `Olá! Gostaria de fazer o seguinte pedido:\n\n*Dados do Cliente:*\nNome: ${name}\nTelefone: ${phone}\n\n`
 
       if (desejaEntrega) {
         message += `*Entrega:*\nSim\nEndereço: ${enderecoEntrega}\nFrete: R$ ${frete.toFixed(
           2
-        )}\n\n`;
+        )}\n\n`
       } else {
-        message += `*Entrega:*\nNão (Retirada no local)\n\n`;
+        message += `*Entrega:*\nNão (Retirada no local)\n\n`
       }
 
-      message += `*Itens do Pedido:*\n${orderDetails}\n\n*Total do Pedido: R$ ${total}*\n\nObservações: ${notes}`;
-      const encodedMessage = encodeURIComponent(message);
-      window.open(
-        `https://wa.me/${whatsappNumber}?text=${encodedMessage}`,
-        "_blank"
-      );
+      message += `*Itens do Pedido:*\n${orderDetails}\n\n*Total do Pedido: R$ ${total}*\n\nObservações: ${notes}`
+      const encodedMessage = encodeURIComponent(message)
+      window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank')
 
-      toast.success("Pedido enviado para o WhatsApp!", {
-        position: "top-right",
+      toast.success('Pedido enviado para o WhatsApp!', {
+        position: 'top-right',
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-      });
+      })
 
-      clearCart();
-      navigate("/pedido-enviado");
+      clearCart()
+      navigate('/pedido-enviado')
     }
-  };
+  }
 
   return (
     <div className={styles.checkoutFormContainer}>
@@ -180,10 +168,7 @@ const CheckoutForm: React.FC = () => {
         <div className={styles.section}>
           <h2>Opção de Entrega</h2>
           <div className={styles.formGroup}>
-            <label
-              className={styles.entregaEmCasaLabel}
-              htmlFor="desejaEntrega"
-            >
+            <label className={styles.entregaEmCasaLabel} htmlFor="desejaEntrega">
               <input
                 type="checkbox"
                 id="desejaEntrega"
@@ -210,9 +195,7 @@ const CheckoutForm: React.FC = () => {
               />
             </div>
           )}
-          {desejaEntrega && (
-            <p className={styles.freteInfo}>Frete: R$ {frete.toFixed(2)}</p>
-          )}
+          {desejaEntrega && <p className={styles.freteInfo}>Frete: R$ {frete.toFixed(2)}</p>}
           <p className={styles.total}>
             Total: <strong>R$ {totalComFrete.toFixed(2)}</strong>
           </p>
@@ -222,13 +205,7 @@ const CheckoutForm: React.FC = () => {
           <h2>Observações Adicionais</h2>
           <div className={styles.formGroup}>
             <label htmlFor="notes">Alguma observação sobre o seu pedido?</label>
-            <textarea
-              id="notes"
-              name="notes"
-              rows={3}
-              value={notes}
-              onChange={handleNotesChange}
-            />
+            <textarea id="notes" name="notes" rows={3} value={notes} onChange={handleNotesChange} />
           </div>
         </div>
 
@@ -237,7 +214,7 @@ const CheckoutForm: React.FC = () => {
         </button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default CheckoutForm;
+export default CheckoutForm

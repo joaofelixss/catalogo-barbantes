@@ -1,6 +1,6 @@
-// src/utils/formatPrice.ts
+// src/shared/utils/formatPrice.ts
 const formatPrice = (price: number): string => {
-  return price.toFixed(2).replace(".", ",");
-};
+  return price.toFixed(2).replace('.', ',')
+}
 
-export default formatPrice;
+export default formatPrice

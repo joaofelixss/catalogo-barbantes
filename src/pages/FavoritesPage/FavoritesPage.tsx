@@ -1,28 +1,22 @@
 // src/pages/FavoritesPage.tsx
-import React from "react";
-import { useFavorites } from "../../shared/contexts/FavoritesContext";
-import { Product } from "../../types/product";
-import ProductCard from "../../features/product-catalog/components/ProductCard";
-import styles from "./FavoritesPage.module.css";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { useFavorites } from '../../shared/contexts/FavoritesContext'
+import { Product } from '../../types/product'
+import ProductCard from '../../features/product-catalog/components/ProductCard'
+import styles from './FavoritesPage.module.css'
+import { Link } from 'react-router-dom'
 
 interface FavoritesPageProps {
-  products: Product[];
-  onAddToCart: (product: Product) => void;
-  productImages: { [key: number]: string | null | undefined };
+  products: Product[]
+  onAddToCart: (product: Product) => void
+  productImages: { [key: number]: string | null | undefined }
 }
 
-const FavoritesPage: React.FC<FavoritesPageProps> = ({
-  products,
-  onAddToCart,
-  productImages,
-}) => {
-  const { favorites } = useFavorites();
+const FavoritesPage: React.FC<FavoritesPageProps> = ({ products, onAddToCart, productImages }) => {
+  const { favorites } = useFavorites()
 
   // Filtra a lista de produtos para incluir apenas os que estão nos favoritos
-  const favoriteProducts = products.filter((product) =>
-    favorites.includes(product.id)
-  );
+  const favoriteProducts = products.filter((product) => favorites.includes(product.id))
 
   if (favoriteProducts.length === 0) {
     return (
@@ -31,7 +25,7 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({
         <p>Sua lista de favoritos está vazia.</p>
         <Link to="/">Voltar para a loja</Link>
       </div>
-    );
+    )
   }
 
   return (
@@ -49,7 +43,7 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default FavoritesPage;
+export default FavoritesPage

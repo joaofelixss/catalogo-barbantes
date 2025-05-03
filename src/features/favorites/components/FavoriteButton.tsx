@@ -1,43 +1,40 @@
-// src/components/ProductCard/FavoriteButton.tsx
-import React from "react";
-import styles from "../../product-catalog/components/ProductCard.module.css";
-import { useFavorites } from "../../../shared/contexts/FavoritesContext";
-import { Product } from "../../../types/product";
-import { Heart } from "react-feather";
+// src/features/components/favorites/FavoriteButton.tsx
+import React from 'react'
+import styles from '../../product-catalog/components/ProductCard.module.css'
+import { useFavorites } from '../../../shared/contexts/FavoritesContext'
+import { Product } from '../../../types/product'
+import { Heart } from 'react-feather'
 
 interface FavoriteButtonProps {
-  productId: number;
-  product: Product;
+  productId: number
+  product: Product
 }
 
-const FavoriteButton: React.FC<FavoriteButtonProps> = ({
-  productId,
-  product,
-}) => {
-  const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
-  const isCurrentlyFavorite = isFavorite(productId);
+const FavoriteButton: React.FC<FavoriteButtonProps> = ({ productId, product }) => {
+  const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites()
+  const isCurrentlyFavorite = isFavorite(productId)
 
   const handleClick = (event: React.MouseEvent) => {
-    event.stopPropagation();
+    event.stopPropagation()
     if (isCurrentlyFavorite) {
-      removeFromFavorites(productId);
+      removeFromFavorites(productId)
     } else {
-      addToFavorites(product);
+      addToFavorites(product)
     }
-  };
+  }
 
   return (
     <div className={styles.favoriteIcon} onClick={handleClick}>
       <button className={styles.favoriteButton}>
         <Heart
           size={20}
-          className={isCurrentlyFavorite ? "favorited" : ""}
-          fill={isCurrentlyFavorite ? "#e53935" : "none"}
-          stroke={!isCurrentlyFavorite ? "currentColor" : undefined}
+          className={isCurrentlyFavorite ? 'favorited' : ''}
+          fill={isCurrentlyFavorite ? '#e53935' : 'none'}
+          stroke={!isCurrentlyFavorite ? 'currentColor' : undefined}
         />
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default FavoriteButton;
+export default FavoriteButton

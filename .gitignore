@@ -10,6 +10,7 @@
 
 # production
 /build
+/dist/ # Adicionado para outras possíveis pastas de build
 
 # misc
 .DS_Store
@@ -21,3 +22,15 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Editor/IDE specific
+.vscode/ # VS Code
+.idea/   # IntelliJ IDEA, WebStorm (se aplicável)
+
+# Bundler cache
+/.cache/ # Parcel, etc.
+
+# Logs
+*.log
+/logs/
+/tmp/ # Temporary files
