@@ -1,12 +1,12 @@
 // src/features/shopping-cart/components/ShoppingCart.tsx
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import styles from './ShoppingCart.module.css'
 import CartItem from './CartItem'
 import { Link, useNavigate } from 'react-router-dom'
 import { useCartStore } from '../../../store/cartStore'
 import { useProductStore } from '../../../store/productStore'
 
-const ShoppingCart: React.FC = () => {
+const ShoppingCart: React.FC = React.memo(() => {
   const cartItems = useCartStore((state) => state.items)
   const removeItem = useCartStore((state) => state.removeItem)
   const increaseQuantity = useCartStore((state) => state.increaseQuantity)
@@ -17,40 +17,46 @@ const ShoppingCart: React.FC = () => {
   const navigate = useNavigate()
   const [cartEmptyMessageVisible, setCartEmptyMessageVisible] = useState(false)
 
-  const calculateTotal = () => {
+  const calculateTotal = useCallback(() => {
     return getTotalPrice().toFixed(2).replace('.', ',')
-  }
+  }, [getTotalPrice])
 
-  const handleEmptyCart = () => {
+  const handleEmptyCart = useCallback(() => {
     clearCart()
     setCartEmptyMessageVisible(true)
     setTimeout(() => {
       setCartEmptyMessageVisible(false)
     }, 3000)
-  }
+  }, [clearCart])
 
-  const handleQuantityChange = (productId: number, quantity: number) => {
-    if (quantity > 0) {
-      const itemInCart = cartItems.find((item) => item.product.id === productId)
-      if (itemInCart) {
-        if (quantity > itemInCart.quantity) {
-          increaseQuantity(productId)
-        } else if (quantity < itemInCart.quantity) {
-          decreaseQuantity(productId)
+  const handleQuantityChange = useCallback(
+    (productId: number, quantity: number) => {
+      if (quantity > 0) {
+        const itemInCart = cartItems.find((item) => item.product.id === productId)
+        if (itemInCart) {
+          if (quantity > itemInCart.quantity) {
+            increaseQuantity(productId)
+          } else if (quantity < itemInCart.quantity) {
+            decreaseQuantity(productId)
+          }
         }
+      } else if (quantity === 0) {
+        removeItem(productId)
       }
-    } else if (quantity === 0) {
+    },
+    [cartItems, increaseQuantity, decreaseQuantity, removeItem]
+  )
+
+  const handleRemoveFromCart = useCallback(
+    (productId: number) => {
       removeItem(productId)
-    }
-  }
+    },
+    [removeItem]
+  )
 
-  const handleRemoveFromCart = (productId: number) => {
-    removeItem(productId)
-  }
-
-  const handleCheckout = () => {
+  const handleCheckout = useCallback(() => {
     navigate('/checkout')
-  }
+  }, [navigate])
 
   return (
     <div className={styles.shoppingCartContainer}>
@@ -98,6 +104,8 @@ const ShoppingCart: React.FC = () => {
       )}
     </div>
   )
-}
+})
+
+ShoppingCart.displayName = 'ShoppingCart'
 
 export default ShoppingCart

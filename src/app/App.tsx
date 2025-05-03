@@ -1,28 +1,36 @@
-//src/app/App.tsx
-import React, { useState } from 'react'
+import React, { useState, Suspense, lazy } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-import HomePage from '../pages/HomePage/HomePage'
-import FavoritesPage from '../pages/FavoritesPage/FavoritesPage'
-import ProductDetailsPage from '../features/product-catalog/pages/ProductDetailsPage'
-import SearchResultsPage from '../features/search/pages/SearchResultsPage'
-import PedidoEnviadoPage from '../features/checkout/pages/PedidoEnviadoPage'
-import CategoryBarbantesPage from '../features/product-catalog/pages/CategoryBarbantesPage'
-import CategoryLinhasPage from '../features/product-catalog/pages/CategoryLinhasPage'
-import CategoryTapetesPage from '../features/product-catalog/pages/CategoryTapetesPage'
+// Carregamento lazy das páginas
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'))
+const FavoritesPage = lazy(() => import('../pages/FavoritesPage/FavoritesPage'))
+const ProductDetailsPage = lazy(
+  () => import('../features/product-catalog/pages/ProductDetailsPage')
+)
+const SearchResultsPage = lazy(() => import('../features/search/pages/SearchResultsPage'))
+const PedidoEnviadoPage = lazy(() => import('../features/checkout/pages/PedidoEnviadoPage'))
+const CategoryBarbantesPage = lazy(
+  () => import('../features/product-catalog/pages/CategoryBarbantesPage')
+)
+const CategoryLinhasPage = lazy(
+  () => import('../features/product-catalog/pages/CategoryLinhasPage')
+)
+const CategoryTapetesPage = lazy(
+  () => import('../features/product-catalog/pages/CategoryTapetesPage')
+)
+const ShoppingCart = lazy(() => import('../features/shopping-cart/components/ShoppingCart'))
+const CheckoutForm = lazy(() => import('../features/checkout/components/CheckoutForm'))
 
-import ShoppingCart from '../features/shopping-cart/components/ShoppingCart'
-import CheckoutForm from '../features/checkout/components/CheckoutForm'
 import Navbar from '../shared/components/Navbar'
-
 import { FavoritesProvider } from '../shared/contexts/FavoritesContext'
 import { useCartStore } from '../store/cartStore'
 import { useProductStore } from '../store/productStore'
 import { Product } from '../types/product'
 import styles from './App.module.css'
 import useLoadInitialProducts from '../hooks/useLoadInitialProducts'
+import LoadingSpinner from '../shared/components/LoadingSpinner' // Crie um componente de loading
 
 const App: React.FC = () => {
   const { addItem: handleAddToCartZustand, getTotalItems } = useCartStore()
@@ -51,51 +59,51 @@ const App: React.FC = () => {
       <div className={styles.appContainer}>
         <Navbar cartItemCount={getTotalItems()} whatsappLink={whatsappLink} />
         <div className={styles.mainContent}>
-          <Routes>
-            <Route
-              path="/"
-              element={<HomePage onAddToCart={handleAddToCart} products={products.slice(0, 8)} />}
-            />
-            <Route
-              path="/favoritos"
-              element={
-                <FavoritesPage
-                  products={products}
-                  onAddToCart={handleAddToCart}
-                  productImages={{}}
-                />
-              }
-            />
-            <Route
-              path="/buscar"
-              element={<SearchResultsPage products={products} onAddToCart={handleAddToCart} />}
-            />
-            <Route path="/pedido-enviado" element={<PedidoEnviadoPage />} />
-            <Route
-              path="/barbantes"
-              element={<CategoryBarbantesPage products={products} onAddToCart={handleAddToCart} />}
-            />
-            <Route
-              path="/linhas"
-              element={<CategoryLinhasPage products={products} onAddToCart={handleAddToCart} />}
-            />
-            <Route
-              path="/tapetes"
-              element={<CategoryTapetesPage products={products} onAddToCart={handleAddToCart} />}
-            />
-            <Route
-              path="/produto/:id"
-              element={<ProductDetailsPage products={products} onAddToCart={handleAddToCart} />}
-            />
-            <Route
-              path="/carrinho"
-              element={<ShoppingCart />} // Remova as props aqui
-            />
-            <Route
-              path="/checkout"
-              element={<CheckoutForm />} // Remova as props aqui também
-            />
-          </Routes>
+          <Suspense fallback={<LoadingSpinner />}>
+            {' '}
+            {/* Usando o LoadingSpinner como fallback */}
+            <Routes>
+              <Route
+                path="/"
+                element={<HomePage onAddToCart={handleAddToCart} products={products.slice(0, 8)} />}
+              />
+              <Route
+                path="/favoritos"
+                element={
+                  <FavoritesPage
+                    products={products}
+                    onAddToCart={handleAddToCart}
+                    productImages={{}}
+                  />
+                }
+              />
+              <Route
+                path="/buscar"
+                element={<SearchResultsPage products={products} onAddToCart={handleAddToCart} />}
+              />
+              <Route path="/pedido-enviado" element={<PedidoEnviadoPage />} />
+              <Route
+                path="/barbantes"
+                element={
+                  <CategoryBarbantesPage products={products} onAddToCart={handleAddToCart} />
+                }
+              />
+              <Route
+                path="/linhas"
+                element={<CategoryLinhasPage products={products} onAddToCart={handleAddToCart} />}
+              />
+              <Route
+                path="/tapetes"
+                element={<CategoryTapetesPage products={products} onAddToCart={handleAddToCart} />}
+              />
+              <Route
+                path="/produto/:id"
+                element={<ProductDetailsPage products={products} onAddToCart={handleAddToCart} />}
+              />
+              <Route path="/carrinho" element={<ShoppingCart />} />
+              <Route path="/checkout" element={<CheckoutForm />} />
+            </Routes>
+          </Suspense>
         </div>
         <ToastContainer />
       </div>

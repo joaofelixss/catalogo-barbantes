@@ -9,6 +9,7 @@ module.exports = {
   ],
   rules: {
     'prettier/prettier': 'warn', // Ou 'error' se você quiser que erros de formatação falhem no build
+    'react/prop-types': 'off',
   },
   env: {
     browser: true, // Se seu código roda no navegador
