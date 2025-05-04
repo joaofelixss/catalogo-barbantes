@@ -12,7 +12,6 @@ interface ProductListProps {
 
 const ProductList: React.FC<ProductListProps> = React.memo(
   ({ products, onAddToCart, productImages }) => {
-    console.log('ProductList renderizou!')
     return (
       <div className={styles.cardapioSection}>
         {' '}

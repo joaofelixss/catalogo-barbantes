@@ -9,7 +9,7 @@ const images = [
   '/images/sonia1.jpeg',
 ]
 
-const HeroSection: React.FC = () => {
+const HeroSection: React.FC = React.memo(() => {
   const heroSectionRef = useRef<HTMLElement>(null)
   const [loaded, setLoaded] = useState(false)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
@@ -74,6 +74,8 @@ const HeroSection: React.FC = () => {
       </div>
     </section>
   )
-}
+})
+
+HeroSection.displayName = 'HeroSection'
 
 export default HeroSection

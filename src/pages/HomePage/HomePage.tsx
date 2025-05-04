@@ -1,31 +1,47 @@
-// src/pages/HomePage.tsx
-import React from 'react'
+// src/pages/HomePage/HomePage.tsx
+import React, { useCallback, useMemo } from 'react'
 import styles from './HomePage.module.css'
 import { Product } from '../../types/product'
 import HeroSection from './components/HeroSection'
 import ContactSection from './components/ContactSection'
-import CategoryHighlightSection from '../../shared/components/CategoryHighlightSection/CategoryHighlightSection' // Importe o novo componente
+import CategoryHighlightSection from '../../shared/components/CategoryHighlightSection/CategoryHighlightSection'
 
 interface HomePageProps {
   onAddToCart: (product: Product) => void
   products: Product[]
 }
 
-const HomePage: React.FC<HomePageProps> = ({ onAddToCart, products }) => {
-  // Filtrar produtos por categoria (abordagem inicial baseada no nome)
-  const barbanteEcoBrasil = products.filter(
-    (product) =>
-      product.name.includes('Barbante Eco Brasil') ||
-      product.name.includes('Barroco Maxcolor') ||
-      product.name.includes('Amigurumi') ||
-      product.name.includes('Duna') ||
-      product.name.includes('Charme')
+const HomePage: React.FC<HomePageProps> = ({ onAddToCart: onAddToCartProp, products }) => {
+  // Memoizar a função onAddToCart
+  const onAddToCart = useCallback(
+    (product: Product) => {
+      onAddToCartProp(product)
+    },
+    [onAddToCartProp]
   )
-  const linhasBarroco = products.filter(
-    (product) =>
-      product.name.includes('Barroco Multicolor') || product.name.includes('Barroco Decore')
-  )
-  const crochesTapetes = products.filter((product) => product.name.includes('Tapete de Crochê'))
+
+  // Memoizar os arrays de produtos filtrados
+  const barbanteEcoBrasil = useMemo(() => {
+    return products.filter(
+      (product) =>
+        product.name.includes('Barbante Eco Brasil') ||
+        product.name.includes('Barroco Maxcolor') ||
+        product.name.includes('Amigurumi') ||
+        product.name.includes('Duna') ||
+        product.name.includes('Charme')
+    )
+  }, [products])
+
+  const linhasBarroco = useMemo(() => {
+    return products.filter(
+      (product) =>
+        product.name.includes('Barroco Multicolor') || product.name.includes('Barroco Decore')
+    )
+  }, [products])
+
+  const crochesTapetes = useMemo(() => {
+    return products.filter((product) => product.name.includes('Tapete de Crochê'))
+  }, [products])
 
   return (
     <div className={styles.container}>
