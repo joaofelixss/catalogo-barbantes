@@ -1,7 +1,8 @@
 describe('Página Inicial', () => {
-  it('Deve carregar a página inicial com sucesso', () => {
-    cy.visit('/'); // Assumindo que sua página inicial está na raiz da URL
-    cy.get('body').should('be.visible'); // Verifica se o body está visível
-    cy.contains('Catálogo de Barbantes').should('exist'); // Verifica se um texto esperado existe
-  });
-});
+  it('Deve carregar a página inicial e verificar o destaque dos barbantes', () => {
+    cy.visit('/') // Certifique-se de que a baseUrl no cypress.config.ts esteja correta
+    cy.get('body').should('be.visible')
+    cy.get('body').should('not.be.empty')
+    cy.contains('Destaque dos Barbantes').should('exist') // Nova asserção com o texto correto
+  })
+})

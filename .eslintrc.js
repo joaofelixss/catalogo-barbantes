@@ -15,5 +15,6 @@ module.exports = {
     browser: true, // Se seu código roda no navegador
     node: true, // Se você usa Node.js
     jest: true, // Adicione isso para reconhecer as globais do Jest
+    "cypress": true
   },
 }
