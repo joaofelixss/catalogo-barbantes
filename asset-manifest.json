@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/catalogo-barbantes/static/css/main.8692236f.css",
-    "main.js": "/catalogo-barbantes/static/js/main.de445783.js",
+    "main.js": "/catalogo-barbantes/static/js/main.1ff4cfc1.js",
     "static/css/536.894d8197.chunk.css": "/catalogo-barbantes/static/css/536.894d8197.chunk.css",
-    "static/js/536.cd2a757f.chunk.js": "/catalogo-barbantes/static/js/536.cd2a757f.chunk.js",
+    "static/js/536.5f78cf1a.chunk.js": "/catalogo-barbantes/static/js/536.5f78cf1a.chunk.js",
     "static/css/189.e0cfd6a6.chunk.css": "/catalogo-barbantes/static/css/189.e0cfd6a6.chunk.css",
     "static/js/189.b87b2d59.chunk.js": "/catalogo-barbantes/static/js/189.b87b2d59.chunk.js",
     "static/css/691.1370756c.chunk.css": "/catalogo-barbantes/static/css/691.1370756c.chunk.css",
@@ -26,9 +26,9 @@
     "static/js/564.97ebae82.chunk.js": "/catalogo-barbantes/static/js/564.97ebae82.chunk.js",
     "index.html": "/catalogo-barbantes/index.html",
     "main.8692236f.css.map": "/catalogo-barbantes/static/css/main.8692236f.css.map",
-    "main.de445783.js.map": "/catalogo-barbantes/static/js/main.de445783.js.map",
+    "main.1ff4cfc1.js.map": "/catalogo-barbantes/static/js/main.1ff4cfc1.js.map",
     "536.894d8197.chunk.css.map": "/catalogo-barbantes/static/css/536.894d8197.chunk.css.map",
-    "536.cd2a757f.chunk.js.map": "/catalogo-barbantes/static/js/536.cd2a757f.chunk.js.map",
+    "536.5f78cf1a.chunk.js.map": "/catalogo-barbantes/static/js/536.5f78cf1a.chunk.js.map",
     "189.e0cfd6a6.chunk.css.map": "/catalogo-barbantes/static/css/189.e0cfd6a6.chunk.css.map",
     "189.b87b2d59.chunk.js.map": "/catalogo-barbantes/static/js/189.b87b2d59.chunk.js.map",
     "691.1370756c.chunk.css.map": "/catalogo-barbantes/static/css/691.1370756c.chunk.css.map",
@@ -52,6 +52,6 @@
   },
   "entrypoints": [
     "static/css/main.8692236f.css",
-    "static/js/main.de445783.js"
+    "static/js/main.1ff4cfc1.js"
   ]
 }
